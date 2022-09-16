@@ -8,14 +8,20 @@ package com.tp.aluguel;
  *
  * @author balta
  */
-public abstract class Aluguel {
+public class Aluguel {
 
     protected String dataRetirada;
     protected String dataDevolucao;
 
-    public abstract Double obterValorTotal();
+    public Double obterValorTotal(){
+        
+        return 100.00;
+    }
 
-    public abstract int obterPeriodo();
+    public int obterPeriodo(){
+        return 1;
+        
+    }
 
     public Aluguel() {
     }

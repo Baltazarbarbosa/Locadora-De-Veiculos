@@ -16,21 +16,30 @@ public abstract class Veiculos {
     protected String anoFabricacao;
     protected String anoModelo;
     protected String categoria;
+    protected Double valorDiaria;
 
     public Veiculos() {
     }
 
-    public Veiculos(String marca, String modelo, String placa, String anoFabricacao, String anoModelo, String categoria) {
+    public Veiculos(String marca, String modelo, String placa, String anoFabricacao, String anoModelo, String categoria, Double valorDiaria) {
         this.marca = marca;
         this.modelo = modelo;
         this.placa = placa;
         this.anoFabricacao = anoFabricacao;
         this.anoModelo = anoModelo;
         this.categoria = categoria;
+        this.valorDiaria = valorDiaria;
     }
-    
+
+    public Double getValorDiaria() {
+        return valorDiaria;
+    }
+
+    public void setValorDiaria(Double valorDiaria) {
+        this.valorDiaria = valorDiaria;
+    }
+
     public abstract String obterDescricao();
-    public abstract Double obterValorDiaria();
 
     public String getMarca() {
         return marca;
@@ -79,7 +88,5 @@ public abstract class Veiculos {
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
-    
-    
 
 }
