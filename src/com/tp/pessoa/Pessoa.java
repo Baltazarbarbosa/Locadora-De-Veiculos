@@ -97,7 +97,8 @@ public class Pessoa {
                 + "Sexo: " + sexo + "\n"
                 + "CPF: " + CPF + "\n"
                 + "CNH: " + CNH + "\n"
-                + "Endereco: " + endereco + "\n";
+                + "Endereco: " + endereco + "\n"
+                + "----------------------------------------------------------";
     }
 
 }
