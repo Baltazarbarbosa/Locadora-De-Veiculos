@@ -238,10 +238,13 @@ public class TelaDasMarcas extends javax.swing.JFrame {
     private void jButtonIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirActionPerformed
         // TODO add your handling code here:
         try {
+                        
+            
             Marca obj= new Marca(0,jTextFieldDescicao.getText(),jTextFieldURL.getText());
             marcaControle.incluir(obj);
-            jTextFieldDescicao.setText("");
             imprimirTabela(marcaControle.listagem());
+            jTextFieldDescicao.setText("");
+            
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this,erro.getMessage());
         }
