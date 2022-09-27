@@ -18,7 +18,7 @@ import java.io.IOException;
 public class GeradorIdentificador {
 
     public static void criarArquivoDeID() throws FileNotFoundException, IOException {
-        String nomeDoArquivo = "./src/com/locagyn/arquivosdedados/idGerado.txt";
+        String nomeDoArquivo = "./src/com/BeeSoftware/arquivosdedados/idGerado.txt";
         //String nomeDoArquivo ="idGerado.txt";
         FileWriter fw = new FileWriter(nomeDoArquivo);
         //Criar o buffer do arquivo
@@ -31,7 +31,7 @@ public class GeradorIdentificador {
     }
 
     public static int getID() throws FileNotFoundException, IOException {
-        String nomeDoArquivo = "./src/com/locagyn/arquivosdedados/idGerado.txt";
+        String nomeDoArquivo = "./src/com/BeeSoftware/arquivosdedados/idGerado.txt";
         FileReader fr = new FileReader(nomeDoArquivo);
         BufferedReader br = new BufferedReader(fr);
         String linha = br.readLine();

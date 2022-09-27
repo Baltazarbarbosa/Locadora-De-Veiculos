@@ -21,7 +21,7 @@ public class MarcaDao implements IMarcaDao {
     private String nomeDoArquivoNoDisco;
 
     public MarcaDao() {
-        nomeDoArquivoNoDisco = "./src/com/locagyn/arquivosdedados/Marca.txt";
+        nomeDoArquivoNoDisco = "./src/com/BeeSoftware/arquivosdedados/Marca.txt";
     }
 
     @Override

@@ -2,7 +2,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.tp1.visao;
+package com.BeeSoftware.visao;
+import com.BeeSoftware.controle.IMarcaControle;
+import com.BeeSoftware.controle.MarcaControle;
+import com.BeeSoftware.ferramentas.GeradorIdentificador;
+import com.BeeSoftware.modelos.Marca;
+import com.BeeSoftware.persistencia.IMarcaDao;
+import com.BeeSoftware.persistencia.MarcaDao;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.io.File;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+
 
 /**
  *
@@ -10,15 +25,21 @@ package com.tp1.visao;
  */
 public class TelaDasMarcas extends javax.swing.JFrame {
 
+    IMarcaControle marcaControle = new MarcaControle();
     /**
      * Creates new form TelaDasMarcas
      */
     public TelaDasMarcas() {
         initComponents();
         jTextFieldIdentificador.setEnabled(false);
-        jTextAreaLOgo.setEnabled(false);
+        //jTextAreaLOgo.setEnabled(false);
         jTextFieldURL.setEnabled(false);
         this.setLocationRelativeTo(null);
+        try {
+            imprimirTabela(marcaControle.listagem());
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(this,erro);
+        }
     }
 
     /**
@@ -39,14 +60,13 @@ public class TelaDasMarcas extends javax.swing.JFrame {
         jTextFieldDescicao = new javax.swing.JTextField();
         jTextFieldURL = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextAreaLOgo = new javax.swing.JTextArea();
         jPanel2 = new javax.swing.JPanel();
         jButtonIncluir = new javax.swing.JButton();
         jButtonAlterar = new javax.swing.JButton();
         jButtonBuscar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableMarcas = new javax.swing.JTable();
+        jLabelLogos = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Marcas");
@@ -84,20 +104,32 @@ public class TelaDasMarcas extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("MS PGothic", 1, 14)); // NOI18N
         jLabel4.setText("URL:");
 
+        jTextFieldDescicao.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldDescicaoKeyTyped(evt);
+            }
+        });
+
         jLabel5.setFont(new java.awt.Font("MS PGothic", 1, 18)); // NOI18N
         jLabel5.setText("Logo");
-
-        jTextAreaLOgo.setColumns(20);
-        jTextAreaLOgo.setRows(5);
-        jScrollPane1.setViewportView(jTextAreaLOgo);
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 153));
 
         jButtonIncluir.setText("Incluir");
+        jButtonIncluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonIncluirActionPerformed(evt);
+            }
+        });
 
         jButtonAlterar.setText("Alterar");
 
         jButtonBuscar.setText("Buscar");
+        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -133,6 +165,8 @@ public class TelaDasMarcas extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTableMarcas);
 
+        jLabelLogos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -156,9 +190,9 @@ public class TelaDasMarcas extends javax.swing.JFrame {
                                 .addGap(112, 112, 112)
                                 .addComponent(jLabel5))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(53, 53, 53)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addGap(61, 61, 61)
+                                .addComponent(jLabelLogos, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(32, 32, 32)
                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 16, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -191,8 +225,8 @@ public class TelaDasMarcas extends javax.swing.JFrame {
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelLogos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(17, Short.MAX_VALUE))
@@ -201,9 +235,67 @@ public class TelaDasMarcas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirActionPerformed
+        // TODO add your handling code here:
+        try {
+            Marca obj= new Marca(0,jTextFieldDescicao.getText(),jTextFieldURL.getText());
+            marcaControle.incluir(obj);
+            jTextFieldDescicao.setText("");
+            imprimirTabela(marcaControle.listagem());
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(this,erro.getMessage());
+        }
+    }//GEN-LAST:event_jButtonIncluirActionPerformed
+
+    private void jTextFieldDescicaoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDescicaoKeyTyped
+        // TODO add your handling code here:
+        char e = evt.getKeyChar();
+        if(!Character.isLetter(e)){ evt.consume();}
+        if(Character.isLowerCase(e)){ evt.setKeyChar(Character.toUpperCase(e));}
+            
+    }//GEN-LAST:event_jTextFieldDescicaoKeyTyped
+
+    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
+        // TODO add your handling code here:
+        try {
+            JFileChooser file = new JFileChooser();
+            File logo = new File("./src/com/BeeSoftware/logos");
+            file.setCurrentDirectory(logo);
+            file.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            file.showOpenDialog(this);
+            File arquivo = file.getSelectedFile();
+            String nomeLogo = arquivo.getPath();
+            jTextFieldURL.setText(nomeLogo);
+            ImageIcon iconLogo = new ImageIcon(nomeLogo);
+            iconLogo.setImage(iconLogo.getImage().getScaledInstance(jLabelLogos.getWidth(),jLabelLogos.getHeight(),1));
+            jLabelLogos.setIcon(iconLogo);
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(this,erro);
+        }
+    }//GEN-LAST:event_jButtonBuscarActionPerformed
+
     /**
      * @param args the command line arguments
      */
+    public void imprimirTabela(ArrayList<Marca> listademarca){
+        try {
+            DefaultTableModel tabela = (DefaultTableModel) jTableMarcas.getModel();
+            tabela.setNumRows(0);
+            Iterator<Marca> lista = listademarca.iterator();
+            while(lista.hasNext()){
+                String[] tab = new String[3];
+                Marca aux = lista.next();
+                tab[0]=aux.getId()+"";
+                tab[1]=aux.getDescicao();
+                tab[2]=aux.getUrl();
+                
+                tabela.addRow(tab);
+                
+            }
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(this, erro.getMessage());
+        }
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -245,12 +337,11 @@ public class TelaDasMarcas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabelLogos;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableMarcas;
-    private javax.swing.JTextArea jTextAreaLOgo;
     private javax.swing.JTextField jTextFieldDescicao;
     private javax.swing.JTextField jTextFieldIdentificador;
     private javax.swing.JTextField jTextFieldURL;
