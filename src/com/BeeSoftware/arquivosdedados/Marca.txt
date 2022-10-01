@@ -1,2 +1,11 @@
+<<<<<<< HEAD
 20;GMC;.teste/GMC2;FIAT;C:\Users\balta\OneDrive\Área de Trabalho\FATESG\Heranca e polimorfismo\LocadoraDeVeiculos\src\com\BeeSoftware\logos\fiat_logo.jfif
 3;FIAT;C:\Users\balta\OneDrive\Área de Trabalho\FATESG\Heranca e polimorfismo\LocadoraDeVeiculos\src\com\BeeSoftware\logos\fiat_logo.jfif
+=======
+20;GMC;./teste/GMC
+30;FORD;./teste/FORD
+40;RAM;./teste/RAM
+2;TOYOTA;./str/str
+5;NISSAN;C:\Users\educa\OneDrive\Documentos\FATESG\2o semestre\Locagyn\Locadora-De-Veiculos\src\com\BeeSoftware\logos\nissan_logo.png
+7;FIAT;C:\Users\erict\Locadora-De-Veiculos\Locadora-De-Veiculos\src\com\BeeSoftware\logos\fiat_logo.jfif
+>>>>>>> 1a4cbf9f8b5516fac2b2b35f53062977708383d6

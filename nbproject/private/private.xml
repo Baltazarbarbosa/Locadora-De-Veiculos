@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/balta/OneDrive/Área%20de%20Trabalho/FATESG/Heranca%20e%20polimorfismo/LocadoraDeVeiculos/src/com/BeeSoftware/modelos/Marca.java</file>
             <file>file:/C:/Users/balta/OneDrive/Área%20de%20Trabalho/FATESG/Heranca%20e%20polimorfismo/LocadoraDeVeiculos/src/com/BeeSoftware/arquivosdedados/idGerado.txt</file>
             <file>file:/C:/Users/balta/OneDrive/Área%20de%20Trabalho/FATESG/Heranca%20e%20polimorfismo/LocadoraDeVeiculos/src/com/BeeSoftware/arquivosdedados/Marca.txt</file>
@@ -12,6 +13,9 @@
             <file>file:/C:/Users/balta/OneDrive/Área%20de%20Trabalho/FATESG/Heranca%20e%20polimorfismo/LocadoraDeVeiculos/src/com/BeeSoftware/controle/MarcaControle.java</file>
             <file>file:/C:/Users/balta/OneDrive/Área%20de%20Trabalho/FATESG/Heranca%20e%20polimorfismo/LocadoraDeVeiculos/src/com/BeeSoftware/persistencia/IMarcaDao.java</file>
             <file>file:/C:/Users/balta/OneDrive/Área%20de%20Trabalho/FATESG/Heranca%20e%20polimorfismo/LocadoraDeVeiculos/src/com/BeeSoftware/imagensNaTela/JTableRenderer.java</file>
+=======
+            <file>file:/C:/Users/erict/Locadora-De-Veiculos/Locadora-De-Veiculos/src/com/BeeSoftware/imagens/buscar.png</file>
+>>>>>>> 1a4cbf9f8b5516fac2b2b35f53062977708383d6
         </group>
     </open-files>
 </project-private>
