@@ -1,6 +1,2 @@
-10;FIAT;./teste/FIAT
-20;GMC;./teste/GMC
-30;FORD;./teste/FORD
-40;RAM;./teste/RAM
-2;TOYOTA;./str/str
-
+20;GMC;.teste/GMC2;FIAT;C:\Users\balta\OneDrive\Área de Trabalho\FATESG\Heranca e polimorfismo\LocadoraDeVeiculos\src\com\BeeSoftware\logos\fiat_logo.jfif
+3;FIAT;C:\Users\balta\OneDrive\Área de Trabalho\FATESG\Heranca e polimorfismo\LocadoraDeVeiculos\src\com\BeeSoftware\logos\fiat_logo.jfif
