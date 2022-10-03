@@ -17,6 +17,7 @@ import java.util.Iterator;
 import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import com.BeeSoftware.imagensNaTela.JTableRenderer;
 
 
 /**
@@ -186,6 +187,9 @@ public class TelaDasMarcas extends javax.swing.JFrame {
             }
         ));
         jScrollPane2.setViewportView(jTableMarcas);
+        if (jTableMarcas.getColumnModel().getColumnCount() > 0) {
+            jTableMarcas.getColumnModel().getColumn(3).setCellRenderer(new JTableRenderer());
+        }
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -326,7 +330,8 @@ public class TelaDasMarcas extends javax.swing.JFrame {
 
     private void jButtonIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirActionPerformed
         // TODO add your handling code here:
-        try {       
+        try {   
+            
             Marca obj= new Marca(0,jTextFieldDescicao.getText(),jTextFieldURL.getText());
             marcaControle.incluir(obj);
             imprimirTabela(marcaControle.listagem());
