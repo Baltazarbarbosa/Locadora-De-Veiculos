@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.BeeSoftware.visao;
+
 import com.BeeSoftware.controle.IMarcaControle;
 import com.BeeSoftware.controle.MarcaControle;
 import com.BeeSoftware.ferramentas.GeradorIdentificador;
@@ -19,7 +20,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import com.BeeSoftware.imagensNaTela.JTableRenderer;
 
-
 /**
  *
  * @author balta
@@ -27,6 +27,7 @@ import com.BeeSoftware.imagensNaTela.JTableRenderer;
 public class TelaDasMarcas extends javax.swing.JFrame {
 
     IMarcaControle marcaControle = new MarcaControle();
+
     /**
      * Creates new form TelaDasMarcas
      */
@@ -39,7 +40,7 @@ public class TelaDasMarcas extends javax.swing.JFrame {
         try {
             imprimirTabela(marcaControle.listagem());
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(this,erro);
+            JOptionPane.showMessageDialog(this, erro);
         }
     }
 
@@ -144,6 +145,11 @@ public class TelaDasMarcas extends javax.swing.JFrame {
         jButtonAlterar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButtonAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/BeeSoftware/imagens/refresh.png"))); // NOI18N
         jButtonAlterar.setText("Alterar");
+        jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAlterarActionPerformed(evt);
+            }
+        });
 
         jButtonIncluir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButtonIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/BeeSoftware/imagens/incluir.png"))); // NOI18N
@@ -186,6 +192,11 @@ public class TelaDasMarcas extends javax.swing.JFrame {
                 "Identificador", "Descrição", "URL", "Logo"
             }
         ));
+        jTableMarcas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableMarcasMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTableMarcas);
         if (jTableMarcas.getColumnModel().getColumnCount() > 0) {
             jTableMarcas.getColumnModel().getColumn(3).setCellRenderer(new JTableRenderer());
@@ -330,25 +341,30 @@ public class TelaDasMarcas extends javax.swing.JFrame {
 
     private void jButtonIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirActionPerformed
         // TODO add your handling code here:
-        try {   
-            
-            Marca obj= new Marca(0,jTextFieldDescicao.getText(),jTextFieldURL.getText());
+        try {
+
+            Marca obj = new Marca(0, jTextFieldDescicao.getText(), jTextFieldURL.getText());
             marcaControle.incluir(obj);
             imprimirTabela(marcaControle.listagem());
             jTextFieldDescicao.setText("");
-            
-            
+            jTextFieldURL.setText("");
+            jLabelLogos.setIcon(null);
+
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(this,erro.getMessage());
+            JOptionPane.showMessageDialog(this, erro.getMessage());
         }
     }//GEN-LAST:event_jButtonIncluirActionPerformed
 
     private void jTextFieldDescicaoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDescicaoKeyTyped
         // TODO add your handling code here:
         char e = evt.getKeyChar();
-        if(!Character.isLetter(e)){ evt.consume();}
-        if(Character.isLowerCase(e)){ evt.setKeyChar(Character.toUpperCase(e));}
-            
+        if (!Character.isLetter(e)) {
+            evt.consume();
+        }
+        if (Character.isLowerCase(e)) {
+            evt.setKeyChar(Character.toUpperCase(e));
+        }
+
     }//GEN-LAST:event_jTextFieldDescicaoKeyTyped
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
@@ -363,10 +379,10 @@ public class TelaDasMarcas extends javax.swing.JFrame {
             String nomeLogo = arquivo.getPath();
             jTextFieldURL.setText(nomeLogo);
             ImageIcon iconLogo = new ImageIcon(nomeLogo);
-            iconLogo.setImage(iconLogo.getImage().getScaledInstance(jLabelLogos.getWidth(),jLabelLogos.getHeight(),1));
+            iconLogo.setImage(iconLogo.getImage().getScaledInstance(jLabelLogos.getWidth(), jLabelLogos.getHeight(), 1));
             jLabelLogos.setIcon(iconLogo);
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(this,erro);
+            JOptionPane.showMessageDialog(this, erro);
         }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
@@ -375,31 +391,67 @@ public class TelaDasMarcas extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu1ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-       System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
+
+        try {
+            Marca obj = new Marca(Integer.parseInt(jTextFieldIdentificador.getText()), jTextFieldDescicao.getText(), jTextFieldURL.getText());
+            marcaControle.alterar(obj);
+            imprimirTabela(marcaControle.listagem());
+            jTextFieldDescicao.setText("");
+            jTextFieldURL.setText("");
+            jLabelLogos.setIcon(null);
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(this, erro);
+        }
+
+
+    }//GEN-LAST:event_jButtonAlterarActionPerformed
+
+    private void jTableMarcasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMarcasMouseClicked
+    
+        try {
+            this.jTextFieldIdentificador.setText((String) this.jTableMarcas.getValueAt(jTableMarcas.getSelectedRow(), 0));
+            this.jTextFieldDescicao.setText((String) this.jTableMarcas.getValueAt(jTableMarcas.getSelectedRow(), 1));
+            this.jTextFieldURL.setText((String) this.jTableMarcas.getValueAt(jTableMarcas.getSelectedRow(), 2));
+            
+            String nomeArquivo = (String) this.jTableMarcas.getValueAt(jTableMarcas.getSelectedRow(), 2);
+            
+            jTextFieldURL.setText(nomeArquivo);
+            ImageIcon iconLogo = new ImageIcon(nomeArquivo);
+            iconLogo.setImage(iconLogo.getImage().getScaledInstance(jLabelLogos.getWidth(), jLabelLogos.getHeight(), 1));
+            jLabelLogos.setIcon(iconLogo);
+            
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(this, erro);
+        }
+    }//GEN-LAST:event_jTableMarcasMouseClicked
 
     /**
      * @param args the command line arguments
      */
-    public void imprimirTabela(ArrayList<Marca> listademarca){
+    public void imprimirTabela(ArrayList<Marca> listademarca) {
         try {
             DefaultTableModel tabela = (DefaultTableModel) jTableMarcas.getModel();
             tabela.setNumRows(0);
             Iterator<Marca> lista = listademarca.iterator();
-            while(lista.hasNext()){
+            while (lista.hasNext()) {
                 String[] tab = new String[3];
                 Marca aux = lista.next();
-                tab[0]=aux.getId()+"";
-                tab[1]=aux.getDescicao();
-                tab[2]=aux.getUrl();
-                
+                tab[0] = aux.getId() + "";
+                tab[1] = aux.getDescicao();
+                tab[2] = aux.getUrl();
+
                 tabela.addRow(tab);
-                
+
             }
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, erro.getMessage());
         }
     }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

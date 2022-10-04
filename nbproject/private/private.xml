@@ -3,32 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/erict/Locadora-De-Veiculos/Locadora-De-Veiculos/src/com/BeeSoftware/imagens/refresh.png</file>
-            <file>file:/C:/Users/erict/Locadora-De-Veiculos/Locadora-De-Veiculos/src/com/BeeSoftware/visao/TelaDasMarcas.java</file>
-            <file>file:/C:/Users/erict/Locadora-De-Veiculos/Locadora-De-Veiculos/src/com/BeeSoftware/imagens/manter%20maras%20sans%20pro.png</file>
-            <file>file:/C:/Users/erict/Locadora-De-Veiculos/Locadora-De-Veiculos/src/com/BeeSoftware/imagens/MANTER%20MARCAS%20POPPINS.png</file>
-            <file>file:/C:/Users/erict/Locadora-De-Veiculos/Locadora-De-Veiculos/src/com/BeeSoftware/imagens/buscar.png</file>
-            <file>file:/C:/Users/erict/Locadora-De-Veiculos/Locadora-De-Veiculos/src/com/BeeSoftware/imagens/fechar.png</file>
-            <file>file:/C:/Users/erict/Locadora-De-Veiculos/Locadora-De-Veiculos/src/com/BeeSoftware/imagens/incluir.png</file>
-            <file>file:/C:/Users/erict/Locadora-De-Veiculos/Locadora-De-Veiculos/src/com/BeeSoftware/arquivosdedados/Marca.txt</file>
-            <file>file:/C:/Users/erict/Locadora-De-Veiculos/Locadora-De-Veiculos/src/com/BeeSoftware/arquivosdedados/idGerado.txt</file>
-            <file>file:/C:/Users/erict/Locadora-De-Veiculos/Locadora-De-Veiculos/src/com/BeeSoftware/imagens/arquivo.png</file>
-=======
-<<<<<<< HEAD
-            <file>file:/C:/Users/balta/OneDrive/Área%20de%20Trabalho/FATESG/Heranca%20e%20polimorfismo/LocadoraDeVeiculos/src/com/BeeSoftware/modelos/Marca.java</file>
-            <file>file:/C:/Users/balta/OneDrive/Área%20de%20Trabalho/FATESG/Heranca%20e%20polimorfismo/LocadoraDeVeiculos/src/com/BeeSoftware/arquivosdedados/idGerado.txt</file>
+            <file>file:/C:/Users/balta/OneDrive/Área%20de%20Trabalho/FATESG/Heranca%20e%20polimorfismo/LocadoraDeVeiculos/src/com/BeeSoftware/visao/TelaDasMarcas.java</file>
+            <file>file:/C:/Users/balta/OneDrive/Área%20de%20Trabalho/FATESG/Heranca%20e%20polimorfismo/LocadoraDeVeiculos/src/com/BeeSoftware/controle/MarcaControle.java</file>
             <file>file:/C:/Users/balta/OneDrive/Área%20de%20Trabalho/FATESG/Heranca%20e%20polimorfismo/LocadoraDeVeiculos/src/com/BeeSoftware/arquivosdedados/Marca.txt</file>
             <file>file:/C:/Users/balta/OneDrive/Área%20de%20Trabalho/FATESG/Heranca%20e%20polimorfismo/LocadoraDeVeiculos/src/com/BeeSoftware/persistencia/MarcaDao.java</file>
-            <file>file:/C:/Users/balta/OneDrive/Área%20de%20Trabalho/FATESG/Heranca%20e%20polimorfismo/LocadoraDeVeiculos/src/com/BeeSoftware/visao/TelaDasMarcas.java</file>
-            <file>file:/C:/Users/balta/OneDrive/Área%20de%20Trabalho/FATESG/Heranca%20e%20polimorfismo/LocadoraDeVeiculos/src/com/BeeSoftware/ferramentas/GeradorIdentificador.java</file>
-            <file>file:/C:/Users/balta/OneDrive/Área%20de%20Trabalho/FATESG/Heranca%20e%20polimorfismo/LocadoraDeVeiculos/src/com/BeeSoftware/controle/MarcaControle.java</file>
-            <file>file:/C:/Users/balta/OneDrive/Área%20de%20Trabalho/FATESG/Heranca%20e%20polimorfismo/LocadoraDeVeiculos/src/com/BeeSoftware/persistencia/IMarcaDao.java</file>
-            <file>file:/C:/Users/balta/OneDrive/Área%20de%20Trabalho/FATESG/Heranca%20e%20polimorfismo/LocadoraDeVeiculos/src/com/BeeSoftware/imagensNaTela/JTableRenderer.java</file>
-=======
-            <file>file:/C:/Users/erict/Locadora-De-Veiculos/Locadora-De-Veiculos/src/com/BeeSoftware/imagens/buscar.png</file>
->>>>>>> 1a4cbf9f8b5516fac2b2b35f53062977708383d6
->>>>>>> 5238d508311ec5341f004ef5aa821adc8ee1bc9c
         </group>
     </open-files>
 </project-private>
