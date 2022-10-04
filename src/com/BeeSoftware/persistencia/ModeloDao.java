@@ -11,6 +11,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  *
@@ -44,7 +45,23 @@ public class ModeloDao implements IModeloDao {
 
     @Override
     public void alterar(Modelo objeto) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+
+        Iterator<Modelo> lista = listagem().iterator();
+        FileWriter fw = new FileWriter(nomeDoArquivoNoDisco);
+        BufferedWriter bw = new BufferedWriter(fw);
+
+        while (lista.hasNext()) {
+
+            Modelo aux = lista.next();
+            if (aux.getId() == objeto.getId()) {
+                bw.write(objeto.toString());
+            } else {
+                bw.write(aux.toString() + "\n");
+            }
+
+        }
+
+        bw.close();
     }
 
     @Override
