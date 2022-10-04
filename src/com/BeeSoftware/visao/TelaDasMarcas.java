@@ -192,15 +192,14 @@ public class TelaDasMarcas extends javax.swing.JFrame {
                 "Identificador", "Descrição", "URL", "Logo"
             }
         ));
-<<<<<<< HEAD
+
         jTableMarcas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableMarcasMouseClicked(evt);
             }
         });
-=======
         jTableMarcas.setRowHeight(75);
->>>>>>> 17e5fffb91d65c1aa065d3a4a03a85765d9fb52b
+
         jScrollPane2.setViewportView(jTableMarcas);
         if (jTableMarcas.getColumnModel().getColumnCount() > 0) {
             jTableMarcas.getColumnModel().getColumn(3).setCellRenderer(new JTableRenderer());

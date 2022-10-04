@@ -18,13 +18,13 @@ import java.util.Iterator;
  * @author balta
  */
 public class MarcaDao implements IMarcaDao {
-    
+
     private String nomeDoArquivoNoDisco;
-    
+
     public MarcaDao() {
         nomeDoArquivoNoDisco = "./src/com/BeeSoftware/arquivosdedados/Marca.txt";
     }
-    
+
     @Override
     public void incluir(Marca objeto) throws Exception {
         try {
@@ -42,29 +42,28 @@ public class MarcaDao implements IMarcaDao {
             throw erro;
         }
     }
-    
+
     @Override
     public void alterar(Marca objeto) throws Exception {
-        ArrayList<Marca> listaDeMarcas = listagem();
-        String linha = "";
-        Iterator<Marca> lista = listaDeMarcas.iterator();
+
+        Iterator<Marca> lista = listagem().iterator();
         FileWriter fw = new FileWriter(nomeDoArquivoNoDisco);
         BufferedWriter bw = new BufferedWriter(fw);
-        
+
         while (lista.hasNext()) {
-            String[] tab = new String[3];
+
             Marca aux = lista.next();
             if (aux.getId() == objeto.getId()) {
                 bw.write(objeto.toString());
             } else {
-                bw.write(aux.toString() +"\n");
+                bw.write(aux.toString() + "\n");
             }
-            
+
         }
-        
+
         bw.close();
     }
-    
+
     @Override
     public ArrayList<Marca> listagem() throws Exception {
         try {
@@ -86,5 +85,21 @@ public class MarcaDao implements IMarcaDao {
             throw erro;
         }
     }
-    
+
+    @Override
+    public String buscar(int id) throws Exception {
+        Iterator<Marca> lista = listagem().iterator();
+        Marca aux = null;
+        while (lista.hasNext()) {
+
+            if (aux.getId() == id) {
+                return aux.toString();
+            } else {
+                aux = lista.next();
+            }
+
+        }
+        return "Não encontrado";
+    }
+
 }

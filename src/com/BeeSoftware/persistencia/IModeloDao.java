@@ -4,17 +4,16 @@
  */
 package com.BeeSoftware.persistencia;
 
-import com.BeeSoftware.modelos.Marca;
+import com.BeeSoftware.modelos.Modelo;
 import java.util.ArrayList;
 
 /**
  *
  * @author balta
  */
-public interface IMarcaDao {
+public interface IModeloDao {
 
-    void incluir(Marca objeto) throws Exception;
-    void alterar(Marca objeto) throws Exception;
-    ArrayList<Marca> listagem()throws Exception;
-    String buscar(int id) throws Exception;
+    void incluir(Modelo objeto) throws Exception;
+    void alterar(Modelo objeto) throws Exception;
+    ArrayList<Modelo> listagem() throws Exception;
 }
