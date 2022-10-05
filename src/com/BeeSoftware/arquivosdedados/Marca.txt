@@ -1,13 +1,1 @@
 20;GMC;.teste/GMC2
-3;ABARATH;C:\Users\balta\OneDrive\Área de Trabalho\FATESG\Heranca e polimorfismo\LocadoraDeVeiculos\src\com\BeeSoftware\logos\fiat_logo.jfif20;GMC;./teste/GMC
-30;FORD;./teste/FORD
-40;RAM;./teste/RAM
-2;TOYOTA;./str/str
-20;GMC;.teste/GMC2;FIAT;C:\Users\balta\OneDrive\Área de Trabalho\FATESG\Heranca e polimorfismo\LocadoraDeVeiculos\src\com\BeeSoftware\logos\fiat_logo.jfif
-3;FIAT;C:\Users\balta\OneDrive\Área de Trabalho\FATESG\Heranca e polimorfismo\LocadoraDeVeiculos\src\com\BeeSoftware\logos\fiat_logo.jfif
-20;GMC;./teste/GMC
-30;FORD;./teste/FORD
-40;RAM;./teste/RAM
-2;TOYOTA;./str/str
-7;FIAT;C:\Users\erict\Locadora-De-Veiculos\Locadora-De-Veiculos\src\com\BeeSoftware\logos\fiat_logo.jfif
-8;NISSAN;C:\Users\erict\Locadora-De-Veiculos\Locadora-De-Veiculos\src\com\BeeSoftware\logos\nissan_logo.pngs

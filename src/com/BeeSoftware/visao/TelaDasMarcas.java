@@ -403,7 +403,7 @@ public class TelaDasMarcas extends javax.swing.JFrame {
             imprimirTabela(marcaControle.listagem());
             jTextFieldDescicao.setText("");
             jTextFieldURL.setText("");
-            jLabelLogos.setIcon(null);
+            
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, erro);
         }
