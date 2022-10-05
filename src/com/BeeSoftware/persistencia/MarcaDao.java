@@ -48,7 +48,8 @@ public class MarcaDao implements IMarcaDao {
     @Override
     public void alterar(Marca objeto) throws Exception {
 
-        Iterator<Marca> lista = listagem().iterator();
+        try {
+            Iterator<Marca> lista = listagem().iterator();
         FileWriter fw = new FileWriter(nomeDoArquivoNoDisco);
         BufferedWriter bw = new BufferedWriter(fw);
 
@@ -56,7 +57,7 @@ public class MarcaDao implements IMarcaDao {
 
             Marca aux = lista.next();
             if (aux.getId() == objeto.getId()) {
-                bw.write(objeto.toString());
+                bw.write(objeto.toString() + "\n");
             } else {
                 bw.write(aux.toString() + "\n");
             }
@@ -64,6 +65,9 @@ public class MarcaDao implements IMarcaDao {
         }
 
         bw.close();
+        } catch (Exception erro) {
+            throw erro;
+        }
     }
 
     @Override
