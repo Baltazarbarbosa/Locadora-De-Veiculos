@@ -43,6 +43,10 @@ public class MarcaControle implements IMarcaControle {
         if (buscarMarca(objeto.getDescicao())) {
             throw new Exception("Marca já foi cadastrada");
         }
+        String aux = objeto.getDescicao();
+        if("".equals(objeto.getDescicao())){
+            throw new Exception("Digite uma marca válida.");
+        }
         marcaPersistencia.incluir(objeto);
     }
 
@@ -51,9 +55,12 @@ public class MarcaControle implements IMarcaControle {
     if (buscarMarca(objeto.getDescicao())) {
             throw new Exception("Marca já foi cadastrada");
         }
+    String aux = objeto.getDescicao();
+    if("".equals(objeto.getDescicao())){
+        throw new Exception("Digite uma marca válida.");}
         marcaPersistencia.alterar(objeto);    
     }
-
+    
     @Override
     public ArrayList<Marca> listagem() throws Exception {
          return marcaPersistencia.listagem();
