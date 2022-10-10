@@ -2,3 +2,4 @@
 2;NISSAN;C:\Users\educa\OneDrive\Documentos\FATESG\2o semestre\Locagyn\Locadora-De-Veiculos\Locadora-De-Veiculos\src\com\BeeSoftware\logos\nissan_logo.png
 3;AUSDHAUDHA;C:\Users\educa\OneDrive\Documentos\FATESG\2o semestre\Locagyn\Locadora-De-Veiculos\Locadora-De-Veiculos\src\com\BeeSoftware\logos\nissan_logo.png
 4;LALA;C:\Users\educa\OneDrive\Documentos\FATESG\2o semestre\Locagyn\Locadora-De-Veiculos\Locadora-De-Veiculos\src\com\BeeSoftware\logos\nissan_logo.png
+5;BANANINHA;C:\Users\educa\OneDrive\Documentos\FATESG\2o semestre\Locagyn\Locadora-De-Veiculos\Locadora-De-Veiculos\src\com\BeeSoftware\logos\fiat_logo.jfif
