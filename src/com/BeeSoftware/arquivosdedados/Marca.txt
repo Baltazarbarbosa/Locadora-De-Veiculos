@@ -1,5 +1,8 @@
-1;FIAT;C:\Users\educa\OneDrive\Documentos\FATESG\2o semestre\Locagyn\Locadora-De-Veiculos\Locadora-De-Veiculos\src\com\BeeSoftware\logos\fiat_logo.jfif
-2;NISSAN;C:\Users\educa\OneDrive\Documentos\FATESG\2o semestre\Locagyn\Locadora-De-Veiculos\Locadora-De-Veiculos\src\com\BeeSoftware\logos\nissan_logo.png
-3;AUSDHAUDHA;C:\Users\educa\OneDrive\Documentos\FATESG\2o semestre\Locagyn\Locadora-De-Veiculos\Locadora-De-Veiculos\src\com\BeeSoftware\logos\nissan_logo.png
-4;LALA;C:\Users\educa\OneDrive\Documentos\FATESG\2o semestre\Locagyn\Locadora-De-Veiculos\Locadora-De-Veiculos\src\com\BeeSoftware\logos\nissan_logo.png
-5;BANANINHA;C:\Users\educa\OneDrive\Documentos\FATESG\2o semestre\Locagyn\Locadora-De-Veiculos\Locadora-De-Veiculos\src\com\BeeSoftware\logos\fiat_logo.jfif
+1;CHERY;D:\locagyn\locagyn\Locadora-De-Veiculos\src\com\BeeSoftware\logos\Chery-Logo.png
+2;FIAT;D:\locagyn\locagyn\Locadora-De-Veiculos\src\com\BeeSoftware\logos\fiat_logo.jfif
+3;HONDA;D:\locagyn\locagyn\Locadora-De-Veiculos\src\com\BeeSoftware\logos\honda_logo.jpg
+4;NISSAN;D:\locagyn\locagyn\Locadora-De-Veiculos\src\com\BeeSoftware\logos\nissan_logo.png
+5;AUDI;D:\locagyn\locagyn\Locadora-De-Veiculos\src\com\BeeSoftware\logos\audi_logo.jpg
+6;MITSUBISHI;D:\locagyn\locagyn\Locadora-De-Veiculos\src\com\BeeSoftware\logos\Mitsubishi_logo.svg.png
+7;JEEP;D:\locagyn\locagyn\Locadora-De-Veiculos\src\com\BeeSoftware\logos\jeep_logo.jpg
+8;TOYOTA;D:\locagyn\locagyn\Locadora-De-Veiculos\src\com\BeeSoftware\logos\toyota_logo.jfif
