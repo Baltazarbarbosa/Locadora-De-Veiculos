@@ -330,8 +330,12 @@ public class TelaDasMarcas extends javax.swing.JFrame {
     private void jButtonIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirActionPerformed
         // TODO add your handling code here:
         try {
+            
+            
+            File path = new File(jTextFieldURL.getText());
+            String logo = ".\\src\\com\\BeeSoftware\\logos\\"+path.getName();
 
-            Marca obj = new Marca(0, jTextFieldDescicao.getText(), jTextFieldURL.getText());
+            Marca obj = new Marca(0, jTextFieldDescicao.getText(),logo );
             marcaControle.incluir(obj);
             imprimirTabela(marcaControle.listagem());
             jTextFieldDescicao.setText("");
@@ -385,7 +389,9 @@ public class TelaDasMarcas extends javax.swing.JFrame {
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
 
         try {
-            Marca obj = new Marca(Integer.parseInt(jTextFieldIdentificador.getText()), jTextFieldDescicao.getText(), jTextFieldURL.getText());
+            File path = new File(jTextFieldURL.getText());
+            String logo = ".\\src\\com\\BeeSoftware\\logos\\"+path.getName();
+            Marca obj = new Marca(Integer.parseInt(jTextFieldIdentificador.getText()), jTextFieldDescicao.getText(), logo);
             marcaControle.alterar(obj);
             imprimirTabela(marcaControle.listagem());
             jTextFieldDescicao.setText("");
