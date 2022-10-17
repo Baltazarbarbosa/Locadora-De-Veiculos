@@ -16,7 +16,7 @@ public class Modelo {
     private int id = 0;
     private String descricao = "";
     private String url = "";
-    private int idMarca = marca.getId();
+    private int idMarca = 0;
 
     public Modelo() {
     }
@@ -33,6 +33,22 @@ public class Modelo {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Marca getMarca() {
+        return marca;
+    }
+
+    public void setMarca(Marca marca) {
+        this.marca = marca;
+    }
+
+    public int getIdMarca() {
+        return idMarca;
+    }
+
+    public void setIdMarca(int idMarca) {
+        this.idMarca = idMarca;
     }
 
     public String getDescricao() {
