@@ -4,6 +4,7 @@
  */
 package com.BeeSoftware.visao;
 
+<<<<<<< HEAD
 import com.BeeSoftware.controle.MarcaControle;
 import com.BeeSoftware.modelos.Marca;
 import java.util.ArrayList;
@@ -17,6 +18,28 @@ import com.BeeSoftware.persistencia.MarcaDao;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+=======
+import com.BeeSoftware.controle.IMarcaControle;
+import com.BeeSoftware.controle.MarcaControle;
+import com.BeeSoftware.ferramentas.GeradorIdentificador;
+import com.BeeSoftware.modelos.Marca;
+import com.BeeSoftware.persistencia.IMarcaDao;
+import com.BeeSoftware.persistencia.MarcaDao;
+import com.BeeSoftware.controle.IModeloControle;
+import com.BeeSoftware.controle.ModeloControle;
+import com.BeeSoftware.persistencia.IModeloDao;
+import com.BeeSoftware.persistencia.ModeloDao;
+import com.BeeSoftware.modelos.Modelo;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.io.File;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import com.BeeSoftware.imagensNaTela.JTableRenderer;
+>>>>>>> 2416a6ac6bb02a6662ae0fc8fe1dd4462cf463a9
 /**
  *
  * @author Eric
@@ -70,7 +93,7 @@ public class TelaDosModelos extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jTURL = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableModelos = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         BTincluirMarca = new javax.swing.JButton();
         BTalterar = new javax.swing.JButton();
@@ -248,7 +271,7 @@ public class TelaDosModelos extends javax.swing.JFrame {
                 .addGap(48, 48, 48))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableModelos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -259,6 +282,7 @@ public class TelaDosModelos extends javax.swing.JFrame {
                 "Identificador", "Descrição", "URL", "Marca", "Modelo"
             }
         ));
+<<<<<<< HEAD
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setMinWidth(28);
@@ -269,6 +293,18 @@ public class TelaDosModelos extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(3).setMaxWidth(80);
             jTable1.getColumnModel().getColumn(4).setMinWidth(80);
             jTable1.getColumnModel().getColumn(4).setMaxWidth(80);
+=======
+        jScrollPane1.setViewportView(jTableModelos);
+        if (jTableModelos.getColumnModel().getColumnCount() > 0) {
+            jTableModelos.getColumnModel().getColumn(0).setMinWidth(27);
+            jTableModelos.getColumnModel().getColumn(0).setMaxWidth(27);
+            jTableModelos.getColumnModel().getColumn(1).setMinWidth(100);
+            jTableModelos.getColumnModel().getColumn(1).setMaxWidth(100);
+            jTableModelos.getColumnModel().getColumn(3).setMinWidth(80);
+            jTableModelos.getColumnModel().getColumn(3).setMaxWidth(80);
+            jTableModelos.getColumnModel().getColumn(4).setMinWidth(80);
+            jTableModelos.getColumnModel().getColumn(4).setMaxWidth(80);
+>>>>>>> 2416a6ac6bb02a6662ae0fc8fe1dd4462cf463a9
         }
 
         jPanel3.setBackground(new java.awt.Color(252, 186, 3));
@@ -406,7 +442,25 @@ public class TelaDosModelos extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void BTbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTbuscarActionPerformed
+<<<<<<< HEAD
 
+=======
+        try {
+           JFileChooser file = new JFileChooser();
+           File modelo = new File("./src/com/BeeSoftware/imagens/modelos");
+           file.setCurrentDirectory(modelo);
+           file.setFileSelectionMode(JFileChooser.FILES_ONLY);
+           file.showOpenDialog(this);
+           File arq = file.getSelectedFile();
+           String nomeModelo = arq.getPath();
+           jTURL.setText(nomeModelo);
+           ImageIcon iconeModelo = new ImageIcon(nomeModelo);
+           iconeModelo.setImage(iconeModelo.getImage().getScaledInstance(jLmodelo.getWidth(), jLmodelo.getHeight(), 1));
+           jLmodelo.setIcon(iconeModelo);
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(this,erro);
+        }
+>>>>>>> 2416a6ac6bb02a6662ae0fc8fe1dd4462cf463a9
     }//GEN-LAST:event_BTbuscarActionPerformed
 
     /**
@@ -476,6 +530,6 @@ public class TelaDosModelos extends javax.swing.JFrame {
     private javax.swing.JTextField jTID;
     private javax.swing.JTextField jTModelo;
     private javax.swing.JTextField jTURL;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableModelos;
     // End of variables declaration//GEN-END:variables
 }
