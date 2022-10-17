@@ -39,22 +39,22 @@ public class ModeloControle implements IModeloControle{
     
     public void incluir(Modelo objeto) throws Exception {
         if (buscarModelo(objeto.getDescricao())) {
-            throw new Exception("Marca já foi cadastrada");
+            throw new Exception("Modelo já foi cadastrada");
         }
         String aux = objeto.getDescricao();
         if("".equals(objeto.getDescricao())){
-            throw new Exception("Digite uma marca válida.");
+            throw new Exception("Digite um modelo válido.");
         }
         modeloPersistencia.incluir(objeto);
     }
 
     public void alterar(Modelo objeto) throws Exception {
     if (buscarModelo(objeto.getDescricao())) {
-            throw new Exception("Marca já foi cadastrada");
+            throw new Exception("Modelo já foi cadastrada");
         }
     String aux = objeto.getDescricao();
     if("".equals(objeto.getDescricao())){
-        throw new Exception("Digite uma marca válida.");}
+        throw new Exception("Digite um modelo válido.");}
         modeloPersistencia.alterar(objeto);    
     }
     
