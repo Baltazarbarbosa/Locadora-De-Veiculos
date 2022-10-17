@@ -4,18 +4,44 @@
  */
 package com.BeeSoftware.visao;
 
+import com.BeeSoftware.controle.MarcaControle;
+import com.BeeSoftware.modelos.Marca;
+import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import javax.swing.JComboBox;
+import com.BeeSoftware.persistencia.MarcaDao;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Eric
  */
 public class TelaDosModelos extends javax.swing.JFrame {
 
+    //ArrayList<String> lista = new ArrayList();
     /**
      * Creates new form TelaDosModelos
      */
-    public TelaDosModelos() {
+    public TelaDosModelos() throws Exception {
         initComponents();
         this.setLocationRelativeTo(null);
+
+        try {
+            MarcaControle obj = new MarcaControle();
+            ArrayList<Marca> dados = obj.listagem();
+            String[] linha = new String[dados.size()];
+            for(int pos=0; pos<dados.size();pos++){
+                jComboBox1.addItem(dados.get(pos).getDescicao());
+            }
+           
+        } catch (IOException e) {
+            System.err.println("erro");
+        }
     }
 
     /**
@@ -101,8 +127,6 @@ public class TelaDosModelos extends javax.swing.JFrame {
         jLmodelo.setBackground(new java.awt.Color(255, 255, 255));
         jLmodelo.setForeground(new java.awt.Color(255, 255, 255));
         jLmodelo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel4.setFont(new java.awt.Font("MS PGothic", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -237,8 +261,8 @@ public class TelaDosModelos extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setMinWidth(27);
-            jTable1.getColumnModel().getColumn(0).setMaxWidth(27);
+            jTable1.getColumnModel().getColumn(0).setMinWidth(28);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(28);
             jTable1.getColumnModel().getColumn(1).setMinWidth(100);
             jTable1.getColumnModel().getColumn(1).setMaxWidth(100);
             jTable1.getColumnModel().getColumn(3).setMinWidth(80);
@@ -382,7 +406,7 @@ public class TelaDosModelos extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void BTbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTbuscarActionPerformed
-       
+
     }//GEN-LAST:event_BTbuscarActionPerformed
 
     /**
@@ -415,7 +439,11 @@ public class TelaDosModelos extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaDosModelos().setVisible(true);
+                try {
+                    new TelaDosModelos().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(TelaDosModelos.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

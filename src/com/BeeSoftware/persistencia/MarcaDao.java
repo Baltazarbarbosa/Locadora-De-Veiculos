@@ -14,7 +14,6 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-
 /**
  *
  * @author balta
@@ -50,21 +49,21 @@ public class MarcaDao implements IMarcaDao {
 
         try {
             Iterator<Marca> lista = listagem().iterator();
-        FileWriter fw = new FileWriter(nomeDoArquivoNoDisco);
-        BufferedWriter bw = new BufferedWriter(fw);
+            FileWriter fw = new FileWriter(nomeDoArquivoNoDisco);
+            BufferedWriter bw = new BufferedWriter(fw);
 
-        while (lista.hasNext()) {
+            while (lista.hasNext()) {
 
-            Marca aux = lista.next();
-            if (aux.getId() == objeto.getId()) {
-                bw.write(objeto.toString() + "\n");
-            } else {
-                bw.write(aux.toString() + "\n");
+                Marca aux = lista.next();
+                if (aux.getId() == objeto.getId()) {
+                    bw.write(objeto.toString() + "\n");
+                } else {
+                    bw.write(aux.toString() + "\n");
+                }
+
             }
 
-        }
-
-        bw.close();
+            bw.close();
         } catch (Exception erro) {
             throw erro;
         }
