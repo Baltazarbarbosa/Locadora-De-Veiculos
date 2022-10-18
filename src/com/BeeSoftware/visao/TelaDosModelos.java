@@ -27,6 +27,7 @@ import com.BeeSoftware.imagensNaTela.JTableRenderer;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 /**
  *
  * @author Eric
@@ -39,15 +40,15 @@ public class TelaDosModelos extends javax.swing.JFrame {
     public TelaDosModelos() throws Exception {
         initComponents();
         this.setLocationRelativeTo(null);
-        
-        try{
+
+        try {
             MarcaControle obj = new MarcaControle();
             ArrayList<Marca> dados = obj.listagem();
-            String[] linha = new String [dados.size()];
-            for(int pos=0; pos<dados.size();pos++){
-            jComboBox1.addItem(dados.get(pos).getDescicao());
-        }
-        }catch(IOException e){
+            String[] linha = new String[dados.size()];
+            for (int pos = 0; pos < dados.size(); pos++) {
+                jComboBox1.addItem(dados.get(pos).getDescicao());
+            }
+        } catch (IOException e) {
             System.err.println("erro");
         }
     }
@@ -135,6 +136,12 @@ public class TelaDosModelos extends javax.swing.JFrame {
         jLmodelo.setBackground(new java.awt.Color(255, 255, 255));
         jLmodelo.setForeground(new java.awt.Color(255, 255, 255));
         jLmodelo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("MS PGothic", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -415,21 +422,38 @@ public class TelaDosModelos extends javax.swing.JFrame {
 
     private void BTbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTbuscarActionPerformed
         try {
-           JFileChooser file = new JFileChooser();
-           File modelo = new File("./src/com/BeeSoftware/imagens/modelos");
-           file.setCurrentDirectory(modelo);
-           file.setFileSelectionMode(JFileChooser.FILES_ONLY);
-           file.showOpenDialog(this);
-           File arq = file.getSelectedFile();
-           String nomeModelo = arq.getPath();
-           jTURL.setText(nomeModelo);
-           ImageIcon iconeModelo = new ImageIcon(nomeModelo);
-           iconeModelo.setImage(iconeModelo.getImage().getScaledInstance(jLmodelo.getWidth(), jLmodelo.getHeight(), 1));
-           jLmodelo.setIcon(iconeModelo);
+            
+            JFileChooser file = new JFileChooser();
+            File modelo = new File("./src/com/BeeSoftware/imagens/modelos");
+            file.setCurrentDirectory(modelo);
+            file.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            file.showOpenDialog(this);
+            File arq = file.getSelectedFile();
+            String nomeModelo = arq.getPath();
+            jTURL.setText(nomeModelo);
+            ImageIcon iconeModelo = new ImageIcon(nomeModelo);
+            iconeModelo.setImage(iconeModelo.getImage().getScaledInstance(jLmodelo.getWidth(), jLmodelo.getHeight(), 1));
+            jLmodelo.setIcon(iconeModelo);
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(this,erro);
+            JOptionPane.showMessageDialog(this, erro);
         }
     }//GEN-LAST:event_BTbuscarActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        try {
+            MarcaControle obj = new MarcaControle();
+        ArrayList<Marca> dados = obj.listagem();
+        for (int pos = 0; pos < dados.size(); pos++) {
+            if (jComboBox1.getSelectedItem().equals(dados.get(pos).getDescicao())) {
+                ImageIcon iconeModelo = new ImageIcon(dados.get(pos).getUrl());
+                iconeModelo.setImage(iconeModelo.getImage().getScaledInstance(JLlogo.getWidth(), JLlogo.getHeight(), 1));
+                JLlogo.setIcon(iconeModelo);
+            }
+
+        }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
