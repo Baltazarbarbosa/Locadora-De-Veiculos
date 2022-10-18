@@ -9,23 +9,22 @@ package com.BeeSoftware.modelos;
  * @author balta
  */
 public class Modelo {
-
+    
     Marca marca = null;
-
+    
     //Atributos
     private int id = 0;
     private String descricao = "";
     private String url = "";
-    private int idMarca = 0;
+    private int idMarca = marca.getId();
 
     public Modelo() {
     }
-
-    public Modelo(int id, String descricao, String url, int idMarca) {
+    
+    public Modelo(int id, String descricao, String url) {
         this.descricao = descricao;
         this.id = id;
         this.url = url;
-        this.idMarca = idMarca;
     }
 
     public int getId() {
@@ -34,22 +33,6 @@ public class Modelo {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Marca getMarca() {
-        return marca;
-    }
-
-    public void setMarca(Marca marca) {
-        this.marca = marca;
-    }
-
-    public int getIdMarca() {
-        return idMarca;
-    }
-
-    public void setIdMarca(int idMarca) {
-        this.idMarca = idMarca;
     }
 
     public String getDescricao() {
@@ -67,13 +50,12 @@ public class Modelo {
     public void setUrl(String url) {
         this.url = url;
     }
-
+    
     @Override
     public String toString() {
         return id + ";" + descricao + ";" + url + ";" + idMarca;
     }
 
-<<<<<<< HEAD
     public Marca getMarca() {
         return marca;
     }
@@ -91,6 +73,4 @@ public class Modelo {
     }
     
     
-=======
->>>>>>> 2659a8812a821104b8aab3e05b0eab94dbd97a1e
 }
