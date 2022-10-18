@@ -1,1 +1,2 @@
-modelo
+9;CIVIC;.\src\com\BeeSoftware\logos\toyota_logo.jfif;3
+11;KICKS;.\src\com\BeeSoftware\logos\kicks.png;4

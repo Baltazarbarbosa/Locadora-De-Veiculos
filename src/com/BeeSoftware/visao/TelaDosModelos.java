@@ -33,16 +33,20 @@ import java.util.logging.Logger;
  */
 public class TelaDosModelos extends javax.swing.JFrame {
     ModeloControle modelocontrole = new ModeloControle();
+    MarcaControle obj = new MarcaControle();
+    ArrayList<Marca> dados = new ArrayList<>();
     /**
      * Creates new form TelaDosModelos
      */
     public TelaDosModelos() throws Exception {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.jTID.setEnabled(false);
+        this.jTURL.setEnabled(false);
         
         try{
-            MarcaControle obj = new MarcaControle();
-            ArrayList<Marca> dados = obj.listagem();
+            imprimirTabela(modelocontrole.listagem());
+            dados = obj.listagem();
             String[] linha = new String [dados.size()];
             for(int pos=0; pos<dados.size();pos++){
             jComboBox1.addItem(dados.get(pos).getDescicao());
@@ -420,6 +424,7 @@ public class TelaDosModelos extends javax.swing.JFrame {
 
     private void BTbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTbuscarActionPerformed
         try {
+            
            JFileChooser file = new JFileChooser();
            File modelo = new File("./src/com/BeeSoftware/imagens/modelos");
            file.setCurrentDirectory(modelo);
@@ -439,11 +444,18 @@ public class TelaDosModelos extends javax.swing.JFrame {
     private void BTincluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTincluirActionPerformed
     
         try {
-
+            int idMarca = 0;
+             
+            
             File path = new File(jTURL.getText());
             String logo = ".\\src\\com\\BeeSoftware\\logos\\" + path.getName();
-
-            Modelo obj = new Modelo(0, jTModelo.getText(), logo);
+               for(int pos = 0;pos<dados.size();pos++){
+                if(jComboBox1.getSelectedItem().equals(dados.get(pos).getDescicao())){
+                    idMarca = dados.get(pos).getId();
+                }
+                
+            }
+            Modelo obj = new Modelo(0, jTModelo.getText(), logo , idMarca);
             modelocontrole.incluir(obj);
             imprimirTabela(modelocontrole.listagem());
             jTModelo.setText("");

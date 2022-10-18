@@ -373,6 +373,7 @@ public class TelaDasMarcas extends javax.swing.JFrame {
             file.setFileSelectionMode(JFileChooser.FILES_ONLY);
             file.showOpenDialog(this);
             File arquivo = file.getSelectedFile();
+            
             String nomeLogo = arquivo.getPath();
             jTextFieldURL.setText(nomeLogo);
             ImageIcon iconLogo = new ImageIcon(nomeLogo);

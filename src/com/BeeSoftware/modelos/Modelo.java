@@ -9,9 +9,9 @@ package com.BeeSoftware.modelos;
  * @author balta
  */
 public class Modelo {
-    
+
     Marca marca = null;
-    
+
     //Atributos
     private int id = 0;
     private String descricao = "";
@@ -20,11 +20,12 @@ public class Modelo {
 
     public Modelo() {
     }
-    
-    public Modelo(int id, String descricao, String url) {
+
+    public Modelo(int id, String descricao, String url, int idMarca) {
         this.descricao = descricao;
         this.id = id;
         this.url = url;
+        this.idMarca = idMarca;
     }
 
     public int getId() {
@@ -66,11 +67,10 @@ public class Modelo {
     public void setUrl(String url) {
         this.url = url;
     }
-    
+
     @Override
     public String toString() {
         return id + ";" + descricao + ";" + url + ";" + idMarca;
     }
-    
-    
+
 }
