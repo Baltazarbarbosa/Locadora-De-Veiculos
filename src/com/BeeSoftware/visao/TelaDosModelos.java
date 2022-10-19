@@ -27,31 +27,34 @@ import com.BeeSoftware.imagensNaTela.JTableRenderer;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 /**
  *
  * @author Eric
  */
 public class TelaDosModelos extends javax.swing.JFrame {
+
     ModeloControle modelocontrole = new ModeloControle();
     MarcaControle obj = new MarcaControle();
-    ArrayList<Marca> dados = new ArrayList<>();
+    ArrayList<Marca> dados = obj.listagem();
+
     /**
      * Creates new form TelaDosModelos
      */
     public TelaDosModelos() throws Exception {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.jTID.setEnabled(false);
-        this.jTURL.setEnabled(false);
-        
-        try{
+        jTID.setEnabled(false);
+        jTURL.setEnabled(false);
+
+        try {
+
+            String[] linha = new String[dados.size()];
+            for (int pos = 0; pos < dados.size(); pos++) {
+                jComboBox1.addItem(dados.get(pos).getDescicao());
+            }
             imprimirTabela(modelocontrole.listagem());
-            dados = obj.listagem();
-            String[] linha = new String [dados.size()];
-            for(int pos=0; pos<dados.size();pos++){
-            jComboBox1.addItem(dados.get(pos).getDescicao());
-        }
-        }catch(IOException e){
+        } catch (IOException e) {
             System.err.println("erro");
         }
     }
@@ -139,6 +142,12 @@ public class TelaDosModelos extends javax.swing.JFrame {
         jLmodelo.setBackground(new java.awt.Color(255, 255, 255));
         jLmodelo.setForeground(new java.awt.Color(255, 255, 255));
         jLmodelo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("MS PGothic", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -271,6 +280,7 @@ public class TelaDosModelos extends javax.swing.JFrame {
                 "Identificador", "Descrição", "URL", "Marca", "Modelo"
             }
         ));
+        jTableModelos.setRowHeight(75);
         jScrollPane1.setViewportView(jTableModelos);
         if (jTableModelos.getColumnModel().getColumnCount() > 0) {
             jTableModelos.getColumnModel().getColumn(0).setMinWidth(27);
@@ -279,8 +289,10 @@ public class TelaDosModelos extends javax.swing.JFrame {
             jTableModelos.getColumnModel().getColumn(1).setMaxWidth(100);
             jTableModelos.getColumnModel().getColumn(3).setMinWidth(80);
             jTableModelos.getColumnModel().getColumn(3).setMaxWidth(80);
+            jTableModelos.getColumnModel().getColumn(3).setCellRenderer(null);
             jTableModelos.getColumnModel().getColumn(4).setMinWidth(80);
             jTableModelos.getColumnModel().getColumn(4).setMaxWidth(80);
+            jTableModelos.getColumnModel().getColumn(4).setCellRenderer(null);
         }
 
         jPanel3.setBackground(new java.awt.Color(252, 186, 3));
@@ -424,48 +436,80 @@ public class TelaDosModelos extends javax.swing.JFrame {
 
     private void BTbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTbuscarActionPerformed
         try {
-            
-           JFileChooser file = new JFileChooser();
-           File modelo = new File("./src/com/BeeSoftware/imagens/modelos");
-           file.setCurrentDirectory(modelo);
-           file.setFileSelectionMode(JFileChooser.FILES_ONLY);
-           file.showOpenDialog(this);
-           File arq = file.getSelectedFile();
-           String nomeModelo = arq.getPath();
-           jTURL.setText(nomeModelo);
-           ImageIcon iconeModelo = new ImageIcon(nomeModelo);
-           iconeModelo.setImage(iconeModelo.getImage().getScaledInstance(jLmodelo.getWidth(), jLmodelo.getHeight(), 1));
-           jLmodelo.setIcon(iconeModelo);
+
+            JFileChooser file = new JFileChooser();
+            File modelo = new File("./src/com/BeeSoftware/imagens/modelos");
+            file.setCurrentDirectory(modelo);
+            file.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            file.showOpenDialog(this);
+            File arq = file.getSelectedFile();
+            String nomeModelo = arq.getPath();
+            jTURL.setText(nomeModelo);
+            ImageIcon iconeModelo = new ImageIcon(nomeModelo);
+            iconeModelo.setImage(iconeModelo.getImage().getScaledInstance(jLmodelo.getWidth(), jLmodelo.getHeight(), 1));
+            jLmodelo.setIcon(iconeModelo);
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(this,erro);
+            JOptionPane.showMessageDialog(this, erro);
         }
     }//GEN-LAST:event_BTbuscarActionPerformed
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        try {
+            MarcaControle obj = new MarcaControle();
+            ArrayList<Marca> dados = obj.listagem();
+            for (int pos = 0; pos < dados.size(); pos++) {
+                if (jComboBox1.getSelectedItem().equals(dados.get(pos).getDescicao())) {
+                    ImageIcon iconeModelo = new ImageIcon(dados.get(pos).getUrl());
+                    iconeModelo.setImage(iconeModelo.getImage().getScaledInstance(JLlogo.getWidth(), JLlogo.getHeight(), 1));
+                    JLlogo.setIcon(iconeModelo);
+                }
+
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
     private void BTincluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTincluirActionPerformed
-    
+
         try {
             int idMarca = 0;
-             
-            
-            File path = new File(jTURL.getText());
-            String logo = ".\\src\\com\\BeeSoftware\\logos\\" + path.getName();
-               for(int pos = 0;pos<dados.size();pos++){
-                if(jComboBox1.getSelectedItem().equals(dados.get(pos).getDescicao())){
-                    idMarca = dados.get(pos).getId();
-                }
-                
-            }
-            Modelo obj = new Modelo(0, jTModelo.getText(), logo , idMarca);
-            modelocontrole.incluir(obj);
-            imprimirTabela(modelocontrole.listagem());
-            jTModelo.setText("");
-            jTURL.setText("");
-            JLlogo.setIcon(null);
 
+        File path = new File(jTURL.getText());
+        String logo = ".\\src\\com\\BeeSoftware\\logos\\" + path.getName();
+
+        for (int pos = 0; pos < dados.size(); pos++) {
+            if (jComboBox1.getSelectedItem().equals(dados.get(pos).getDescicao())) {
+                idMarca = dados.get(pos).getId();
+            }
+
+        }
+        Modelo obj = new Modelo(0, jTModelo.getText(), logo, idMarca);
+        modelocontrole.incluir(obj);
+        imprimirTabela(modelocontrole.listagem());
+        jTModelo.setText("");
+        } catch (Exception e) {
+        }
+
+    }//GEN-LAST:event_BTincluirActionPerformed
+    public void imprimirTabela(ArrayList<Modelo> listademarca) {
+        try {
+            DefaultTableModel tabela = (DefaultTableModel) jTableModelos.getModel();
+            tabela.setNumRows(0);
+            Iterator<Modelo> lista = listademarca.iterator();
+            while (lista.hasNext()) {
+                String[] tab = new String[3];
+                Modelo aux = lista.next();
+                tab[0] = aux.getId() + "";
+                tab[1] = aux.getDescricao();
+                tab[2] = aux.getUrl();
+
+                tabela.addRow(tab);
+
+            }
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, erro.getMessage());
         }
-    }//GEN-LAST:event_BTincluirActionPerformed
+    }
 
     /**
      * @param args the command line arguments
@@ -504,26 +548,6 @@ public class TelaDosModelos extends javax.swing.JFrame {
                 }
             }
         });
-    }
-    
-    public void imprimirTabela(ArrayList<Modelo> listademodelos) {
-        try {
-            DefaultTableModel tabela = (DefaultTableModel) jTableModelos.getModel();
-            tabela.setNumRows(0);
-            Iterator<Modelo> lista = listademodelos.iterator();
-            while (lista.hasNext()) {
-                String[] tab = new String[3];
-                Modelo aux = lista.next();
-                tab[0] = aux.getId() + "";
-                tab[1] = aux.getDescricao();
-                tab[2] = aux.getUrl();
-
-                tabela.addRow(tab);
-
-            }
-        } catch (Exception erro) {
-            JOptionPane.showMessageDialog(this, erro.getMessage());
-        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

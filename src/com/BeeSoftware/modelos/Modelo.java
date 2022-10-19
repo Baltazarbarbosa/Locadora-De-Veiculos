@@ -36,22 +36,6 @@ public class Modelo {
         this.id = id;
     }
 
-    public Marca getMarca() {
-        return marca;
-    }
-
-    public void setMarca(Marca marca) {
-        this.marca = marca;
-    }
-
-    public int getIdMarca() {
-        return idMarca;
-    }
-
-    public void setIdMarca(int idMarca) {
-        this.idMarca = idMarca;
-    }
-
     public String getDescricao() {
         return descricao;
     }
@@ -71,6 +55,22 @@ public class Modelo {
     @Override
     public String toString() {
         return id + ";" + descricao + ";" + url + ";" + idMarca;
+    }
+
+    public Marca getMarca() {
+        return marca;
+    }
+
+    public void setMarca(Marca marca) {
+        this.marca = marca;
+    }
+
+    public int getIdMarca() {
+        return idMarca;
+    }
+
+    public void setIdMarca(int idMarca) {
+        this.idMarca = idMarca;
     }
 
 }
