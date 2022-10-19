@@ -1,3 +1,7 @@
+<<<<<<< HEAD
 10;ARGO;.\src\com\BeeSoftware\logos\argo.png;2
 11;CIVIC;.\src\com\BeeSoftware\logos\hondaCivic.png;3
 12;ARIZZO;.\src\com\BeeSoftware\logos\arrizo8.jpg;1
+=======
+modelo
+>>>>>>> d45c042b3925f7972e4d893a1f28977bb99ef21a

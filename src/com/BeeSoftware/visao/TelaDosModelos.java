@@ -34,26 +34,39 @@ import java.util.logging.Logger;
  */
 public class TelaDosModelos extends javax.swing.JFrame {
 
+<<<<<<< HEAD
     ModeloControle modelocontrole = new ModeloControle();
     MarcaControle obj = new MarcaControle();
     ArrayList<Marca> dados = obj.listagem();
 
+=======
+>>>>>>> d45c042b3925f7972e4d893a1f28977bb99ef21a
     /**
      * Creates new form TelaDosModelos
      */
     public TelaDosModelos() throws Exception {
         initComponents();
         this.setLocationRelativeTo(null);
+<<<<<<< HEAD
         jTID.setEnabled(false);
         jTURL.setEnabled(false);
 
         try {
 
+=======
+
+        try {
+            MarcaControle obj = new MarcaControle();
+            ArrayList<Marca> dados = obj.listagem();
+>>>>>>> d45c042b3925f7972e4d893a1f28977bb99ef21a
             String[] linha = new String[dados.size()];
             for (int pos = 0; pos < dados.size(); pos++) {
                 jComboBox1.addItem(dados.get(pos).getDescicao());
             }
+<<<<<<< HEAD
             imprimirTabela(modelocontrole.listagem());
+=======
+>>>>>>> d45c042b3925f7972e4d893a1f28977bb99ef21a
         } catch (IOException e) {
             System.err.println("erro");
         }
@@ -322,11 +335,6 @@ public class TelaDosModelos extends javax.swing.JFrame {
         BTincluir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         BTincluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/BeeSoftware/imagens/incluir.png"))); // NOI18N
         BTincluir.setText("Incluir");
-        BTincluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BTincluirActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -436,7 +444,11 @@ public class TelaDosModelos extends javax.swing.JFrame {
 
     private void BTbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTbuscarActionPerformed
         try {
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> d45c042b3925f7972e4d893a1f28977bb99ef21a
             JFileChooser file = new JFileChooser();
             File modelo = new File("./src/com/BeeSoftware/imagens/modelos");
             file.setCurrentDirectory(modelo);
@@ -454,6 +466,7 @@ public class TelaDosModelos extends javax.swing.JFrame {
     }//GEN-LAST:event_BTbuscarActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+<<<<<<< HEAD
         try {
             MarcaControle obj = new MarcaControle();
             ArrayList<Marca> dados = obj.listagem();
@@ -510,6 +523,22 @@ public class TelaDosModelos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, erro.getMessage());
         }
     }
+=======
+        try {
+            MarcaControle obj = new MarcaControle();
+        ArrayList<Marca> dados = obj.listagem();
+        for (int pos = 0; pos < dados.size(); pos++) {
+            if (jComboBox1.getSelectedItem().equals(dados.get(pos).getDescicao())) {
+                ImageIcon iconeModelo = new ImageIcon(dados.get(pos).getUrl());
+                iconeModelo.setImage(iconeModelo.getImage().getScaledInstance(JLlogo.getWidth(), JLlogo.getHeight(), 1));
+                JLlogo.setIcon(iconeModelo);
+            }
+
+        }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+>>>>>>> d45c042b3925f7972e4d893a1f28977bb99ef21a
 
     /**
      * @param args the command line arguments
