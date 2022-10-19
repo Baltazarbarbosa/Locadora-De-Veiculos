@@ -72,7 +72,12 @@ public class Modelo {
         this.idMarca = idMarca;
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+    
+    
+>>>>>>> d45c042b3925f7972e4d893a1f28977bb99ef21a
 =======
     
     
