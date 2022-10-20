@@ -92,19 +92,22 @@ public class MarcaDao implements IMarcaDao {
     }
 
     @Override
-    public String buscar(int id) throws Exception {
+    public String[] buscar(int id) throws Exception {
         Iterator<Marca> lista = listagem().iterator();
         Marca aux = null;
+        String[] marca = new String [3];
         while (lista.hasNext()) {
 
             if (aux.getId() == id) {
-                return aux.toString();
+                marca[0]=Integer.toString(aux.getId());
+                marca[1]=aux.getDescicao();
+                marca[2]=aux.getUrl();
             } else {
                 aux = lista.next();
             }
 
         }
-        return "Não encontrado";
+        return marca;
     }
 
 }

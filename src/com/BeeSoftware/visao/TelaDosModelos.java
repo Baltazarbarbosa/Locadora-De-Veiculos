@@ -24,6 +24,8 @@ import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import com.BeeSoftware.imagensNaTela.JTableRenderer;
+import com.BeeSoftware.imagensNaTela.JTableRendererModelos;
+import com.BeeSoftware.imagensNaTela.JTableRendererMarcas;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -281,6 +283,11 @@ public class TelaDosModelos extends javax.swing.JFrame {
             }
         ));
         jTableModelos.setRowHeight(75);
+        jTableModelos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableModelosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableModelos);
         if (jTableModelos.getColumnModel().getColumnCount() > 0) {
             jTableModelos.getColumnModel().getColumn(0).setMinWidth(27);
@@ -289,10 +296,10 @@ public class TelaDosModelos extends javax.swing.JFrame {
             jTableModelos.getColumnModel().getColumn(1).setMaxWidth(100);
             jTableModelos.getColumnModel().getColumn(3).setMinWidth(80);
             jTableModelos.getColumnModel().getColumn(3).setMaxWidth(80);
-            jTableModelos.getColumnModel().getColumn(3).setCellRenderer(null);
+            jTableModelos.getColumnModel().getColumn(3).setCellRenderer(new JTableRendererMarcas());
             jTableModelos.getColumnModel().getColumn(4).setMinWidth(80);
             jTableModelos.getColumnModel().getColumn(4).setMaxWidth(80);
-            jTableModelos.getColumnModel().getColumn(4).setCellRenderer(null);
+            jTableModelos.getColumnModel().getColumn(4).setCellRenderer(new JTableRendererModelos());
         }
 
         jPanel3.setBackground(new java.awt.Color(252, 186, 3));
@@ -396,8 +403,8 @@ public class TelaDosModelos extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -474,34 +481,54 @@ public class TelaDosModelos extends javax.swing.JFrame {
         try {
             int idMarca = 0;
 
-        File path = new File(jTURL.getText());
-        String logo = ".\\src\\com\\BeeSoftware\\logos\\" + path.getName();
+            File path = new File(jTURL.getText());
+            String logo = ".\\src\\com\\BeeSoftware\\imagens\\modelos\\" + path.getName();
+            for (int pos = 0; pos < dados.size(); pos++) {
+                if (jComboBox1.getSelectedItem().equals(dados.get(pos).getDescicao())) {
+                    idMarca = dados.get(pos).getId();
 
-        for (int pos = 0; pos < dados.size(); pos++) {
-            if (jComboBox1.getSelectedItem().equals(dados.get(pos).getDescicao())) {
-                idMarca = dados.get(pos).getId();
+                }
+
             }
-
-        }
-        Modelo obj = new Modelo(0, jTModelo.getText(), logo, idMarca);
-        modelocontrole.incluir(obj);
-        imprimirTabela(modelocontrole.listagem());
-        jTModelo.setText("");
+            Modelo obj = new Modelo(0, jTModelo.getText(), jTURL.getText(), idMarca);
+            modelocontrole.incluir(obj);
+            imprimirTabela(modelocontrole.listagem());
+            jTModelo.setText("");
         } catch (Exception e) {
         }
 
     }//GEN-LAST:event_BTincluirActionPerformed
+
+    private void jTableModelosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableModelosMouseClicked
+        try {
+            this.jTID.setText((String) this.jTableModelos.getValueAt(jTableModelos.getSelectedRow(), 0));
+            this.jTModelo.setText((String) this.jTableModelos.getValueAt(jTableModelos.getSelectedRow(), 1));
+            this.jTURL.setText((String) this.jTableModelos.getValueAt(jTableModelos.getSelectedRow(), 2));
+
+            String nomeArquivo = (String) this.jTableModelos.getValueAt(jTableModelos.getSelectedRow(), 2);
+
+            jTURL.setText(nomeArquivo);
+            ImageIcon iconLogo = new ImageIcon(nomeArquivo);
+            iconLogo.setImage(iconLogo.getImage().getScaledInstance(jLmodelo.getWidth(), jLmodelo.getHeight(), 1));
+            jLmodelo.setIcon(iconLogo);
+
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(this, erro);
+        }
+    }//GEN-LAST:event_jTableModelosMouseClicked
     public void imprimirTabela(ArrayList<Modelo> listademarca) {
         try {
             DefaultTableModel tabela = (DefaultTableModel) jTableModelos.getModel();
             tabela.setNumRows(0);
             Iterator<Modelo> lista = listademarca.iterator();
+
             while (lista.hasNext()) {
-                String[] tab = new String[3];
+                String[] tab = new String[4];
                 Modelo aux = lista.next();
                 tab[0] = aux.getId() + "";
                 tab[1] = aux.getDescricao();
                 tab[2] = aux.getUrl();
+                tab[3] = Integer.toString(aux.getIdMarca());
 
                 tabela.addRow(tab);
 

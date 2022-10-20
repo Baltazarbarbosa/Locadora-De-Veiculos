@@ -16,5 +16,5 @@ public interface IMarcaDao {
     void incluir(Marca objeto) throws Exception;
     void alterar(Marca objeto) throws Exception;
     ArrayList<Marca> listagem()throws Exception;
-    String buscar(int id) throws Exception;
+    String [] buscar(int id)throws Exception;
 }

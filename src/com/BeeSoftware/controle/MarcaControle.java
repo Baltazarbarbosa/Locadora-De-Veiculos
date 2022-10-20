@@ -66,4 +66,16 @@ public class MarcaControle implements IMarcaControle {
          return marcaPersistencia.listagem();
     }
 
+    @Override
+    public String[] buscar(int id) throws Exception {
+        return marcaPersistencia.buscar(id);
+    }
+
+    
+
+    
+
+    
+
+    
 }

@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableCellRenderer;
  *
  * @author balta
  */
-public class JTableRenderer extends DefaultTableCellRenderer{
+public class JTableRendererModelos extends DefaultTableCellRenderer{
     
    public JLabel icone = new JLabel();
     
@@ -29,7 +29,7 @@ public class JTableRenderer extends DefaultTableCellRenderer{
             this.setForeground(table.getForeground());
         }
         
-        ImageIcon logo = new ImageIcon(table.getValueAt(row, col-1).toString());
+        ImageIcon logo = new ImageIcon(table.getValueAt(row, col-2).toString());
                         
         icone.setText("");
         logo.setImage(logo.getImage().getScaledInstance(table.getRowHeight(), table.getRowHeight(), 1));

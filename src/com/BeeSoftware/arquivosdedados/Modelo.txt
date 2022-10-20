@@ -1,3 +1,5 @@
-10;ARGO;.\src\com\BeeSoftware\logos\argo.png;2
-11;CIVIC;.\src\com\BeeSoftware\logos\hondaCivic.png;3
-12;ARIZZO;.\src\com\BeeSoftware\logos\arrizo8.jpg;1
+10;ARGO;.\src\com\BeeSoftware\imagens\modelos\argo.png;2
+11;CIVIC;.\src\com\BeeSoftware\imagens\modelos\hondaCivic.png;3
+12;ARIZZO;.\src\com\BeeSoftware\imagens\modelos\arrizo8.jpg;1
+13;LANCER;.\src\com\BeeSoftware\imagens\modelos\lancer.jpg;6
+14;HILUX;.\src\com\BeeSoftware\imagens\modelos\hilux.png;8
