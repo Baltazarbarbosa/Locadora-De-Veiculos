@@ -295,6 +295,11 @@ public class TelaDasMarcas extends javax.swing.JFrame {
         jMenu2.add(MenuItemModelos);
 
         jMenuItem2.setText("Veículos");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem2);
 
         jMenuItem3.setText("Categorias");
@@ -482,6 +487,12 @@ public class TelaDasMarcas extends javax.swing.JFrame {
         this.dispose();
         tacess.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        TelaDosVeiculos tv = new TelaDosVeiculos();
+        this.dispose();
+        tv.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments

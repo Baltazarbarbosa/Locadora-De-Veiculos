@@ -427,8 +427,8 @@
                 <Column editable="true" title="Identificador" type="java.lang.Object"/>
                 <Column editable="true" title="Descri&#xe7;&#xe3;o" type="java.lang.Object"/>
                 <Column editable="true" title="URL" type="java.lang.Object"/>
-                <Column editable="true" title="Marca" type="java.lang.Object"/>
                 <Column editable="true" title="Modelo" type="java.lang.Object"/>
+                <Column editable="true" title="Marca" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -452,14 +452,14 @@
                   <Title/>
                   <Editor/>
                   <Renderer editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                    <Connection code="new JTableRendererMarcas()" type="code"/>
+                    <Connection code="new JTableRenderer()" type="code"/>
                   </Renderer>
                 </Column>
                 <Column maxWidth="80" minWidth="80" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
                   <Renderer editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                    <Connection code="new JTableRendererModelos()" type="code"/>
+                    <Connection code="new JTableRenderer()" type="code"/>
                   </Renderer>
                 </Column>
               </TableColumnModel>
@@ -538,6 +538,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Alterar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BTalterarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="BTbuscar">
           <Properties>

@@ -24,8 +24,7 @@ import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import com.BeeSoftware.imagensNaTela.JTableRenderer;
-import com.BeeSoftware.imagensNaTela.JTableRendererModelos;
-import com.BeeSoftware.imagensNaTela.JTableRendererMarcas;
+
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,7 +38,7 @@ public class TelaDosModelos extends javax.swing.JFrame {
     ModeloControle modelocontrole = new ModeloControle();
     MarcaControle obj = new MarcaControle();
     ArrayList<Marca> dados = obj.listagem();
-    JTableRendererMarcas captarurl = new JTableRendererMarcas();
+    
 
     /**
      * Creates new form TelaDosModelos
@@ -285,7 +284,7 @@ public class TelaDosModelos extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Identificador", "Descrição", "URL", "Marca", "Modelo"
+                "Identificador", "Descrição", "URL", "Modelo", "Marca"
             }
         ));
         jTableModelos.setRowHeight(75);
@@ -302,10 +301,10 @@ public class TelaDosModelos extends javax.swing.JFrame {
             jTableModelos.getColumnModel().getColumn(1).setMaxWidth(100);
             jTableModelos.getColumnModel().getColumn(3).setMinWidth(80);
             jTableModelos.getColumnModel().getColumn(3).setMaxWidth(80);
-            jTableModelos.getColumnModel().getColumn(3).setCellRenderer(new JTableRendererMarcas());
+            jTableModelos.getColumnModel().getColumn(3).setCellRenderer(new JTableRenderer());
             jTableModelos.getColumnModel().getColumn(4).setMinWidth(80);
             jTableModelos.getColumnModel().getColumn(4).setMaxWidth(80);
-            jTableModelos.getColumnModel().getColumn(4).setCellRenderer(new JTableRendererModelos());
+            jTableModelos.getColumnModel().getColumn(4).setCellRenderer(new JTableRenderer());
         }
 
         jPanel3.setBackground(new java.awt.Color(252, 186, 3));
@@ -322,6 +321,11 @@ public class TelaDosModelos extends javax.swing.JFrame {
         BTalterar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         BTalterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/BeeSoftware/imagens/refresh.png"))); // NOI18N
         BTalterar.setText("Alterar");
+        BTalterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTalterarActionPerformed(evt);
+            }
+        });
 
         BTbuscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         BTbuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/BeeSoftware/imagens/buscar.png"))); // NOI18N
@@ -499,7 +503,7 @@ public class TelaDosModelos extends javax.swing.JFrame {
                     ImageIcon iconeModelo = new ImageIcon(dados.get(pos).getUrl());
                     iconeModelo.setImage(iconeModelo.getImage().getScaledInstance(JLlogo.getWidth(), JLlogo.getHeight(), 1));
                     JLlogo.setIcon(iconeModelo);
-                    captarurl.receber(dados.get(pos).getUrl());
+                    
                 }
 
             }
@@ -514,13 +518,14 @@ public class TelaDosModelos extends javax.swing.JFrame {
 
             File path = new File(jTURL.getText());
             String logo = ".\\src\\com\\BeeSoftware\\imagens\\modelos\\" + path.getName();
-            for (int pos = 0; pos < dados.size(); pos++) {
-                if (jComboBox1.getSelectedItem().equals(dados.get(pos).getDescicao())) {
-                    idMarca = dados.get(pos).getId();
-                }else new Exception("Marca não cadastrada");
-
+            MarcaControle objeto1 = new MarcaControle();
+            
+            Modelo obj = new Modelo(0, jTModelo.getText(), logo, objeto1.buscar(idMarca));
+            ArrayList<Marca>lista=objeto1.listagem();
+            for(int i =0;i<lista.size();i++){
+                if(jComboBox1.getSelectedItem().equals(lista.get(i).getDescicao()))
+                    obj.setMarca(lista.get(i));
             }
-            Modelo obj = new Modelo(0, jTModelo.getText(), logo, idMarca);
             modelocontrole.incluir(obj);
             imprimirTabela(modelocontrole.listagem());
             jTModelo.setText("");
@@ -566,6 +571,29 @@ public class TelaDosModelos extends javax.swing.JFrame {
         this.dispose();
         tacess.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void BTalterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTalterarActionPerformed
+      try {
+            int idMarca = 0;
+
+            File path = new File(jTURL.getText());
+            String logo = ".\\src\\com\\BeeSoftware\\imagens\\modelos\\" + path.getName();
+            MarcaControle objeto1 = new MarcaControle();
+            
+            Modelo obj = new Modelo(Integer.parseInt(jTID.getText()), jTModelo.getText(), logo, objeto1.buscar(idMarca));
+            ArrayList<Marca>lista=objeto1.listagem();
+            for(int i =0;i<lista.size();i++){
+                if(jComboBox1.getSelectedItem().equals(lista.get(i).getDescicao()))
+                    obj.setMarca(lista.get(i));
+            }
+            modelocontrole.alterar(obj);
+            imprimirTabela(modelocontrole.listagem());
+            jTModelo.setText("");
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(this, erro);
+        }
+        
+    }//GEN-LAST:event_BTalterarActionPerformed
     public void imprimirTabela(ArrayList<Modelo> listademarca) {
         try {
             DefaultTableModel tabela = (DefaultTableModel) jTableModelos.getModel();
@@ -578,7 +606,7 @@ public class TelaDosModelos extends javax.swing.JFrame {
                 tab[0] = aux.getId() + "";
                 tab[1] = aux.getDescricao();
                 tab[2] = aux.getUrl();
-                tab[3] = Integer.toString(aux.getIdMarca());
+                tab[3] = obj.buscar(aux.getMarca().getId()).getUrl();
 
                 tabela.addRow(tab);
 

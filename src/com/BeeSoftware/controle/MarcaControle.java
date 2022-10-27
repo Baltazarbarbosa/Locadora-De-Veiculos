@@ -67,7 +67,7 @@ public class MarcaControle implements IMarcaControle {
     }
 
     @Override
-    public String[] buscar(int id) throws Exception {
+    public Marca buscar(int id) throws Exception {
         return marcaPersistencia.buscar(id);
     }
 

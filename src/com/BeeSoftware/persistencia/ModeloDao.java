@@ -72,11 +72,15 @@ public class ModeloDao implements IModeloDao {
             BufferedReader br = new BufferedReader(fr);
             String linha = "";
             while ((linha = br.readLine()) != null) {
+                IMarcaDao objetoMarca = new MarcaDao();
                 Modelo objetoModelo = new Modelo();
                 String vetorString[] = linha.split(";");
                 objetoModelo.setId(Integer.parseInt(vetorString[0]));
                 objetoModelo.setDescricao(vetorString[1]);
                 objetoModelo.setUrl(vetorString[2]);
+                int idMarca = Integer.parseInt(vetorString[3]);
+                objetoModelo.setMarca(objetoMarca.buscar(idMarca));
+                
                 listaDeModelos.add(objetoModelo);
             }
             br.close();
