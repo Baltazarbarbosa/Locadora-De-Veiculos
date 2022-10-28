@@ -101,6 +101,7 @@ public class TelaDosModelos extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
 
@@ -407,6 +408,14 @@ public class TelaDosModelos extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem5);
 
+        jMenuItem6.setText("Clientes");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem6);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/BeeSoftware/imagens/fechar.png"))); // NOI18N
@@ -594,6 +603,12 @@ public class TelaDosModelos extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_BTalterarActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        TelaDosClientes tc = new TelaDosClientes();
+        this.dispose();
+        tc.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
     public void imprimirTabela(ArrayList<Modelo> listademarca) {
         try {
             DefaultTableModel tabela = (DefaultTableModel) jTableModelos.getModel();
@@ -679,6 +694,7 @@ public class TelaDosModelos extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
