@@ -47,6 +47,7 @@ public class TelaDoEndereco extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(610, 450));
 
         jPanel1.setBackground(new java.awt.Color(252, 186, 3));
 

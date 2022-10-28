@@ -41,6 +41,9 @@ public class TelaDoTelefone extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(550, 415));
+        setMinimumSize(new java.awt.Dimension(550, 415));
+        setPreferredSize(new java.awt.Dimension(550, 470));
 
         jPanel1.setBackground(new java.awt.Color(252, 186, 3));
 
