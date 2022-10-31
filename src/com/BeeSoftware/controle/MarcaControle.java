@@ -7,6 +7,7 @@ package com.BeeSoftware.controle;
 import com.BeeSoftware.modelos.Marca;
 import com.BeeSoftware.persistencia.IMarcaDao;
 import com.BeeSoftware.persistencia.MarcaDao;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -71,6 +72,10 @@ public class MarcaControle implements IMarcaControle {
         return marcaPersistencia.buscar(id);
     }
 
+        public void verTxt() {
+            
+            
+        }
     
 
     

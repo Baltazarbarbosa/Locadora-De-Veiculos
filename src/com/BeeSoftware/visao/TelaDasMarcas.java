@@ -27,7 +27,7 @@ import com.BeeSoftware.imagensNaTela.JTableRenderer;
 public class TelaDasMarcas extends javax.swing.JFrame {
 
     IMarcaControle marcaControle = new MarcaControle();
-
+    IMarcaDao marcaDao = new MarcaDao();
     /**
      * Creates new form TelaDasMarcas
      */
@@ -38,6 +38,7 @@ public class TelaDasMarcas extends javax.swing.JFrame {
         jTextFieldURL.setEnabled(false);
         this.setLocationRelativeTo(null);
         try {
+            marcaDao.verTxt();
             imprimirTabela(marcaControle.listagem());
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, erro);

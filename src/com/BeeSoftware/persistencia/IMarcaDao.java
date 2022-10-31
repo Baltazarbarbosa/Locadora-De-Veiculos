@@ -17,4 +17,6 @@ public interface IMarcaDao {
     void alterar(Marca objeto) throws Exception;
     ArrayList<Marca> listagem() throws Exception;
     Marca buscar (int id) throws Exception;
+
+    public void verTxt();
 }

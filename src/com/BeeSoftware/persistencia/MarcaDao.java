@@ -9,10 +9,13 @@ import com.BeeSoftware.ferramentas.GeradorIdentificador;
 import com.BeeSoftware.modelos.Marca;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -109,5 +112,15 @@ public class MarcaDao implements IMarcaDao {
         }
         return null;
     }
-
+@Override
+    public void verTxt() {
+        File arquivo = new File("./src/com/BeeSoftware/arquivosdedados/Marca.txt");
+        try {
+        arquivo.createNewFile();
+    } catch (Exception e) {
+            System.out.println("");
+    }
+            
+    }
+        
 }
