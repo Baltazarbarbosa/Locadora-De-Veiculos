@@ -19,7 +19,7 @@ public class CategoriaControle implements ICategoriaControle{
     ICategoriaDao categoriaPercistencia = null;
     
     public CategoriaControle() {
-        this.categoriaPercistencia = (ICategoriaDao) new CategoriaDao();
+        this.categoriaPercistencia = new CategoriaDao();
     }
     
     private boolean buscarCategoria(String descricao) throws Exception {

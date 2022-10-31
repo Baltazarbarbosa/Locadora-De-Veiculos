@@ -18,13 +18,13 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class CategoriaDao {
+public class CategoriaDao implements ICategoriaDao{
      private String nomeDoArquivoNoDisco;
 
     public CategoriaDao() {
         nomeDoArquivoNoDisco = "./src/com/BeeSoftware/arquivosdedados/Categorias.txt";
     }
-
+@Override
     public void incluir(Categoria objeto) throws Exception {
         try {
             //cria o arquivo
@@ -41,7 +41,7 @@ public class CategoriaDao {
             throw erro;
         }
     }
-
+@Override
     public void alterar(Categoria objeto) throws Exception {
         try {
             Iterator<Categoria> lista = listagem().iterator();
@@ -64,7 +64,7 @@ public class CategoriaDao {
             throw erro;
         }
     }
-
+    @Override
     public ArrayList<Categoria> listagem() throws Exception {
         try {
             ArrayList<Categoria> listaDeAcessorios = new ArrayList<Categoria>();
@@ -87,7 +87,7 @@ public class CategoriaDao {
       
     }
 
-
+    @Override
     public Categoria buscar(int id) throws Exception {
         FileReader fr = new FileReader(nomeDoArquivoNoDisco);
         BufferedReader br = new BufferedReader(fr);
