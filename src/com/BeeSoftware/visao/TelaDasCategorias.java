@@ -6,6 +6,8 @@ package com.BeeSoftware.visao;
 import com.BeeSoftware.visao.TelaDasMarcas;
 import com.BeeSoftware.visao.TelaDosModelos;
 import com.BeeSoftware.visao.TelaDosVeiculos;
+import com.BeeSoftware.controle.CategoriaControle;
+
 
 /**
  *

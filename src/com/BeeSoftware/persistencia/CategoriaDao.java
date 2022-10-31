@@ -4,8 +4,12 @@
  */
 package com.BeeSoftware.persistencia;
 
+/**
+ *
+ * @author educa
+ */
 import com.BeeSoftware.ferramentas.GeradorIdentificador;
-import com.BeeSoftware.modelos.Acessorios;
+import com.BeeSoftware.modelos.Categoria;
 import com.BeeSoftware.modelos.Marca;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -14,20 +18,14 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-/**
- *
- * @author balta
- */
-public class AcessoriosDao implements IAcessoriosDao {
+public class CategoriaDao {
+     private String nomeDoArquivoNoDisco;
 
-    private String nomeDoArquivoNoDisco;
-
-    public AcessoriosDao() {
-        nomeDoArquivoNoDisco = "./src/com/BeeSoftware/arquivosdedados/Acessorios.txt";
+    public CategoriaDao() {
+        nomeDoArquivoNoDisco = "./src/com/BeeSoftware/arquivosdedados/Categorias.txt";
     }
 
-    @Override
-    public void incluir(Acessorios objeto) throws Exception {
+    public void incluir(Categoria objeto) throws Exception {
         try {
             //cria o arquivo
             FileWriter fw = new FileWriter(nomeDoArquivoNoDisco, true);
@@ -44,16 +42,15 @@ public class AcessoriosDao implements IAcessoriosDao {
         }
     }
 
-    @Override
-    public void alterar(Acessorios objeto) throws Exception {
+    public void alterar(Categoria objeto) throws Exception {
         try {
-            Iterator<Acessorios> lista = listagem().iterator();
+            Iterator<Categoria> lista = listagem().iterator();
             FileWriter fw = new FileWriter(nomeDoArquivoNoDisco);
             BufferedWriter bw = new BufferedWriter(fw);
 
             while (lista.hasNext()) {
 
-                Acessorios aux = lista.next();
+                Categoria aux = lista.next();
                 if (aux.getId() == objeto.getId()) {
                     bw.write(objeto.toString() + "\n");
                 } else {
@@ -66,17 +63,16 @@ public class AcessoriosDao implements IAcessoriosDao {
         } catch (Exception erro) {
             throw erro;
         }
-}
+    }
 
-    @Override
-    public ArrayList<Acessorios> listagem() throws Exception {
+    public ArrayList<Categoria> listagem() throws Exception {
         try {
-            ArrayList<Acessorios> listaDeAcessorios = new ArrayList<Acessorios>();
+            ArrayList<Categoria> listaDeAcessorios = new ArrayList<Categoria>();
             FileReader fr = new FileReader(nomeDoArquivoNoDisco);
             BufferedReader br = new BufferedReader(fr);
             String linha = "";
             while ((linha = br.readLine()) != null) {
-                Acessorios objetoAcessorios = new Acessorios();
+                Categoria objetoAcessorios = new Categoria();
                 String vetorString[] = linha.split(";");
                 objetoAcessorios.setId(Integer.parseInt(vetorString[0]));
                 objetoAcessorios.setDescricao(vetorString[1]);
@@ -91,23 +87,22 @@ public class AcessoriosDao implements IAcessoriosDao {
       
     }
 
-    @Override
-    public Acessorios buscar(int id) throws Exception {
+
+    public Categoria buscar(int id) throws Exception {
         FileReader fr = new FileReader(nomeDoArquivoNoDisco);
         BufferedReader br = new BufferedReader(fr);
         String linha = "";
         while ((linha = br.readLine()) != null) {
-            Acessorios objetoAcessorios = new Acessorios();
+            Categoria objetoAcessorios = new Categoria();
             String vetorString[] = linha.split(";");
             objetoAcessorios.setId(Integer.parseInt(vetorString[0]));
             objetoAcessorios.setDescricao(vetorString[1]);
             objetoAcessorios.setValorDaLocacao(Float.parseFloat(vetorString[2]));
             if(objetoAcessorios.getId()==id){
                 br.close();
-                return new Acessorios((Integer.parseInt(vetorString[0])),vetorString[1],(Float.parseFloat(vetorString[2])));
+                return new Categoria((Integer.parseInt(vetorString[0])),vetorString[1],(Float.parseFloat(vetorString[2])));
             }
         }
         return null;
     }
-
 }
