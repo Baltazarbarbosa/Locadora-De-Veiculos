@@ -12,6 +12,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.io.File;
 
 /**
  *
@@ -87,7 +88,15 @@ public class ModeloDao implements IModeloDao {
             return listaDeModelos;
         } catch (Exception erro) {
             throw erro;
-        }
+        }       
     }
-
+    @Override
+     public void verTxt() {
+        File arquivo = new File("./src/com/BeeSoftware/arquivosdedados/Modelo.txt");
+        try {
+        arquivo.createNewFile();
+    } catch (Exception e) {
+            System.out.println("");
+    }
+     }
 }

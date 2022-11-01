@@ -16,4 +16,5 @@ public interface IMarcaControle {
     void alterar(Marca objeto)throws Exception;
     ArrayList<Marca> listagem()throws Exception;
     Marca buscar(int id)throws Exception;
+    void verTxt();
 }

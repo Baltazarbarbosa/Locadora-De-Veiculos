@@ -38,7 +38,7 @@ public class TelaDosModelos extends javax.swing.JFrame {
     ModeloControle modelocontrole = new ModeloControle();
     MarcaControle obj = new MarcaControle();
     ArrayList<Marca> dados = obj.listagem();
-    
+    IModeloDao daomod = new ModeloDao();
 
     /**
      * Creates new form TelaDosModelos
@@ -52,7 +52,7 @@ public class TelaDosModelos extends javax.swing.JFrame {
         
 
         try {
-
+            daomod.verTxt();
             String[] linha = new String[dados.size()];
             for (int pos = 0; pos < dados.size(); pos++) {
                 jComboBox1.addItem(dados.get(pos).getDescicao());
