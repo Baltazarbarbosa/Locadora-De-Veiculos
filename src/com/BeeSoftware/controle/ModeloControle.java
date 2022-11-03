@@ -45,6 +45,9 @@ public class ModeloControle implements IModeloControle{
         if("".equals(objeto.getDescricao())){
             throw new Exception("Digite um modelo válido.");
         }
+        if (".\\src\\com\\BeeSoftware\\imagens\\modelos\\".equals(objeto.getUrl())) {
+            throw new Exception("Escolha a imagem do Modelo.");
+        }
         modeloPersistencia.incluir(objeto);
     }
 

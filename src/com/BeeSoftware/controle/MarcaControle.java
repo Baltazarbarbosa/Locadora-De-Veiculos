@@ -45,26 +45,30 @@ public class MarcaControle implements IMarcaControle {
             throw new Exception("Marca já foi cadastrada");
         }
         String aux = objeto.getDescicao();
-        if("".equals(objeto.getDescicao())){
+        if ("".equals(objeto.getDescicao())) {
             throw new Exception("Digite uma marca válida.");
+        }
+        if (".\\src\\com\\BeeSoftware\\logos\\".equals(objeto.getUrl())) {
+            throw new Exception("Escolha a logo da Marca.");
         }
         marcaPersistencia.incluir(objeto);
     }
 
     @Override
     public void alterar(Marca objeto) throws Exception {
-    if (buscarMarca(objeto.getDescicao())) {
+        if (buscarMarca(objeto.getDescicao())) {
             throw new Exception("Marca já foi cadastrada");
         }
-    String aux = objeto.getDescicao();
-    if("".equals(objeto.getDescicao())){
-        throw new Exception("Digite uma marca válida.");}
-        marcaPersistencia.alterar(objeto);    
+        String aux = objeto.getDescicao();
+        if ("".equals(objeto.getDescicao())) {
+            throw new Exception("Digite uma marca válida.");
+        }
+        marcaPersistencia.alterar(objeto);
     }
-    
+
     @Override
     public ArrayList<Marca> listagem() throws Exception {
-         return marcaPersistencia.listagem();
+        return marcaPersistencia.listagem();
     }
 
     @Override
@@ -72,15 +76,8 @@ public class MarcaControle implements IMarcaControle {
         return marcaPersistencia.buscar(id);
     }
 
-        public void verTxt() {
-            
-            
-        }
-    
+    public void verTxt() {
 
-    
+    }
 
-    
-
-    
 }

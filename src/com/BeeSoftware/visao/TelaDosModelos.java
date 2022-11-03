@@ -499,7 +499,7 @@ public class TelaDosModelos extends javax.swing.JFrame {
             iconeModelo.setImage(iconeModelo.getImage().getScaledInstance(jLmodelo.getWidth(), jLmodelo.getHeight(), 1));
             jLmodelo.setIcon(iconeModelo);
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(this, erro);
+           JOptionPane.showMessageDialog(this, erro.getMessage());
         }
     }//GEN-LAST:event_BTbuscarActionPerformed
 
@@ -516,7 +516,8 @@ public class TelaDosModelos extends javax.swing.JFrame {
                 }
 
             }
-        } catch (Exception e) {
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(this, erro.getMessage());
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
@@ -539,7 +540,7 @@ public class TelaDosModelos extends javax.swing.JFrame {
             imprimirTabela(modelocontrole.listagem());
             jTModelo.setText("");
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(this, erro);
+            JOptionPane.showMessageDialog(this, erro.getMessage());
         }
         
 
@@ -559,7 +560,7 @@ public class TelaDosModelos extends javax.swing.JFrame {
             jLmodelo.setIcon(iconLogo);
 
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(this, erro);
+            JOptionPane.showMessageDialog(this, erro.getMessage());
         }
     }//GEN-LAST:event_jTableModelosMouseClicked
 
@@ -599,7 +600,7 @@ public class TelaDosModelos extends javax.swing.JFrame {
             imprimirTabela(modelocontrole.listagem());
             jTModelo.setText("");
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(this, erro);
+            JOptionPane.showMessageDialog(this, erro.getMessage());
         }
         
     }//GEN-LAST:event_BTalterarActionPerformed

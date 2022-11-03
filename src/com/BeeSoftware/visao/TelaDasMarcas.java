@@ -28,6 +28,7 @@ public class TelaDasMarcas extends javax.swing.JFrame {
 
     IMarcaControle marcaControle = new MarcaControle();
     IMarcaDao marcaDao = new MarcaDao();
+
     /**
      * Creates new form TelaDasMarcas
      */
@@ -41,7 +42,7 @@ public class TelaDasMarcas extends javax.swing.JFrame {
             marcaDao.verTxt();
             imprimirTabela(marcaControle.listagem());
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(this, erro);
+            JOptionPane.showMessageDialog(this, erro.getMessage());
         }
     }
 
@@ -421,7 +422,7 @@ public class TelaDasMarcas extends javax.swing.JFrame {
             iconLogo.setImage(iconLogo.getImage().getScaledInstance(jLabelLogos.getWidth(), jLabelLogos.getHeight(), 1));
             jLabelLogos.setIcon(iconLogo);
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(this, erro);
+            JOptionPane.showMessageDialog(this, erro.getMessage());
         }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
@@ -445,7 +446,7 @@ public class TelaDasMarcas extends javax.swing.JFrame {
             jTextFieldURL.setText("");
 
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(this, erro);
+            JOptionPane.showMessageDialog(this, erro.getMessage());
         }
 
 
@@ -466,7 +467,7 @@ public class TelaDasMarcas extends javax.swing.JFrame {
             jLabelLogos.setIcon(iconLogo);
 
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(this, erro);
+            JOptionPane.showMessageDialog(this, erro.getMessage());
         }
     }//GEN-LAST:event_jTableMarcasMouseClicked
 
@@ -476,6 +477,7 @@ public class TelaDasMarcas extends javax.swing.JFrame {
             this.dispose();
             tmod.setVisible(true);
         } catch (Exception erro) {
+            JOptionPane.showMessageDialog(this, erro.getMessage());
         }
 
     }//GEN-LAST:event_MenuItemModelosActionPerformed
