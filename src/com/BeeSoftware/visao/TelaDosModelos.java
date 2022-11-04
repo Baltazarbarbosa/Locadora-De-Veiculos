@@ -12,8 +12,6 @@ import com.BeeSoftware.persistencia.IMarcaDao;
 import com.BeeSoftware.persistencia.MarcaDao;
 import com.BeeSoftware.controle.IModeloControle;
 import com.BeeSoftware.controle.ModeloControle;
-import com.BeeSoftware.persistencia.IModeloDao;
-import com.BeeSoftware.persistencia.ModeloDao;
 import com.BeeSoftware.modelos.Modelo;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -38,7 +36,7 @@ public class TelaDosModelos extends javax.swing.JFrame {
     ModeloControle modelocontrole = new ModeloControle();
     MarcaControle obj = new MarcaControle();
     ArrayList<Marca> dados = obj.listagem();
-    IModeloDao daomod = new ModeloDao();
+    
 
     /**
      * Creates new form TelaDosModelos
@@ -52,7 +50,7 @@ public class TelaDosModelos extends javax.swing.JFrame {
         
 
         try {
-            daomod.verTxt();
+            modelocontrole.verTxt();
             String[] linha = new String[dados.size()];
             for (int pos = 0; pos < dados.size(); pos++) {
                 jComboBox1.addItem(dados.get(pos).getDescicao());
@@ -456,7 +454,7 @@ public class TelaDosModelos extends javax.swing.JFrame {
     private void jTModeloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTModeloKeyTyped
         // TODO add your handling code here:
         char e = evt.getKeyChar();
-        if (!Character.isLetter(e)) {
+        if (!Character.isLetterOrDigit(e)&& !Character.isWhitespace(e)) {
             evt.consume();
         }
         if (Character.isLowerCase(e)) {
@@ -530,7 +528,7 @@ public class TelaDosModelos extends javax.swing.JFrame {
             String logo = ".\\src\\com\\BeeSoftware\\imagens\\modelos\\" + path.getName();
             MarcaControle objeto1 = new MarcaControle();
             
-            Modelo obj = new Modelo(0, jTModelo.getText(), logo, objeto1.buscar(idMarca));
+            Modelo obj = new Modelo(0, jTModelo.getText().replaceAll(" ","_"), logo, objeto1.buscar(idMarca));
             ArrayList<Marca>lista=objeto1.listagem();
             for(int i =0;i<lista.size();i++){
                 if(jComboBox1.getSelectedItem().equals(lista.get(i).getDescicao()))

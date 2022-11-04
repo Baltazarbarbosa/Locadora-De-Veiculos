@@ -77,7 +77,7 @@ public class MarcaControle implements IMarcaControle {
     }
 
     public void verTxt() {
-
+        marcaPersistencia.verTxt();
     }
 
 }

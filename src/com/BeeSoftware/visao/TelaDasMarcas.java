@@ -8,8 +8,6 @@ import com.BeeSoftware.controle.IMarcaControle;
 import com.BeeSoftware.controle.MarcaControle;
 import com.BeeSoftware.ferramentas.GeradorIdentificador;
 import com.BeeSoftware.modelos.Marca;
-import com.BeeSoftware.persistencia.IMarcaDao;
-import com.BeeSoftware.persistencia.MarcaDao;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
@@ -27,7 +25,7 @@ import com.BeeSoftware.imagensNaTela.JTableRenderer;
 public class TelaDasMarcas extends javax.swing.JFrame {
 
     IMarcaControle marcaControle = new MarcaControle();
-    IMarcaDao marcaDao = new MarcaDao();
+   
 
     /**
      * Creates new form TelaDasMarcas
@@ -39,7 +37,7 @@ public class TelaDasMarcas extends javax.swing.JFrame {
         jTextFieldURL.setEnabled(false);
         this.setLocationRelativeTo(null);
         try {
-            marcaDao.verTxt();
+            marcaControle.verTxt();
             imprimirTabela(marcaControle.listagem());
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, erro.getMessage());
@@ -383,7 +381,7 @@ public class TelaDasMarcas extends javax.swing.JFrame {
             File path = new File(jTextFieldURL.getText());
             String logo = ".\\src\\com\\BeeSoftware\\logos\\" + path.getName();
 
-            Marca obj = new Marca(0, jTextFieldDescicao.getText(), logo);
+            Marca obj = new Marca(0, jTextFieldDescicao.getText().replaceAll(" ","_"), logo);
             marcaControle.incluir(obj);
             imprimirTabela(marcaControle.listagem());
             jTextFieldDescicao.setText("");
@@ -398,7 +396,7 @@ public class TelaDasMarcas extends javax.swing.JFrame {
     private void jTextFieldDescicaoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDescicaoKeyTyped
         // TODO add your handling code here:
         char e = evt.getKeyChar();
-        if (!Character.isLetter(e)) {
+        if (!Character.isLetter(e)&& !Character.isWhitespace(e)) {
             evt.consume();
         }
         if (Character.isLowerCase(e)) {

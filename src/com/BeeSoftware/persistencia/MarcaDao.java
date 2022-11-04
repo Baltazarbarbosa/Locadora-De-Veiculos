@@ -83,7 +83,7 @@ public class MarcaDao implements IMarcaDao {
                 Marca objetoMarca = new Marca();
                 String vetorString[] = linha.split(";");
                 objetoMarca.setId(Integer.parseInt(vetorString[0]));
-                objetoMarca.setDescicao(vetorString[1]);
+                objetoMarca.setDescicao(vetorString[1].replaceAll("_", " "));
                 objetoMarca.setUrl(vetorString[2]);
                 listaDeMarcas.add(objetoMarca);
             }

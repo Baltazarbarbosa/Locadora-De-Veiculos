@@ -77,7 +77,7 @@ public class ModeloDao implements IModeloDao {
                 Modelo objetoModelo = new Modelo();
                 String vetorString[] = linha.split(";");
                 objetoModelo.setId(Integer.parseInt(vetorString[0]));
-                objetoModelo.setDescricao(vetorString[1]);
+                objetoModelo.setDescricao(vetorString[1].replaceAll("_", " "));
                 objetoModelo.setUrl(vetorString[2]);
                 int idMarca = Integer.parseInt(vetorString[3]);
                 objetoModelo.setMarca(objetoMarca.buscar(idMarca));

@@ -65,5 +65,12 @@ public class ModeloControle implements IModeloControle{
     public ArrayList<Modelo> listagem() throws Exception {
          return modeloPersistencia.listagem();
     }
+    
+    public void verTxt(){
+        try {
+            modeloPersistencia.verTxt();
+        } catch (Exception e) {
+        }
+    }
 
 }
