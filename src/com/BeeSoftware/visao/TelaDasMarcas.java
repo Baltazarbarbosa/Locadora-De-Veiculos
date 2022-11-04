@@ -25,7 +25,6 @@ import com.BeeSoftware.imagensNaTela.JTableRenderer;
 public class TelaDasMarcas extends javax.swing.JFrame {
 
     IMarcaControle marcaControle = new MarcaControle();
-   
 
     /**
      * Creates new form TelaDasMarcas
