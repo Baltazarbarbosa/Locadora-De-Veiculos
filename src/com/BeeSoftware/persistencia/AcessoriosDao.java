@@ -9,6 +9,7 @@ import com.BeeSoftware.modelos.Acessorios;
 import com.BeeSoftware.modelos.Marca;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
@@ -109,5 +110,14 @@ public class AcessoriosDao implements IAcessoriosDao {
         }
         return null;
     }
+
+    @Override
+    public void verTxt() throws Exception {
+        File arquivo = new File("./src/com/BeeSoftware/arquivosdedados/Acessorios.txt");
+        try {
+        arquivo.createNewFile();
+    } catch (Exception e) {
+            System.out.println("");
+    } }
 
 }

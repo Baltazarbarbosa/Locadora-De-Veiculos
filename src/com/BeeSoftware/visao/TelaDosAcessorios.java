@@ -4,11 +4,21 @@
  */
 package com.BeeSoftware.visao;
 
+import com.BeeSoftware.controle.AcessoriosControle;
+import com.BeeSoftware.controle.IAcessoriosControle;
+import com.BeeSoftware.modelos.Acessorios;
+import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Eric
  */
 public class TelaDosAcessorios extends javax.swing.JFrame {
+
+    IAcessoriosControle acessorioControle = new AcessoriosControle();
 
     /**
      * Creates new form TelaDosAcessorios
@@ -16,6 +26,15 @@ public class TelaDosAcessorios extends javax.swing.JFrame {
     public TelaDosAcessorios() {
         initComponents();
         this.setLocationRelativeTo(null);
+        jTable1.getTableHeader().setReorderingAllowed(false);
+        jTextFieldID.setEnabled(false);
+        
+        try {
+            imprimirTabela(acessorioControle.listagem());
+            acessorioControle.verTxt();
+        } catch (Exception e) {
+        }
+
     }
 
     /**
@@ -35,6 +54,8 @@ public class TelaDosAcessorios extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jTextFieldValordaLoc = new javax.swing.JTextField();
         jTextFieldDescricao = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jTextFieldID = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -100,6 +121,22 @@ public class TelaDosAcessorios extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Valor da locação:");
 
+        jTextFieldDescricao.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldDescricaoKeyTyped(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("MS Gothic", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("ID:");
+
+        jTextFieldID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldIDActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -107,6 +144,10 @@ public class TelaDosAcessorios extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -120,15 +161,19 @@ public class TelaDosAcessorios extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addGap(11, 11, 11)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jTextFieldDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(15, 15, 15)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jTextFieldValordaLoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(252, 186, 3));
@@ -136,10 +181,20 @@ public class TelaDosAcessorios extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/BeeSoftware/imagens/incluir.png"))); // NOI18N
         jButton1.setText("Incluir");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/BeeSoftware/imagens/refresh.png"))); // NOI18N
         jButton2.setText("Alterar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -164,16 +219,34 @@ public class TelaDosAcessorios extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Descrição", "Valor da locação"
+                "ID", "Descrição", "Valor da locação"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setMinWidth(25);
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(25);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(25);
+        }
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/BeeSoftware/imagens/arquivo.png"))); // NOI18N
         jMenu1.setText("arquivo");
@@ -263,6 +336,25 @@ public class TelaDosAcessorios extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    public void imprimirTabela(ArrayList<Acessorios> listademarca) {
+        try {
+            DefaultTableModel tabela = (DefaultTableModel) jTable1.getModel();
+            tabela.setNumRows(0);
+            Iterator<Acessorios> lista = listademarca.iterator();
+            while (lista.hasNext()) {
+                String[] tab = new String[3];
+                Acessorios aux = lista.next();
+                tab[0] = aux.getId() + "";
+                tab[1] = aux.getDescricao();
+                tab[2] = aux.getValorDaLocacao() + "";
+
+                tabela.addRow(tab);
+
+            }
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(this, erro.getMessage());
+        }
+    }
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         TelaDasCategorias tcat = new TelaDasCategorias();
         this.dispose();
@@ -295,6 +387,55 @@ public class TelaDosAcessorios extends javax.swing.JFrame {
         this.dispose();
         tc.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jTextFieldIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldIDActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            Acessorios obj = new Acessorios(0, jTextFieldDescricao.getText(), Float.parseFloat(jTextFieldValordaLoc.getText()));
+            acessorioControle.incluir(obj);
+            imprimirTabela(acessorioControle.listagem());
+            jTextFieldDescricao.setText("");
+            jTextFieldValordaLoc.setText("");
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(this, erro.getMessage());
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextFieldDescricaoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDescricaoKeyTyped
+        char e = evt.getKeyChar();
+        if (!Character.isLetter(e) && !Character.isWhitespace(e)) {
+            evt.consume();
+        }
+        if (Character.isLowerCase(e)) {
+            evt.setKeyChar(Character.toUpperCase(e));
+        }
+    }//GEN-LAST:event_jTextFieldDescricaoKeyTyped
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        try {
+            this.jTextFieldID.setText((String) this.jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+            this.jTextFieldDescricao.setText((String) this.jTable1.getValueAt(jTable1.getSelectedRow(), 1));
+            this.jTextFieldValordaLoc.setText((String) this.jTable1.getValueAt(jTable1.getSelectedRow(), 2));
+
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(this, erro.getMessage());
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            Acessorios obj = new Acessorios(Integer.parseInt(jTextFieldID.getText()), jTextFieldDescricao.getText(), Float.parseFloat(jTextFieldValordaLoc.getText()));
+            acessorioControle.alterar(obj);
+            imprimirTabela(acessorioControle.listagem());
+            jTextFieldDescricao.setText("");
+            jTextFieldValordaLoc.setText("");
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(this, erro.getMessage());
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -338,6 +479,7 @@ public class TelaDosAcessorios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -353,6 +495,7 @@ public class TelaDosAcessorios extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextFieldDescricao;
+    private javax.swing.JTextField jTextFieldID;
     private javax.swing.JTextField jTextFieldValordaLoc;
     // End of variables declaration//GEN-END:variables
 }

@@ -35,6 +35,7 @@ public class TelaDasMarcas extends javax.swing.JFrame {
         //jTextAreaLOgo.setEnabled(false);
         jTextFieldURL.setEnabled(false);
         this.setLocationRelativeTo(null);
+        jTableMarcas.getTableHeader().setReorderingAllowed(false);
         try {
             marcaControle.verTxt();
             imprimirTabela(marcaControle.listagem());
@@ -179,7 +180,15 @@ public class TelaDasMarcas extends javax.swing.JFrame {
             new String [] {
                 "Identificador", "Descrição", "URL", "Logo"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTableMarcas.setRowHeight(75);
         jTableMarcas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -189,11 +198,14 @@ public class TelaDasMarcas extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTableMarcas);
         if (jTableMarcas.getColumnModel().getColumnCount() > 0) {
             jTableMarcas.getColumnModel().getColumn(0).setMinWidth(28);
+            jTableMarcas.getColumnModel().getColumn(0).setPreferredWidth(28);
             jTableMarcas.getColumnModel().getColumn(0).setMaxWidth(28);
-            jTableMarcas.getColumnModel().getColumn(1).setMinWidth(100);
-            jTableMarcas.getColumnModel().getColumn(1).setMaxWidth(100);
-            jTableMarcas.getColumnModel().getColumn(3).setMinWidth(80);
-            jTableMarcas.getColumnModel().getColumn(3).setMaxWidth(80);
+            jTableMarcas.getColumnModel().getColumn(1).setMinWidth(125);
+            jTableMarcas.getColumnModel().getColumn(1).setPreferredWidth(125);
+            jTableMarcas.getColumnModel().getColumn(1).setMaxWidth(125);
+            jTableMarcas.getColumnModel().getColumn(3).setMinWidth(100);
+            jTableMarcas.getColumnModel().getColumn(3).setPreferredWidth(100);
+            jTableMarcas.getColumnModel().getColumn(3).setMaxWidth(100);
             jTableMarcas.getColumnModel().getColumn(3).setCellRenderer(new JTableRenderer());
         }
 
@@ -353,9 +365,9 @@ public class TelaDasMarcas extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane2)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane2)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -436,6 +448,7 @@ public class TelaDasMarcas extends javax.swing.JFrame {
         try {
             File path = new File(jTextFieldURL.getText());
             String logo = ".\\src\\com\\BeeSoftware\\logos\\" + path.getName();
+            if(jTextFieldIdentificador.getText().equals(""))throw new Exception("Selecione uma marca para alterar");
             Marca obj = new Marca(Integer.parseInt(jTextFieldIdentificador.getText()), jTextFieldDescicao.getText(), logo);
             marcaControle.alterar(obj);
             imprimirTabela(marcaControle.listagem());

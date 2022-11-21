@@ -15,9 +15,9 @@ import java.util.Iterator;
  * @author balta
  */
 public class AcessoriosControle implements IAcessoriosControle {
-    
+
     IAcessoriosDao acessoriosPercistencia = null;
-    
+
     public AcessoriosControle() {
         this.acessoriosPercistencia = new AcessoriosDao();
     }
@@ -37,7 +37,7 @@ public class AcessoriosControle implements IAcessoriosControle {
             throw erro;
         }
     }
-    
+
     @Override
     public void incluir(Acessorios objeto) throws Exception {
         if (buscarAcessorios(objeto.getDescricao())) {
@@ -49,7 +49,7 @@ public class AcessoriosControle implements IAcessoriosControle {
         }
         acessoriosPercistencia.incluir(objeto);
     }
-    
+
     @Override
     public void alterar(Acessorios objeto) throws Exception {
         if (buscarAcessorios(objeto.getDescricao())) {
@@ -61,15 +61,22 @@ public class AcessoriosControle implements IAcessoriosControle {
         }
         acessoriosPercistencia.alterar(objeto);
     }
-    
+
     @Override
     public ArrayList<Acessorios> listagem() throws Exception {
         return acessoriosPercistencia.listagem();
     }
-    
+
     @Override
     public Acessorios buscar(int id) throws Exception {
         return acessoriosPercistencia.buscar(id);
     }
-    
+    @Override
+    public void verTxt() {
+        try {
+            acessoriosPercistencia.verTxt();
+        } catch (Exception e) {
+        }
+    }
+
 }

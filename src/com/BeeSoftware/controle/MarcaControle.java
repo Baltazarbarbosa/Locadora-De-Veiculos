@@ -56,11 +56,15 @@ public class MarcaControle implements IMarcaControle {
 
     @Override
     public void alterar(Marca objeto) throws Exception {
+      
+        if (objeto.getUrl().equals("")) {
+            throw new Exception("Favor selecionar uma marca para alterar");
+        }
         if (buscarMarca(objeto.getDescicao())) {
             throw new Exception("Marca já foi cadastrada");
         }
-        String aux = objeto.getDescicao();
-        if ("".equals(objeto.getDescicao())) {
+        
+        if (objeto.getDescicao().equals("")) {
             throw new Exception("Digite uma marca válida.");
         }
         marcaPersistencia.alterar(objeto);

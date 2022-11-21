@@ -14,14 +14,15 @@ import com.BeeSoftware.persistencia.ModeloDao;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class ModeloControle implements IModeloControle{
+public class ModeloControle implements IModeloControle {
+
     IModeloDao modeloPersistencia = null;
-    
-    public ModeloControle(){
+
+    public ModeloControle() {
         this.modeloPersistencia = new ModeloDao();
     }
-    
-    private boolean buscarModelo(String descricao) throws Exception{
+
+    private boolean buscarModelo(String descricao) throws Exception {
         try {
             ArrayList<Modelo> listagem = modeloPersistencia.listagem();
             Iterator<Modelo> lista = listagem.iterator();
@@ -36,13 +37,13 @@ public class ModeloControle implements IModeloControle{
             throw error;
         }
     }
-    
+
     public void incluir(Modelo objeto) throws Exception {
         if (buscarModelo(objeto.getDescricao())) {
             throw new Exception("Modelo já foi cadastrada");
         }
         String aux = objeto.getDescricao();
-        if("".equals(objeto.getDescricao())){
+        if ("".equals(objeto.getDescricao())) {
             throw new Exception("Digite um modelo válido.");
         }
         if (".\\src\\com\\BeeSoftware\\imagens\\modelos\\".equals(objeto.getUrl())) {
@@ -52,21 +53,24 @@ public class ModeloControle implements IModeloControle{
     }
 
     public void alterar(Modelo objeto) throws Exception {
-    if (buscarModelo(objeto.getDescricao())) {
+        if (objeto.getUrl().equals("")) {
+            throw new Exception("Favor selecionar um modelo para alterar");
+        }
+        if (buscarModelo(objeto.getDescricao())) {
             throw new Exception("Modelo já foi cadastrada");
         }
-    String aux = objeto.getDescricao();
-    if("".equals(objeto.getDescricao())){
-        throw new Exception("Digite um modelo válido.");}
-        modeloPersistencia.alterar(objeto);    
+        
+        if (objeto.getDescricao().equals("")) {
+            throw new Exception("Digite um modelo válido.");
+        }
+        modeloPersistencia.alterar(objeto);
     }
-    
 
     public ArrayList<Modelo> listagem() throws Exception {
-         return modeloPersistencia.listagem();
+        return modeloPersistencia.listagem();
     }
-    
-    public void verTxt(){
+
+    public void verTxt() {
         try {
             modeloPersistencia.verTxt();
         } catch (Exception e) {

@@ -46,6 +46,7 @@ public class TelaDosModelos extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         jTID.setEnabled(false);
         jTURL.setEnabled(false);
+        jTableModelos.getTableHeader().setReorderingAllowed(false);
         
         
 
@@ -285,7 +286,15 @@ public class TelaDosModelos extends javax.swing.JFrame {
             new String [] {
                 "Identificador", "Descrição", "URL", "Modelo", "Marca"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTableModelos.setRowHeight(75);
         jTableModelos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -294,15 +303,19 @@ public class TelaDosModelos extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTableModelos);
         if (jTableModelos.getColumnModel().getColumnCount() > 0) {
-            jTableModelos.getColumnModel().getColumn(0).setMinWidth(27);
-            jTableModelos.getColumnModel().getColumn(0).setMaxWidth(27);
-            jTableModelos.getColumnModel().getColumn(1).setMinWidth(100);
-            jTableModelos.getColumnModel().getColumn(1).setMaxWidth(100);
-            jTableModelos.getColumnModel().getColumn(3).setMinWidth(80);
-            jTableModelos.getColumnModel().getColumn(3).setMaxWidth(80);
+            jTableModelos.getColumnModel().getColumn(0).setMinWidth(28);
+            jTableModelos.getColumnModel().getColumn(0).setPreferredWidth(28);
+            jTableModelos.getColumnModel().getColumn(0).setMaxWidth(28);
+            jTableModelos.getColumnModel().getColumn(1).setMinWidth(125);
+            jTableModelos.getColumnModel().getColumn(1).setPreferredWidth(125);
+            jTableModelos.getColumnModel().getColumn(1).setMaxWidth(125);
+            jTableModelos.getColumnModel().getColumn(3).setMinWidth(150);
+            jTableModelos.getColumnModel().getColumn(3).setPreferredWidth(150);
+            jTableModelos.getColumnModel().getColumn(3).setMaxWidth(150);
             jTableModelos.getColumnModel().getColumn(3).setCellRenderer(new JTableRenderer());
-            jTableModelos.getColumnModel().getColumn(4).setMinWidth(80);
-            jTableModelos.getColumnModel().getColumn(4).setMaxWidth(80);
+            jTableModelos.getColumnModel().getColumn(4).setMinWidth(100);
+            jTableModelos.getColumnModel().getColumn(4).setPreferredWidth(100);
+            jTableModelos.getColumnModel().getColumn(4).setMaxWidth(100);
             jTableModelos.getColumnModel().getColumn(4).setCellRenderer(new JTableRenderer());
         }
 
@@ -587,6 +600,7 @@ public class TelaDosModelos extends javax.swing.JFrame {
             File path = new File(jTURL.getText());
             String logo = ".\\src\\com\\BeeSoftware\\imagens\\modelos\\" + path.getName();
             MarcaControle objeto1 = new MarcaControle();
+            if(jTID.getText().equals(""))throw new Exception("Selecione um modelo para alterar");
             
             Modelo obj = new Modelo(Integer.parseInt(jTID.getText()), jTModelo.getText(), logo, objeto1.buscar(idMarca));
             ArrayList<Marca>lista=objeto1.listagem();

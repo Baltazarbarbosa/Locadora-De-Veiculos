@@ -17,5 +17,6 @@ public interface IAcessoriosDao {
     void alterar(Acessorios objeto) throws Exception;
     ArrayList<Acessorios> listagem() throws Exception;
     Acessorios buscar (int id) throws Exception;
+    void verTxt() throws Exception;
     
 }
