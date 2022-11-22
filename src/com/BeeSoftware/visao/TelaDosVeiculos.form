@@ -87,6 +87,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="fechar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem3ActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -227,10 +230,8 @@
                               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jTextFieldPlaca" pref="172" max="32767" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="jTextFieldRenavam" alignment="0" pref="172" max="32767" attributes="0"/>
-                                      <Component id="jTextFieldPrecocompra" max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="jTextFieldRenavam" alignment="0" pref="172" max="32767" attributes="0"/>
+                                  <Component id="jTextFieldPrecocompra" alignment="1" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>

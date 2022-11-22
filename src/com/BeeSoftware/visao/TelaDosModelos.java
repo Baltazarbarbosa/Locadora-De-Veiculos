@@ -433,6 +433,11 @@ public class TelaDosModelos extends javax.swing.JFrame {
         jMenu2.setText("fechar");
 
         jMenuItem2.setText("fechar");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem2);
 
         jMenuBar1.add(jMenu2);
@@ -540,6 +545,7 @@ public class TelaDosModelos extends javax.swing.JFrame {
             File path = new File(jTURL.getText());
             String logo = ".\\src\\com\\BeeSoftware\\imagens\\modelos\\" + path.getName();
             MarcaControle objeto1 = new MarcaControle();
+            if(Integer.parseInt(jTID.getText())!=0)throw new Exception("Não é possivel inserir, modelo já cadastrado, favor alterar!");
             
             Modelo obj = new Modelo(0, jTModelo.getText().replaceAll(" ","_"), logo, objeto1.buscar(idMarca));
             ArrayList<Marca>lista=objeto1.listagem();
@@ -622,6 +628,10 @@ public class TelaDosModelos extends javax.swing.JFrame {
         this.dispose();
         tc.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
     public void imprimirTabela(ArrayList<Modelo> listademarca) {
         try {
             DefaultTableModel tabela = (DefaultTableModel) jTableModelos.getModel();

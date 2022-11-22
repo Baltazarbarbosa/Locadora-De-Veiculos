@@ -26,6 +26,9 @@ public class TelaDosClientes extends javax.swing.JFrame {
         jLabelidentidade.setVisible(false);
         jLabelnome.setVisible(false);
         jLabelrazaosocial.setVisible(false);
+        jTablecpf.setVisible(false);
+        jTablecnpj.setVisible(false);
+        
     }
 
     /**
@@ -67,7 +70,9 @@ public class TelaDosClientes extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTablecpf = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTablecnpj = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -86,6 +91,8 @@ public class TelaDosClientes extends javax.swing.JFrame {
         jButton5.setText("jButton5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(997, 760));
+        setPreferredSize(new java.awt.Dimension(997, 760));
 
         jPanel1.setBackground(new java.awt.Color(252, 186, 3));
 
@@ -193,15 +200,11 @@ public class TelaDosClientes extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabelcnpj)
-                            .addComponent(jLabel12))
-                        .addGap(62, 62, 62))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabelcpf)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabelcnpj)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabelcpf))
+                .addGap(62, 62, 62)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(TextFieldCPF)
@@ -295,7 +298,7 @@ public class TelaDosClientes extends javax.swing.JFrame {
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTablecpf.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -306,7 +309,20 @@ public class TelaDosClientes extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTablecpf);
+
+        jTablecnpj.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTablecnpj);
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/BeeSoftware/imagens/arquivo.png"))); // NOI18N
         jMenu1.setText("arquivo");
@@ -355,6 +371,11 @@ public class TelaDosClientes extends javax.swing.JFrame {
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/BeeSoftware/imagens/fechar.png"))); // NOI18N
         jMenu2.setText("Fechar");
+        jMenu2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu2ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -367,6 +388,7 @@ public class TelaDosClientes extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane1)
+            .addComponent(jScrollPane2)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -377,7 +399,9 @@ public class TelaDosClientes extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -396,6 +420,8 @@ public class TelaDosClientes extends javax.swing.JFrame {
             TextFieldrazaosocial.setVisible(false);
             jLabelcnpj.setVisible(false);
             jLabelrazaosocial.setVisible(false);
+            jTablecpf.setVisible(true);
+            jTablecnpj.setVisible(false);
         }
         if(jComboBox1.getSelectedItem().equals("CNPJ")){
             TextFieldCNPJ.setVisible(true);
@@ -408,6 +434,8 @@ public class TelaDosClientes extends javax.swing.JFrame {
             TextFieldCPF.setVisible(false);
             TextFieldnome.setVisible(false);
             TextFieldIdentidade.setVisible(false);
+            jTablecpf.setVisible(false);
+            jTablecnpj.setVisible(true);
         }
         if(jComboBox1.getSelectedItem().equals("SELECIONE")){
             jLabelcpf.setVisible(false);
@@ -420,6 +448,8 @@ public class TelaDosClientes extends javax.swing.JFrame {
             TextFieldrazaosocial.setVisible(false);
             jLabelcnpj.setVisible(false);
             jLabelrazaosocial.setVisible(false);
+            jTablecpf.setVisible(false);
+            jTablecnpj.setVisible(false);
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
@@ -465,6 +495,10 @@ public class TelaDosClientes extends javax.swing.JFrame {
         TelaDoEndereco tend = new TelaDoEndereco();
         tend.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jMenu2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -540,6 +574,8 @@ public class TelaDosClientes extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTablecnpj;
+    private javax.swing.JTable jTablecpf;
     // End of variables declaration//GEN-END:variables
 }
