@@ -5,10 +5,10 @@
         <group>
             <file>file:/C:/Users/balta/OneDrive/Área%20de%20Trabalho/Locagyn/Locadora-De-Veiculos/src/com/BeeSoftware/enumeradores/TipoDeCliente.java</file>
             <file>file:/C:/Users/balta/OneDrive/Área%20de%20Trabalho/Locagyn/Locadora-De-Veiculos/src/com/BeeSoftware/controle/ClienteControle.java</file>
-            <file>file:/C:/Users/balta/OneDrive/Área%20de%20Trabalho/Locagyn/Locadora-De-Veiculos/src/com/BeeSoftware/persistencia/IClienteDao.java</file>
-            <file>file:/C:/Users/balta/OneDrive/Área%20de%20Trabalho/Locagyn/Locadora-De-Veiculos/src/com/BeeSoftware/visao/TelaDosClientes.java</file>
-            <file>file:/C:/Users/balta/OneDrive/Área%20de%20Trabalho/Locagyn/Locadora-De-Veiculos/src/com/BeeSoftware/modelos/Cliente.java</file>
             <file>file:/C:/Users/balta/OneDrive/Área%20de%20Trabalho/Locagyn/Locadora-De-Veiculos/src/com/BeeSoftware/persistencia/ClienteDao.java</file>
+            <file>file:/C:/Users/balta/OneDrive/Área%20de%20Trabalho/Locagyn/Locadora-De-Veiculos/src/com/BeeSoftware/controle/ModeloControle.java</file>
+            <file>file:/C:/Users/balta/OneDrive/Área%20de%20Trabalho/Locagyn/Locadora-De-Veiculos/src/com/BeeSoftware/modelos/Cliente.java</file>
+            <file>file:/C:/Users/balta/OneDrive/Área%20de%20Trabalho/Locagyn/Locadora-De-Veiculos/src/com/BeeSoftware/visao/TelaDosClientes.java</file>
         </group>
     </open-files>
 </project-private>

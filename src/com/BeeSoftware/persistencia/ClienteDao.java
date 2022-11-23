@@ -28,6 +28,7 @@ public class ClienteDao implements IClienteDao {
     private String nomeDoArquivoNoDiscoPF;
     private String nomeDoArquivoNoDiscoPJ;
     private String caminho = "";
+    Cliente objetoCliente = new Cliente();
 
     public ClienteDao() {
         nomeDoArquivoNoDiscoPF = "./src/com/BeeSoftware/arquivosdedados/ClientePF.txt";
@@ -98,7 +99,7 @@ public class ClienteDao implements IClienteDao {
     public ArrayList<Cliente> listagem(TipoDeCliente tipoDoCliente) throws Exception {
         try {
             ArrayList<Cliente> listaDeClientes = new ArrayList<Cliente>();
-            Cliente objetoCliente = new Cliente();
+
             if (tipoDoCliente == PESSOA_FISICA) {
                 caminho = nomeDoArquivoNoDiscoPF;
             }
@@ -167,7 +168,73 @@ public class ClienteDao implements IClienteDao {
 
     @Override
     public Cliente buscar(int id, TipoDeCliente tipoDoCliente) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (tipoDoCliente == PESSOA_FISICA) {
+            caminho = nomeDoArquivoNoDiscoPF;
+        }
+        if (tipoDoCliente == PESSOA_JURIDICA) {
+            caminho = nomeDoArquivoNoDiscoPJ;
+        }
+        FileReader fr = new FileReader(caminho);
+        BufferedReader br = new BufferedReader(fr);
+        String linha = "";
+
+        if (tipoDoCliente == PESSOA_FISICA) {
+            while ((linha = br.readLine()) != null) {
+                String vetorString[] = linha.split(";");
+                objetoCliente.setId(Integer.parseInt(vetorString[0]));
+                objetoCliente.setCpf(vetorString[1]);
+                objetoCliente.setNome(vetorString[2].replaceAll("_", " "));
+                objetoCliente.setIdentidade(vetorString[3]);
+                String[] telSeparado = vetorString[4].split(";");
+                int ddi = Integer.parseInt(telSeparado[0]);
+                int ddd = Integer.parseInt(telSeparado[1]);
+                int numero = Integer.parseInt(telSeparado[2]);
+                Telefone telefone = new Telefone(ddi, ddd, numero);
+                objetoCliente.setTelefone(telefone);
+                objetoCliente.setEmail(vetorString[5]);
+                String[] endSeparado = vetorString[6].split(",");
+                String longradouro = endSeparado[0];
+                String complemento = endSeparado[1];
+                String bairro = endSeparado[2];
+                String cidade = endSeparado[3];
+                String estado = endSeparado[4];
+                String cep = endSeparado[5];
+                Endereco endereco = new Endereco(longradouro, complemento, cidade, estado, bairro, Integer.parseInt(cep));
+                objetoCliente.setEndereco(endereco);
+                if (objetoCliente.getId() == id) {
+                    br.close();
+                    return new Cliente((Integer.parseInt(vetorString[0])), vetorString[1], vetorString[2], vetorString[3], vetorString[5], telefone, endereco, tipoDoCliente);
+                }
+            }
+        }
+        if (tipoDoCliente == PESSOA_JURIDICA) {
+            String vetorString[] = linha.split(";");
+            objetoCliente.setId(Integer.parseInt(vetorString[0]));
+            objetoCliente.setRazaoSocial(vetorString[1]);
+            objetoCliente.setCnpj(vetorString[2]);
+            String[] telSeparado = vetorString[3].split(";");
+            int ddi = Integer.parseInt(telSeparado[0]);
+            int ddd = Integer.parseInt(telSeparado[1]);
+            int numero = Integer.parseInt(telSeparado[2]);
+            Telefone telefone = new Telefone(ddi, ddd, numero);
+            objetoCliente.setTelefone(telefone);
+            objetoCliente.setEmail(vetorString[4]);
+            String[] endSeparado = vetorString[5].split(",");
+            String longradouro = endSeparado[0];
+            String complemento = endSeparado[1];
+            String bairro = endSeparado[2];
+            String cidade = endSeparado[3];
+            String estado = endSeparado[4];
+            String cep = endSeparado[5];
+            Endereco endereco = new Endereco(longradouro, complemento, cidade, estado, bairro, Integer.parseInt(cep));
+            objetoCliente.setEndereco(endereco);
+            if (objetoCliente.getId() == id) {
+                br.close();
+                return new Cliente((Integer.parseInt(vetorString[0])), vetorString[2], vetorString[1], vetorString[4], telefone, endereco, tipoDoCliente);
+            }
+        }
+        return null;
+
     }
 
     @Override

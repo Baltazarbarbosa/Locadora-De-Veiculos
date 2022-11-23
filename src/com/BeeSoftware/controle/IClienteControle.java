@@ -4,6 +4,7 @@
  */
 package com.BeeSoftware.controle;
 
+import com.BeeSoftware.enumeradores.TipoDeCliente;
 import com.BeeSoftware.modelos.Cliente;
 import java.util.ArrayList;
 
@@ -13,10 +14,10 @@ import java.util.ArrayList;
  */
 public interface IClienteControle {
     
-    void incluirPF(Cliente objeto) throws Exception;
-    void alterar(Cliente objeto) throws Exception;
-    ArrayList<Cliente > listagemPF() throws Exception;
-    Cliente buscar (int id) throws Exception;
+    void incluir(Cliente objeto, TipoDeCliente tipoDoCliente) throws Exception;
+    void alterar(Cliente objeto, TipoDeCliente tipoDoCliente) throws Exception;
+    ArrayList<Cliente > listagem(TipoDeCliente tipoDoCliente) throws Exception;
+    Cliente buscar (int id,TipoDeCliente tipoDoCliente) throws Exception;
     public void verTxt() throws Exception;
     
 }

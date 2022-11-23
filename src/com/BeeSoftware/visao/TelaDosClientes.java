@@ -43,7 +43,7 @@ public class TelaDosClientes extends javax.swing.JFrame {
 
         try {
             clienteControle.verTxt();
-            imprimirTabela(clienteControle.listagemPF());
+           
         } catch (Exception e) {
         }
 
