@@ -1,3 +1,5 @@
+
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -545,7 +547,6 @@ public class TelaDosModelos extends javax.swing.JFrame {
             File path = new File(jTURL.getText());
             String logo = ".\\src\\com\\BeeSoftware\\imagens\\modelos\\" + path.getName();
             MarcaControle objeto1 = new MarcaControle();
-            if(Integer.parseInt(jTID.getText())!=0)throw new Exception("Não é possivel inserir, modelo já cadastrado, favor alterar!");
             
             Modelo obj = new Modelo(0, jTModelo.getText().replaceAll(" ","_"), logo, objeto1.buscar(idMarca));
             ArrayList<Marca>lista=objeto1.listagem();

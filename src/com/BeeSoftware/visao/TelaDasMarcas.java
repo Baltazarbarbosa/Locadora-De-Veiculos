@@ -391,8 +391,7 @@ public class TelaDasMarcas extends javax.swing.JFrame {
 
             File path = new File(jTextFieldURL.getText());
             String logo = ".\\src\\com\\BeeSoftware\\logos\\" + path.getName();
-            if(Integer.parseInt(jTextFieldIdentificador.getText())!=0)throw new Exception("Não é possivel inserir, marca já cadastrada, favor alterar!");
-
+           
             Marca obj = new Marca(0, jTextFieldDescicao.getText().replaceAll(" ","_"), logo);
             marcaControle.incluir(obj);
             imprimirTabela(marcaControle.listagem());

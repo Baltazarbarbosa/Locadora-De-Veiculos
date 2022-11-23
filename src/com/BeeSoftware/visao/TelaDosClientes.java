@@ -4,11 +4,23 @@
  */
 package com.BeeSoftware.visao;
 
+import com.BeeSoftware.controle.ClienteControle;
+import com.BeeSoftware.controle.IClienteControle;
+import com.BeeSoftware.modelos.Cliente;
+import com.BeeSoftware.modelos.Endereco;
+import com.BeeSoftware.modelos.Telefone;
+import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Eric
  */
 public class TelaDosClientes extends javax.swing.JFrame {
+
+    IClienteControle clienteControle = new ClienteControle();
 
     /**
      * Creates new form TelaDosClientes
@@ -28,7 +40,13 @@ public class TelaDosClientes extends javax.swing.JFrame {
         jLabelrazaosocial.setVisible(false);
         jTablecpf.setVisible(false);
         jTablecnpj.setVisible(false);
-        
+
+        try {
+            clienteControle.verTxt();
+            imprimirTabela(clienteControle.listagemPF());
+        } catch (Exception e) {
+        }
+
     }
 
     /**
@@ -272,6 +290,11 @@ public class TelaDosClientes extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/BeeSoftware/imagens/incluir.png"))); // NOI18N
         jButton2.setText("Incluir");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/BeeSoftware/imagens/refresh.png"))); // NOI18N
@@ -409,7 +432,7 @@ public class TelaDosClientes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        if(jComboBox1.getSelectedItem().equals("CPF")){
+        if (jComboBox1.getSelectedItem().equals("CPF")) {
             jLabelcpf.setVisible(true);
             jLabelidentidade.setVisible(true);
             jLabelnome.setVisible(true);
@@ -423,7 +446,7 @@ public class TelaDosClientes extends javax.swing.JFrame {
             jTablecpf.setVisible(true);
             jTablecnpj.setVisible(false);
         }
-        if(jComboBox1.getSelectedItem().equals("CNPJ")){
+        if (jComboBox1.getSelectedItem().equals("CNPJ")) {
             TextFieldCNPJ.setVisible(true);
             TextFieldrazaosocial.setVisible(true);
             jLabelcnpj.setVisible(true);
@@ -437,7 +460,7 @@ public class TelaDosClientes extends javax.swing.JFrame {
             jTablecpf.setVisible(false);
             jTablecnpj.setVisible(true);
         }
-        if(jComboBox1.getSelectedItem().equals("SELECIONE")){
+        if (jComboBox1.getSelectedItem().equals("SELECIONE")) {
             jLabelcpf.setVisible(false);
             jLabelidentidade.setVisible(false);
             jLabelnome.setVisible(false);
@@ -453,14 +476,34 @@ public class TelaDosClientes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
+    public void imprimirTabela(ArrayList<Cliente> listadecliente) {
+        try {
+            DefaultTableModel tabela = (DefaultTableModel) jTablecpf.getModel();
+            tabela.setNumRows(0);
+            Iterator<Cliente> lista = listadecliente.iterator();
+
+            while (lista.hasNext()) {
+                String[] tab = new String[3];
+                Cliente aux = lista.next();
+                tab[0] = aux.getId() + "";
+                tab[1] = aux.getNome();
+                tab[2] = aux.getEmail();
+
+                tabela.addRow(tab);
+
+            }
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(this, erro.getMessage());
+        }
+    }
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-       TelaDasCategorias tcat = new TelaDasCategorias();
-       this.dispose();
-       tcat.setVisible(true);
+        TelaDasCategorias tcat = new TelaDasCategorias();
+        this.dispose();
+        tcat.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
-       TelaDasMarcas tm = new TelaDasMarcas();
+        TelaDasMarcas tm = new TelaDasMarcas();
         this.dispose();
         tm.setVisible(true);
     }//GEN-LAST:event_jMenu1ActionPerformed
@@ -499,6 +542,11 @@ public class TelaDosClientes extends javax.swing.JFrame {
     private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jMenu2ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
+
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

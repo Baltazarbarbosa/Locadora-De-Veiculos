@@ -1,3 +1,5 @@
 1;FIAT;.\src\com\BeeSoftware\logos\fiat_logo.jfif
 2;HONDA;.\src\com\BeeSoftware\logos\honda_logo.jpg
 3;CHERY;.\src\com\BeeSoftware\logos\Chery-Logo.png
+13;TOYOTA;.\src\com\BeeSoftware\logos\toyota_logo.jfif
+14;AUDI;.\src\com\BeeSoftware\logos\audi_logo.jpg
