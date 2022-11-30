@@ -3,3 +3,4 @@
 3;CHERY;.\src\com\BeeSoftware\logos\Chery-Logo.png
 13;TOYOTA;.\src\com\BeeSoftware\logos\toyota_logo.jfif
 14;AUDI;.\src\com\BeeSoftware\logos\audi_logo.jpg
+20;NISSAN;.\src\com\BeeSoftware\logos\nissan_logo.png

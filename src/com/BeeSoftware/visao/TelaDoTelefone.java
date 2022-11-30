@@ -9,6 +9,8 @@ package com.BeeSoftware.visao;
  * @author Eric
  */
 public class TelaDoTelefone extends javax.swing.JFrame {
+    
+    TelaDosClientes telaCliente = new TelaDosClientes();
 
     /**
      * Creates new form TelaDoTelefone
@@ -38,7 +40,7 @@ public class TelaDoTelefone extends javax.swing.JFrame {
         jTextFieldNumero = new javax.swing.JTextField();
         jTextFieldDDD = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        jButtonConfirmar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(550, 415));
@@ -138,11 +140,11 @@ public class TelaDoTelefone extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(252, 186, 3));
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setText("Confirmar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonConfirmar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButtonConfirmar.setText("Confirmar");
+        jButtonConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonConfirmarActionPerformed(evt);
             }
         });
 
@@ -152,14 +154,14 @@ public class TelaDoTelefone extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(207, 207, 207)
-                .addComponent(jButton1)
+                .addComponent(jButtonConfirmar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(46, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(jButtonConfirmar)
                 .addGap(32, 32, 32))
         );
 
@@ -185,9 +187,10 @@ public class TelaDoTelefone extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jButtonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarActionPerformed
+        //Enviar telefone
+       
+    }//GEN-LAST:event_jButtonConfirmarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -225,7 +228,7 @@ public class TelaDoTelefone extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonConfirmar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

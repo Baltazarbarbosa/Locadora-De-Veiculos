@@ -41,21 +41,30 @@ public class ClienteDao implements IClienteDao {
         try {
             if (tipoDoCliente == PESSOA_FISICA) {
                 caminho = nomeDoArquivoNoDiscoPF;
+                //cria o arquivo
+                FileWriter fw = new FileWriter(nomeDoArquivoNoDiscoPF, true);
+                //Criar o buffer do arquivo
+                BufferedWriter bw = new BufferedWriter(fw);
+                // Incluindo o id no objeto ******
+                objeto.setId(GeradorIdentificador.getID());
+                //Escreve no arquivo
+                bw.write(objeto.toString(objeto.getTipoDoCliente()) + "\n");
+                //fecha o arquivo
+                bw.close();
             }
             if (tipoDoCliente == PESSOA_JURIDICA) {
                 caminho = nomeDoArquivoNoDiscoPJ;
+                //cria o arquivo
+                FileWriter fw = new FileWriter(nomeDoArquivoNoDiscoPJ, true);
+                //Criar o buffer do arquivo
+                BufferedWriter bw = new BufferedWriter(fw);
+                // Incluindo o id no objeto ******
+                objeto.setId(GeradorIdentificador.getID());
+                //Escreve no arquivo
+                bw.write(objeto.toString(objeto.getTipoDoCliente()) + "\n");
+                //fecha o arquivo
+                bw.close();
             }
-
-            //cria o arquivo
-            FileWriter fw = new FileWriter(caminho, true);
-            //Criar o buffer do arquivo
-            BufferedWriter bw = new BufferedWriter(fw);
-            // Incluindo o id no objeto ******
-            objeto.setId(GeradorIdentificador.getID());
-            //Escreve no arquivo
-            bw.write(objeto.toString(objeto.getTipoDoCliente()) + "\n");
-            //fecha o arquivo
-            bw.close();
 
         } catch (Exception erro) {
             throw erro;
@@ -69,27 +78,40 @@ public class ClienteDao implements IClienteDao {
 
             Iterator<Cliente> lista = listagem(objeto.getTipoDoCliente()).iterator();
             if (tipoDoCliente == PESSOA_FISICA) {
-                caminho = nomeDoArquivoNoDiscoPF;
-            }
-            if (tipoDoCliente == PESSOA_JURIDICA) {
-                caminho = nomeDoArquivoNoDiscoPJ;
-            }
+                FileWriter fw = new FileWriter(nomeDoArquivoNoDiscoPF);
+                BufferedWriter bw = new BufferedWriter(fw);
 
-            FileWriter fw = new FileWriter(caminho);
-            BufferedWriter bw = new BufferedWriter(fw);
+                while (lista.hasNext()) {
 
-            while (lista.hasNext()) {
+                    Cliente aux = lista.next();
+                    if (aux.getId() == objeto.getId()) {
+                        bw.write(objeto.toString() + "\n");
+                    } else {
+                        bw.write(aux.toString() + "\n");
+                    }
 
-                Cliente aux = lista.next();
-                if (aux.getId() == objeto.getId()) {
-                    bw.write(objeto.toString() + "\n");
-                } else {
-                    bw.write(aux.toString() + "\n");
                 }
 
+                bw.close();
+            }
+            if (tipoDoCliente == PESSOA_JURIDICA) {
+                FileWriter fw = new FileWriter(nomeDoArquivoNoDiscoPJ);
+                BufferedWriter bw = new BufferedWriter(fw);
+
+                while (lista.hasNext()) {
+
+                    Cliente aux = lista.next();
+                    if (aux.getId() == objeto.getId()) {
+                        bw.write(objeto.toString() + "\n");
+                    } else {
+                        bw.write(aux.toString() + "\n");
+                    }
+
+                }
+
+                bw.close();
             }
 
-            bw.close();
         } catch (Exception erro) {
             throw erro;
         }
@@ -99,18 +121,11 @@ public class ClienteDao implements IClienteDao {
     public ArrayList<Cliente> listagem(TipoDeCliente tipoDoCliente) throws Exception {
         try {
             ArrayList<Cliente> listaDeClientes = new ArrayList<Cliente>();
-
-            if (tipoDoCliente == PESSOA_FISICA) {
-                caminho = nomeDoArquivoNoDiscoPF;
-            }
-            if (tipoDoCliente == PESSOA_JURIDICA) {
-                caminho = nomeDoArquivoNoDiscoPJ;
-            }
-
-            FileReader fr = new FileReader(caminho);
-            BufferedReader br = new BufferedReader(fr);
             String linha = "";
-            if (tipoDoCliente == PESSOA_FISICA) {
+            if (tipoDoCliente.equals(TipoDeCliente.PESSOA_FISICA)) {
+                FileReader fr = new FileReader(nomeDoArquivoNoDiscoPF);
+                BufferedReader br = new BufferedReader(fr);
+
                 while ((linha = br.readLine()) != null) {
                     String vetorString[] = linha.split(";");
                     objetoCliente.setId(Integer.parseInt(vetorString[0]));
@@ -118,33 +133,38 @@ public class ClienteDao implements IClienteDao {
                     objetoCliente.setNome(vetorString[2].replaceAll("_", " "));
                     objetoCliente.setIdentidade(vetorString[3]);
                     String[] telSeparado = vetorString[4].split(";");
-                    int ddi = Integer.parseInt(telSeparado[0]);
-                    int ddd = Integer.parseInt(telSeparado[1]);
-                    int numero = Integer.parseInt(telSeparado[2]);
+                    long ddi = Long.parseLong(telSeparado[0]);
+                    long ddd = Long.parseLong(telSeparado[1]);
+                    long numero = Long.parseLong(telSeparado[2]);
                     Telefone telefone = new Telefone(ddi, ddd, numero);
                     objetoCliente.setTelefone(telefone);
                     objetoCliente.setEmail(vetorString[5]);
-                    String[] endSeparado = vetorString[6].split(",");
+                    String[] endSeparado = vetorString[6].split(";");
                     String longradouro = endSeparado[0];
                     String complemento = endSeparado[1];
                     String bairro = endSeparado[2];
                     String cidade = endSeparado[3];
                     String estado = endSeparado[4];
-                    String cep = endSeparado[5];
-                    Endereco endereco = new Endereco(longradouro, complemento, cidade, estado, bairro, Integer.parseInt(cep));
+                    long cep = Long.parseLong(endSeparado[5]);
+                    Endereco endereco = new Endereco(longradouro, complemento, cidade, estado, bairro, cep);
                     objetoCliente.setEndereco(endereco);
                     listaDeClientes.add(objetoCliente);
+                    br.close();
+                    return listaDeClientes;
                 }
             }
-            if (tipoDoCliente == PESSOA_JURIDICA) {
+            if (tipoDoCliente.equals(TipoDeCliente.PESSOA_JURIDICA)) {
+                FileReader fr = new FileReader(nomeDoArquivoNoDiscoPJ);
+                BufferedReader br = new BufferedReader(fr);
+
                 String vetorString[] = linha.split(";");
                 objetoCliente.setId(Integer.parseInt(vetorString[0]));
                 objetoCliente.setRazaoSocial(vetorString[1]);
                 objetoCliente.setCnpj(vetorString[2]);
                 String[] telSeparado = vetorString[3].split(";");
-                int ddi = Integer.parseInt(telSeparado[0]);
-                int ddd = Integer.parseInt(telSeparado[1]);
-                int numero = Integer.parseInt(telSeparado[2]);
+                long ddi = Long.parseLong(telSeparado[0]);
+                long ddd = Long.parseLong(telSeparado[1]);
+                long numero = Long.parseLong(telSeparado[2]);
                 Telefone telefone = new Telefone(ddi, ddd, numero);
                 objetoCliente.setTelefone(telefone);
                 objetoCliente.setEmail(vetorString[4]);
@@ -154,13 +174,17 @@ public class ClienteDao implements IClienteDao {
                 String bairro = endSeparado[2];
                 String cidade = endSeparado[3];
                 String estado = endSeparado[4];
-                String cep = endSeparado[5];
-                Endereco endereco = new Endereco(longradouro, complemento, cidade, estado, bairro, Integer.parseInt(cep));
+                long cep = Long.parseLong(endSeparado[5]);
+                Endereco endereco = new Endereco(longradouro, complemento, cidade, estado, bairro, cep);
                 objetoCliente.setEndereco(endereco);
                 listaDeClientes.add(objetoCliente);
+                br.close();
+                return listaDeClientes;
+
+            } else {
+                return null;
             }
-            br.close();
-            return listaDeClientes;
+
         } catch (Exception erro) {
             throw erro;
         }
@@ -186,9 +210,9 @@ public class ClienteDao implements IClienteDao {
                 objetoCliente.setNome(vetorString[2].replaceAll("_", " "));
                 objetoCliente.setIdentidade(vetorString[3]);
                 String[] telSeparado = vetorString[4].split(";");
-                int ddi = Integer.parseInt(telSeparado[0]);
-                int ddd = Integer.parseInt(telSeparado[1]);
-                int numero = Integer.parseInt(telSeparado[2]);
+                long ddi = Long.parseLong(telSeparado[0]);
+                long ddd = Long.parseLong(telSeparado[1]);
+                long numero = Long.parseLong(telSeparado[2]);
                 Telefone telefone = new Telefone(ddi, ddd, numero);
                 objetoCliente.setTelefone(telefone);
                 objetoCliente.setEmail(vetorString[5]);
@@ -198,8 +222,8 @@ public class ClienteDao implements IClienteDao {
                 String bairro = endSeparado[2];
                 String cidade = endSeparado[3];
                 String estado = endSeparado[4];
-                String cep = endSeparado[5];
-                Endereco endereco = new Endereco(longradouro, complemento, cidade, estado, bairro, Integer.parseInt(cep));
+                long cep = Long.parseLong(endSeparado[5]);
+                Endereco endereco = new Endereco(longradouro, complemento, cidade, estado, bairro, cep);
                 objetoCliente.setEndereco(endereco);
                 if (objetoCliente.getId() == id) {
                     br.close();
@@ -213,9 +237,9 @@ public class ClienteDao implements IClienteDao {
             objetoCliente.setRazaoSocial(vetorString[1]);
             objetoCliente.setCnpj(vetorString[2]);
             String[] telSeparado = vetorString[3].split(";");
-            int ddi = Integer.parseInt(telSeparado[0]);
-            int ddd = Integer.parseInt(telSeparado[1]);
-            int numero = Integer.parseInt(telSeparado[2]);
+            long ddi = Long.parseLong(telSeparado[0]);
+            long ddd = Long.parseLong(telSeparado[1]);
+            long numero = Long.parseLong(telSeparado[2]);
             Telefone telefone = new Telefone(ddi, ddd, numero);
             objetoCliente.setTelefone(telefone);
             objetoCliente.setEmail(vetorString[4]);
@@ -225,8 +249,8 @@ public class ClienteDao implements IClienteDao {
             String bairro = endSeparado[2];
             String cidade = endSeparado[3];
             String estado = endSeparado[4];
-            String cep = endSeparado[5];
-            Endereco endereco = new Endereco(longradouro, complemento, cidade, estado, bairro, Integer.parseInt(cep));
+            long cep = Long.parseLong(endSeparado[5]);
+            Endereco endereco = new Endereco(longradouro, complemento, cidade, estado, bairro, cep);
             objetoCliente.setEndereco(endereco);
             if (objetoCliente.getId() == id) {
                 br.close();

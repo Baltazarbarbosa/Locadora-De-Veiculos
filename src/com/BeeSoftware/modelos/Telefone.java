@@ -10,42 +10,42 @@ package com.BeeSoftware.modelos;
  */
 public class Telefone {
 
-    private int ddi;
-    private int ddd;
-    private int numero;
+    private long ddi;
+    private long ddd;
+    private long numero;
 
-    public Telefone(int ddi, int ddd, int numero) {
+    public Telefone(long ddi, long ddd, long numero) {
         this.ddi = ddi;
         this.ddd = ddd;
         this.numero = numero;
     }
 
-    public int getDdi() {
+    public long getDdi() {
         return ddi;
     }
 
-    public void setDdi(int ddi) {
+    public void setDdi(long ddi) {
         this.ddi = ddi;
     }
 
-    public int getDdd() {
+    public long getDdd() {
         return ddd;
     }
 
-    public void setDdd(int ddd) {
+    public void setDdd(long ddd) {
         this.ddd = ddd;
     }
 
-    public int getNumero() {
+    public long getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(long numero) {
         this.numero = numero;
     }
 
     public String toString() {
-        return  ddi + ";" + ddd + ";" + numero;
+        return ddi + ";" + ddd + ";" + numero;
     }
 
 }

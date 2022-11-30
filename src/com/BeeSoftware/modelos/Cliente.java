@@ -131,22 +131,22 @@ public class Cliente {
 
     public String toString(TipoDeCliente tipoDoCliente) {
 
-        if (tipoDoCliente == PESSOA_FISICA) {
+        if (tipoDoCliente.equals(TipoDeCliente.PESSOA_FISICA)) {
             return id + ";"
                     + cpf + ";"
                     + nome + ";"
                     + identidade + ";"
-                    + telefone + ";"
+                    + telefone.toString() + ";"
                     + email + ";"
-                    + endereco;
+                    + endereco.toString();
         }
-        if (tipoDoCliente == PESSOA_JURIDICA) {
+        if (tipoDoCliente.equals(TipoDeCliente.PESSOA_JURIDICA)) {
             return id + ";"
                     + razaoSocial + ";"
                     + cnpj + ";"
-                    + telefone + ";"
+                    + telefone.toString() + ";"
                     + email + ";"
-                    + endereco;
+                    + endereco.toString();
         } else {
             return null;
         }

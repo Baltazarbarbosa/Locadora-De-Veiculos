@@ -45,7 +45,7 @@ public class ClienteControle implements IClienteControle {
                     }
                 }
             }
-            
+
             return false;
         } catch (Exception error) {
             throw error;
@@ -54,7 +54,7 @@ public class ClienteControle implements IClienteControle {
 
     @Override
     public void incluir(Cliente objeto, TipoDeCliente tipoDoCliente) throws Exception {
-        if (tipoDoCliente == PESSOA_FISICA) {
+        /*if (tipoDoCliente.equals(TipoDeCliente.PESSOA_FISICA)) {
             if (buscarCliente(objeto.getCpf(), tipoDoCliente)) {
                 throw new Exception("Cliente já foi cadastrado(a)");
             }
@@ -63,7 +63,32 @@ public class ClienteControle implements IClienteControle {
                 throw new Exception("Digite um cpf válido.");
             }
         }
-        if (tipoDoCliente == PESSOA_JURIDICA) {
+        if (tipoDoCliente.equals(TipoDeCliente.PESSOA_JURIDICA)) {
+            if (buscarCliente(objeto.getCnpj(), tipoDoCliente)) {
+                throw new Exception("Cliente já foi cadastrado(a)");
+            }
+            String aux = objeto.getCnpj();
+            if ("".equals(objeto.getCnpj())) {
+                throw new Exception("Digite um nome válido.");
+            }
+        }*/
+        clientePersistencia.incluir(objeto, tipoDoCliente);
+
+    }
+
+    @Override
+    public void alterar(Cliente objeto, TipoDeCliente tipoDoCliente) throws Exception {
+
+        if (tipoDoCliente.equals(TipoDeCliente.PESSOA_FISICA)) {
+            if (buscarCliente(objeto.getCpf(), tipoDoCliente)) {
+                throw new Exception("Cliente já foi cadastrado(a)");
+            }
+            String aux = objeto.getCpf();
+            if ("".equals(objeto.getCpf())) {
+                throw new Exception("Digite um cpf válido.");
+            }
+        }
+        if (tipoDoCliente.equals(TipoDeCliente.PESSOA_JURIDICA)) {
             if (buscarCliente(objeto.getCnpj(), tipoDoCliente)) {
                 throw new Exception("Cliente já foi cadastrado(a)");
             }
@@ -72,30 +97,27 @@ public class ClienteControle implements IClienteControle {
                 throw new Exception("Digite um nome válido.");
             }
         }
-        clientePersistencia.incluir(objeto, tipoDoCliente);
-
-    }
-
-    @Override
-    public void alterar(Cliente objeto, TipoDeCliente tipoDoCliente) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        clientePersistencia.alterar(objeto, tipoDoCliente);
     }
 
     @Override
     public ArrayList<Cliente> listagem(TipoDeCliente tipoDoCliente) throws Exception {
 
-        return null;
+        return clientePersistencia.listagem(tipoDoCliente);
 
     }
 
     @Override
     public Cliente buscar(int id, TipoDeCliente tipoDoCliente) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+
+        return clientePersistencia.buscar(id, tipoDoCliente);
+
     }
 
     @Override
     public void verTxt() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+
+        clientePersistencia.verTxt();
     }
 
 }
