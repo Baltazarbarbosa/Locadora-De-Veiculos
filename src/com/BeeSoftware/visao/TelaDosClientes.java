@@ -48,20 +48,16 @@ public class TelaDosClientes extends javax.swing.JFrame {
         jLabelCpf_Cnpj.setVisible(false);
         jLabelidentidade.setVisible(false);
         jLabelNome_RazaoSocial.setVisible(false);
-        jTablecpf.setVisible(false);
-        jTablecnpj.setVisible(false);
+        //jTablecpf.setVisible(false);
+        //jTablecnpj.setVisible(false);
         jTablecpf.getTableHeader().setReorderingAllowed(false);
         jTablecnpj.getTableHeader().setReorderingAllowed(false);
 
         try {
             clienteControle.verTxt();
 
-            if (jComboBox1.getSelectedItem().equals("CPF")) {
-                imprimirTabela(clienteControle.listagem(TipoDeCliente.PESSOA_FISICA));
-            }
-            if (jComboBox1.getSelectedItem().equals("CNPJ")) {
-                imprimirTabela(clienteControle.listagem(TipoDeCliente.PESSOA_JURIDICA));
-            }
+            imprimirTabela(clienteControle.listagem(TipoDeCliente.PESSOA_FISICA), TipoDeCliente.PESSOA_FISICA);
+            imprimirTabela(clienteControle.listagem(TipoDeCliente.PESSOA_JURIDICA), TipoDeCliente.PESSOA_JURIDICA);
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
@@ -578,8 +574,8 @@ public class TelaDosClientes extends javax.swing.JFrame {
             TextFieldCpfCnpj.setVisible(true);
             TextFieldNomeRazaoSocial.setVisible(true);
             TextFieldIdentidade.setVisible(true);
-            jTablecpf.setVisible(true);
-            jTablecnpj.setVisible(false);
+            //jTablecpf.setVisible(true);
+            // jTablecnpj.setVisible(false);
         }
         if (jComboBox1.getSelectedItem().equals("CNPJ")) {
             jLabelCpf_Cnpj.setVisible(true);
@@ -590,8 +586,8 @@ public class TelaDosClientes extends javax.swing.JFrame {
             TextFieldCpfCnpj.setVisible(true);
             TextFieldNomeRazaoSocial.setVisible(true);
             TextFieldIdentidade.setVisible(false);
-            jTablecpf.setVisible(false);
-            jTablecnpj.setVisible(true);
+            //jTablecpf.setVisible(false);
+            //jTablecnpj.setVisible(true);
         }
         if (jComboBox1.getSelectedItem().equals("SELECIONE")) {
             jLabelCpf_Cnpj.setVisible(false);
@@ -600,15 +596,15 @@ public class TelaDosClientes extends javax.swing.JFrame {
             TextFieldCpfCnpj.setVisible(false);
             TextFieldNomeRazaoSocial.setVisible(false);
             TextFieldIdentidade.setVisible(false);
-            jTablecpf.setVisible(false);
-            jTablecnpj.setVisible(false);
+            //jTablecpf.setVisible(false);
+            // jTablecnpj.setVisible(false);
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
-    public void imprimirTabela(ArrayList<Cliente> listadecliente) {
+    public void imprimirTabela(ArrayList<Cliente> listadecliente, TipoDeCliente tipoDeCliente) {
         try {
 
-            if (jComboBox1.getSelectedItem().equals("CPF")) {
+             if (tipoDeCliente.equals(TipoDeCliente.PESSOA_FISICA)) {
 
                 DefaultTableModel tabela = (DefaultTableModel) jTablecpf.getModel();
                 tabela.setNumRows(0);
@@ -627,7 +623,7 @@ public class TelaDosClientes extends javax.swing.JFrame {
                 }
 
             }
-            if (jComboBox1.getSelectedItem().equals("CNPJ")) {
+            if (tipoDeCliente.equals(TipoDeCliente.PESSOA_JURIDICA)) {
 
                 DefaultTableModel tabela = (DefaultTableModel) jTablecnpj.getModel();
                 tabela.setNumRows(0);
@@ -646,6 +642,21 @@ public class TelaDosClientes extends javax.swing.JFrame {
                 }
 
             }
+            /*DefaultTableModel tabela = (DefaultTableModel) jTablecpf.getModel();
+            tabela.setNumRows(0);
+            Iterator<Cliente> lista = listadecliente.iterator();
+
+            while (lista.hasNext()) {
+                String[] tab = new String[4];
+                Cliente aux = lista.next();
+                tab[0] = aux.getId() + "";
+                tab[1] = aux.getNome();
+                tab[2] = aux.getCpf();
+                tab[3] = aux.getEmail();
+                tab[4] = aux.getTelefone().toString();
+
+                tabela.addRow(tab);
+            }*/
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, erro.getMessage());
         }
@@ -716,7 +727,7 @@ public class TelaDosClientes extends javax.swing.JFrame {
 
                 Cliente clientepf = new Cliente(0, TextFieldCpfCnpj.getText(), TextFieldNomeRazaoSocial.getText(), TextFieldIdentidade.getText(), TextFieldemail.getText(), telefone, endereco, TipoDeCliente.PESSOA_FISICA);
                 clienteControle.incluir(clientepf, TipoDeCliente.PESSOA_FISICA);
-                imprimirTabela(clienteControle.listagem(TipoDeCliente.PESSOA_FISICA));
+               imprimirTabela(clienteControle.listagem(TipoDeCliente.PESSOA_FISICA), TipoDeCliente.PESSOA_FISICA);
                 TextFieldCpfCnpj.setText("");
                 TextFieldIdentidade.setText("");
                 TextFieldemail.setText("");
@@ -726,27 +737,27 @@ public class TelaDosClientes extends javax.swing.JFrame {
 
             if (jComboBox1.getSelectedItem().equals("CNPJ")) {
                 //captando telefone
-                String[] telSeparado = TextFieldTelefone.getText().split(";");
-                long ddi = Long.parseLong(telSeparado[0]);
-                long ddd = Long.parseLong(telSeparado[1]);
-                long numero = Long.parseLong(telSeparado[2]);
+                long ddi = Long.parseLong(TextFieldDdi.getText());
+                long ddd = Long.parseLong(TextFieldDdd.getText());
+                long numero = Long.parseLong(TextFieldTelefone.getText());
                 Telefone telefone = new Telefone(ddi, ddd, numero);
 
                 //captando endereco
-                String[] endSeparado = TextFieldLongradouro.getText().split(";");
-                String longradouro = endSeparado[0];
-                String complemento = endSeparado[1];
-                String bairro = endSeparado[2];
-                String cidade = endSeparado[3];
-                String estado = endSeparado[4];
-                long cep = Long.parseLong(endSeparado[5]);
+                String longradouro = TextFieldLongradouro.getText();
+                String complemento = TextFieldComplemento.getText();
+                String bairro = TextFieldBairro.getText();
+                String cidade = TextFieldCidade.getText();
+                String estado = jComboBoxEstado.getSelectedItem().toString();
+                long cep = Long.parseLong(TextFieldCidade1.getText());
                 Endereco endereco = new Endereco(longradouro, complemento, cidade, estado, bairro, cep);
 
                 Cliente clientepj = new Cliente(0, TextFieldCpfCnpj.getText(), TextFieldNomeRazaoSocial.getText(), TextFieldemail.getText(), telefone, endereco, TipoDeCliente.PESSOA_JURIDICA);
                 clienteControle.incluir(clientepj, TipoDeCliente.PESSOA_JURIDICA);
-                imprimirTabela(clienteControle.listagem(TipoDeCliente.PESSOA_JURIDICA));
+                imprimirTabela(clienteControle.listagem(TipoDeCliente.PESSOA_JURIDICA), TipoDeCliente.PESSOA_JURIDICA);
                 TextFieldemail.setText("");
+                
             }
+            System.out.println(clienteControle.listagem(TipoDeCliente.PESSOA_FISICA));
 
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, erro.getMessage());
