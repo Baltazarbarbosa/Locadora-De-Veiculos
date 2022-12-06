@@ -191,9 +191,11 @@ public class TelaHome extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonLocacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLocacaoActionPerformed
-        // TODO add your handling code here:
+        TelaDasLocacoes tl = new TelaDasLocacoes();
+        this.dispose();
+        tl.setVisible(true);
     }//GEN-LAST:event_jButtonLocacaoActionPerformed
-
+   
     private void jButtonMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMarcaActionPerformed
         TelaDasMarcas tm = new TelaDasMarcas();
         this.dispose();
