@@ -84,6 +84,7 @@ public class MotoristaDao implements IMotoristaDao{
                 objetoMotorista.setId(Integer.parseInt(vetorString[0]));
                 objetoMotorista.setNome(vetorString[1].replaceAll("_", " "));
                 objetoMotorista.setUrl(vetorString[2]);
+                objetoMotorista.setCnh(vetorString[3]);
                 // PEGAR TELEFONE
                 long ddi = Long.parseLong(vetorString[4]);
                 long ddd = Long.parseLong(vetorString[5]);
@@ -130,6 +131,7 @@ public class MotoristaDao implements IMotoristaDao{
                 objetoMotorista.setId(Integer.parseInt(vetorString[0]));
                 objetoMotorista.setNome(vetorString[1].replaceAll("_", " "));
                 objetoMotorista.setUrl(vetorString[2]);
+                objetoMotorista.setCnh(vetorString[3]);
                 // PEGAR TELEFONE
                 long ddi = Long.parseLong(vetorString[4]);
                 long ddd = Long.parseLong(vetorString[5]);
@@ -148,7 +150,7 @@ public class MotoristaDao implements IMotoristaDao{
                 objetoCliente.setId(Integer.parseInt(vetorString[14]));
             if(objetoMotorista.getId()==id){
                 br.close();
-                return new Motorista((Integer.parseInt(vetorString[0])),vetorString[1],vetorString[2],telefone,endereco,(Integer.parseInt(vetorString[14])));
+                return new Motorista((Integer.parseInt(vetorString[0])),vetorString[1],vetorString[2],vetorString[3],telefone,endereco,(Integer.parseInt(vetorString[14])));
             }
         }
         return null;

@@ -21,25 +21,56 @@ public class MotoristaControle implements IMotoristaControle{
     }
     @Override
     public void incluir(Motorista objeto) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (buscarMotorista(objeto.getNome())) {
+            throw new Exception("Motorista já foi cadastrado!");
+        }
+        if ("".equals(objeto.getNome())) {
+            throw new Exception("Digite um motorista válido!");
+        }
+        if(buscarMotorista(objeto.getCnh())){
+            throw new Exception("CNH já cadastrada!");
+        }
+        if ("".equals(objeto.getCnh())) {
+            throw new Exception("Digite uma CNH válida!");
+        }
+        if (".\\src\\com\\BeeSoftware\\cnh\\".equals(objeto.getUrl())) {
+            throw new Exception("Escolha a foto da cnh!");
+        }
+        motoristaPersistencia.incluir(objeto);
     }
 
     @Override
     public void alterar(Motorista objeto) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (objeto.getUrl().equals("")) {
+            throw new Exception("Favor selecionar uma cnh para alterar");
+        }
+        if (buscarMotorista(objeto.getNome())) {
+            throw new Exception("Motorista já foi cadastrada");
+        }
+        
+        if (objeto.getNome().equals("")) {
+            throw new Exception("Digite um nome válido.");
+        }
+        if(buscarMotorista(objeto.getCnh())){
+            throw new Exception("CNH já cadastrada!");
+        }
+        if ("".equals(objeto.getCnh())) {
+            throw new Exception("Digite uma CNH válida!");
+        }
+        motoristaPersistencia.alterar(objeto);
     }
 
     @Override
     public ArrayList<Motorista> listagem() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return motoristaPersistencia.listagem();
     }
 
     @Override
     public void verTxt() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        motoristaPersistencia.verTxt();
     }
 
-    public boolean buscar(String nome) throws Exception {
+    public boolean buscarMotorista(String nome) throws Exception {
         try {
             ArrayList<Motorista> listagem = motoristaPersistencia.listagem();
             Iterator<Motorista> lista = listagem.iterator();
@@ -57,7 +88,7 @@ public class MotoristaControle implements IMotoristaControle{
 
     @Override
     public void buscar(Motorista objeto) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        motoristaPersistencia.buscar(objeto);
     }
     
     

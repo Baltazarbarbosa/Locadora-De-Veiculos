@@ -116,7 +116,6 @@ public class ClienteControle implements IClienteControle {
 
     @Override
     public void verTxt() throws Exception {
-
         clientePersistencia.verTxt();
     }
 

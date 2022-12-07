@@ -16,22 +16,24 @@ public class Motorista {
     private Telefone telefone;
     private Endereco endereco;
     private String url;
+    private String cnh;
     private Date dataVencimentoCNH;
     private Cliente cliente;
 
         public Motorista() {
     }
 
-    public Motorista(int id, String nome, Telefone telefone, Endereco endereco,String url, Date dataVencimentoCNH) {
+    public Motorista(int id, String nome,String cnh, Telefone telefone, Endereco endereco,String url, Date dataVencimentoCNH) {
         this.nome = nome;
         this.id = id;
         this.url = url;
+        this.cnh=cnh;
         this.telefone = telefone;
         this.endereco=endereco;
         this.dataVencimentoCNH=dataVencimentoCNH;
     }
 
-    public Motorista(int id, String nome, String url, Telefone telefone, Endereco endereco, int idCliente) {
+    public Motorista(int id, String nome, String url, String cnh,Telefone telefone, Endereco endereco, int idCliente) {
         
     }
 
@@ -59,6 +61,13 @@ public class Motorista {
         this.url = url;
     }
     
+    public String getCnh(){
+        return cnh;
+    }
+    public void setCnh(String cnh){
+        this.cnh=cnh;
+    }
+    
     public Telefone getTelefone(){
         return telefone;
     }
@@ -80,7 +89,7 @@ public class Motorista {
     }
     @Override
     public String toString() {
-        return id + ";" + nome + ";" + url + ";" +telefone+";"+endereco+";"+cliente.getId();
+        return id + ";" + nome + ";" + url + ";"+cnh+";" +telefone+";"+endereco+";"+cliente.getId();
     }
 
     public Cliente getCliente() {
