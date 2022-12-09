@@ -6,9 +6,11 @@ package com.BeeSoftware.visao;
 
 import com.BeeSoftware.controle.AcessoriosControle;
 import com.BeeSoftware.controle.IAcessoriosControle;
+import com.BeeSoftware.enumeradores.SituacaoDeLocacao;
 import com.BeeSoftware.modelos.Acessorios;
 import java.util.ArrayList;
 import java.util.Iterator;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -28,10 +30,12 @@ public class TelaDosAcessorios extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         jTable1.getTableHeader().setReorderingAllowed(false);
         jTextFieldID.setEnabled(false);
+        loadCombobox();
         
         try {
-            imprimirTabela(acessorioControle.listagem());
             acessorioControle.verTxt();
+            imprimirTabela(acessorioControle.listagem());
+            
         } catch (Exception e) {
         }
 
@@ -57,6 +61,8 @@ public class TelaDosAcessorios extends javax.swing.JFrame {
         jTextFieldDescricao = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jTextFieldID = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -145,6 +151,10 @@ public class TelaDosAcessorios extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("MS Gothic", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Situação para locação:");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -155,7 +165,11 @@ public class TelaDosAcessorios extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(136, 136, 136)
+                        .addComponent(jLabel6)
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -164,7 +178,7 @@ public class TelaDosAcessorios extends javax.swing.JFrame {
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldValordaLoc, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,7 +186,9 @@ public class TelaDosAcessorios extends javax.swing.JFrame {
                 .addGap(11, 11, 11)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -227,17 +243,17 @@ public class TelaDosAcessorios extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "ID", "Descrição", "Valor da locação"
+                "ID", "Descrição", "Valor da locação", "Situação para locação"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -402,8 +418,14 @@ public class TelaDosAcessorios extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            Acessorios obj = new Acessorios(0, jTextFieldDescricao.getText(), Float.parseFloat(jTextFieldValordaLoc.getText()));
-            acessorioControle.incluir(obj);
+            SituacaoDeLocacao sitloc;
+            if(jComboBox1.getSelectedItem().toString().equals("DISPONIVEL")) sitloc=SituacaoDeLocacao.DISPONIVEL;
+            if(jComboBox1.getSelectedItem().toString().equals("EM_MANUTENCAO")) sitloc=SituacaoDeLocacao.EM_MANUTENCAO;
+            if(jComboBox1.getSelectedItem().toString().equals("LOCADO")) sitloc=SituacaoDeLocacao.LOCADO;
+            if(jComboBox1.getSelectedItem().toString().equals("VENDIDO")) sitloc=SituacaoDeLocacao.VENDIDO;
+            else sitloc = null;
+            Acessorios obj = new Acessorios(0, jTextFieldDescricao.getText(), Float.parseFloat(jTextFieldValordaLoc.getText()),sitloc);
+            acessorioControle.incluir(obj,sitloc);
             imprimirTabela(acessorioControle.listagem());
             jTextFieldDescricao.setText("");
             jTextFieldValordaLoc.setText("");
@@ -435,8 +457,14 @@ public class TelaDosAcessorios extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
-            Acessorios obj = new Acessorios(Integer.parseInt(jTextFieldID.getText()), jTextFieldDescricao.getText(), Float.parseFloat(jTextFieldValordaLoc.getText()));
-            acessorioControle.alterar(obj);
+            SituacaoDeLocacao sitloc;
+            if(SituacaoDeLocacao.DISPONIVEL.equals(jComboBox1.getSelectedItem().toString())) sitloc=SituacaoDeLocacao.DISPONIVEL;
+            if(SituacaoDeLocacao.EM_MANUTENCAO.equals(jComboBox1.getSelectedItem().toString())) sitloc=SituacaoDeLocacao.EM_MANUTENCAO;
+            if(SituacaoDeLocacao.LOCADO.equals(jComboBox1.getSelectedItem().toString())) sitloc=SituacaoDeLocacao.LOCADO;
+            if(SituacaoDeLocacao.VENDIDO.equals(jComboBox1.getSelectedItem().toString())) sitloc=SituacaoDeLocacao.VENDIDO;
+            else sitloc = null;
+            Acessorios obj = new Acessorios(Integer.parseInt(jTextFieldID.getText()), jTextFieldDescricao.getText(), Float.parseFloat(jTextFieldValordaLoc.getText()),sitloc);
+            acessorioControle.alterar(obj,sitloc);
             imprimirTabela(acessorioControle.listagem());
             jTextFieldDescricao.setText("");
             jTextFieldValordaLoc.setText("");
@@ -483,12 +511,14 @@ public class TelaDosAcessorios extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<SituacaoDeLocacao> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -507,4 +537,8 @@ public class TelaDosAcessorios extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldID;
     private javax.swing.JTextField jTextFieldValordaLoc;
     // End of variables declaration//GEN-END:variables
+
+    private void loadCombobox() {
+        jComboBox1.setModel(new DefaultComboBoxModel<>(SituacaoDeLocacao.values()));
+    }
 }

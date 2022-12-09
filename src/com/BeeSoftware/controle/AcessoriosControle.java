@@ -4,6 +4,7 @@
  */
 package com.BeeSoftware.controle;
 
+import com.BeeSoftware.enumeradores.SituacaoDeLocacao;
 import com.BeeSoftware.modelos.Acessorios;
 import com.BeeSoftware.persistencia.AcessoriosDao;
 import com.BeeSoftware.persistencia.IAcessoriosDao;
@@ -39,7 +40,7 @@ public class AcessoriosControle implements IAcessoriosControle {
     }
 
     @Override
-    public void incluir(Acessorios objeto) throws Exception {
+    public void incluir(Acessorios objeto, SituacaoDeLocacao situacaoLocacao) throws Exception {
         if (buscarAcessorios(objeto.getDescricao())) {
             throw new Exception("Acessorio já foi cadastrado");
         }
@@ -47,11 +48,11 @@ public class AcessoriosControle implements IAcessoriosControle {
         if ("".equals(objeto.getDescricao())) {
             throw new Exception("Digite um acessorio válido.");
         }
-        acessoriosPercistencia.incluir(objeto);
+        acessoriosPercistencia.incluir(objeto, situacaoLocacao);
     }
 
     @Override
-    public void alterar(Acessorios objeto) throws Exception {
+    public void alterar(Acessorios objeto, SituacaoDeLocacao situacaoLocacao) throws Exception {
         if (buscarAcessorios(objeto.getDescricao())) {
             throw new Exception("Acessorio já foi cadastrado");
         }
@@ -59,7 +60,7 @@ public class AcessoriosControle implements IAcessoriosControle {
         if ("".equals(objeto.getDescricao())) {
             throw new Exception("Digite um acessorio válido.");
         }
-        acessoriosPercistencia.alterar(objeto);
+        acessoriosPercistencia.alterar(objeto, situacaoLocacao);
     }
 
     @Override
@@ -71,6 +72,7 @@ public class AcessoriosControle implements IAcessoriosControle {
     public Acessorios buscar(int id) throws Exception {
         return acessoriosPercistencia.buscar(id);
     }
+
     @Override
     public void verTxt() {
         try {

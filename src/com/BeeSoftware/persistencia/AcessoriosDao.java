@@ -4,6 +4,7 @@
  */
 package com.BeeSoftware.persistencia;
 
+import com.BeeSoftware.enumeradores.SituacaoDeLocacao;
 import com.BeeSoftware.ferramentas.GeradorIdentificador;
 import com.BeeSoftware.modelos.Acessorios;
 import com.BeeSoftware.modelos.Marca;
@@ -28,7 +29,7 @@ public class AcessoriosDao implements IAcessoriosDao {
     }
 
     @Override
-    public void incluir(Acessorios objeto) throws Exception {
+    public void incluir(Acessorios objeto, SituacaoDeLocacao situacaoLocacao) throws Exception {
         try {
             //cria o arquivo
             FileWriter fw = new FileWriter(nomeDoArquivoNoDisco, true);
@@ -46,7 +47,7 @@ public class AcessoriosDao implements IAcessoriosDao {
     }
 
     @Override
-    public void alterar(Acessorios objeto) throws Exception {
+    public void alterar(Acessorios objeto, SituacaoDeLocacao situacaoLocacao) throws Exception {
         try {
             Iterator<Acessorios> lista = listagem().iterator();
             FileWriter fw = new FileWriter(nomeDoArquivoNoDisco);
@@ -103,9 +104,17 @@ public class AcessoriosDao implements IAcessoriosDao {
             objetoAcessorios.setId(Integer.parseInt(vetorString[0]));
             objetoAcessorios.setDescricao(vetorString[1]);
             objetoAcessorios.setValorDaLocacao(Float.parseFloat(vetorString[2]));
+            SituacaoDeLocacao sitloc;
+            if(SituacaoDeLocacao.DISPONIVEL.equals(vetorString[3])) sitloc=SituacaoDeLocacao.DISPONIVEL;
+            if(SituacaoDeLocacao.EM_MANUTENCAO.equals(vetorString[3])) sitloc=SituacaoDeLocacao.EM_MANUTENCAO;
+            if(SituacaoDeLocacao.LOCADO.equals(vetorString[3])) sitloc=SituacaoDeLocacao.LOCADO;
+            if(SituacaoDeLocacao.VENDIDO.equals(vetorString[3])) sitloc=SituacaoDeLocacao.VENDIDO;
+            else sitloc=null;
+            
+            objetoAcessorios.setSituacaoLocacao(sitloc);
             if(objetoAcessorios.getId()==id){
                 br.close();
-                return new Acessorios((Integer.parseInt(vetorString[0])),vetorString[1],(Float.parseFloat(vetorString[2])));
+                return new Acessorios((Integer.parseInt(vetorString[0])),vetorString[1],(Float.parseFloat(vetorString[2])),sitloc);
             }
         }
         return null;
