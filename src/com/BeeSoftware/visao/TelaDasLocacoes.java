@@ -191,7 +191,11 @@ public class TelaDasLocacoes extends javax.swing.JFrame {
                                 .addComponent(jLabel5)
                                 .addComponent(jLabel6))
                             .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+<<<<<<< HEAD
                         .addGap(156, 156, 156)
+=======
+                        .addGap(33, 33, 33)
+>>>>>>> 63b39ab330f19c3bfbe58efc0d991fe329a27360
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7))

@@ -80,6 +80,7 @@ public class MarcaControle implements IMarcaControle {
         return marcaPersistencia.buscar(id);
     }
 
+    @Override
     public void verTxt() {
         marcaPersistencia.verTxt();
     }
