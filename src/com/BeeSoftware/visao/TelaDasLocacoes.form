@@ -295,11 +295,7 @@
                               </Group>
                               <Component id="jDateChooser1" min="-2" max="-2" attributes="0"/>
                           </Group>
-<<<<<<< HEAD
-                          <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
-=======
                           <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
->>>>>>> 63b39ab330f19c3bfbe58efc0d991fe329a27360
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>

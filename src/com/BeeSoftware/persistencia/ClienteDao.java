@@ -28,6 +28,7 @@ public class ClienteDao implements IClienteDao {
     private String nomeDoArquivoNoDiscoPF;
     private String nomeDoArquivoNoDiscoPJ;
     private String caminho = "";
+    Cliente objetoCliente = new Cliente();
 
     public ClienteDao() {
         nomeDoArquivoNoDiscoPF = "./src/com/BeeSoftware/arquivosdedados/ClientePF.txt";
@@ -126,7 +127,6 @@ public class ClienteDao implements IClienteDao {
                 BufferedReader br = new BufferedReader(fr);
 
                 while ((linha = br.readLine()) != null) {
-                    Cliente objetoCliente = new Cliente();
                     String vetorString[] = linha.split(";");
                     objetoCliente.setId(Integer.parseInt(vetorString[0]));
                     objetoCliente.setCpf(vetorString[1]);
@@ -149,17 +149,15 @@ public class ClienteDao implements IClienteDao {
                     Endereco endereco = new Endereco(longradouro, complemento, cidade, estado, bairro, cep);
                     objetoCliente.setEndereco(endereco);
                     listaDeClientes.add(objetoCliente);
-
+                    br.close();
+                    return listaDeClientes;
                 }
-                br.close();
-                return listaDeClientes;
             }
             if (tipoDoCliente.equals(TipoDeCliente.PESSOA_JURIDICA)) {
                 FileReader fr = new FileReader(nomeDoArquivoNoDiscoPJ);
                 BufferedReader br = new BufferedReader(fr);
 
                 while ((linha = br.readLine()) != null) {
-                    Cliente objetoCliente = new Cliente();
                     String vetorString[] = linha.split(";");
                     objetoCliente.setId(Integer.parseInt(vetorString[0]));
                     objetoCliente.setRazaoSocial(vetorString[1]);
@@ -181,12 +179,12 @@ public class ClienteDao implements IClienteDao {
                     Endereco endereco = new Endereco(longradouro, complemento, cidade, estado, bairro, cep);
                     objetoCliente.setEndereco(endereco);
                     listaDeClientes.add(objetoCliente);
-
+                    br.close();
+                    return listaDeClientes;
                 }
-                br.close();
-                return listaDeClientes;
-            }
-            return null;
+            } 
+                return null;
+            
 
         } catch (Exception erro) {
             throw erro;
@@ -207,7 +205,6 @@ public class ClienteDao implements IClienteDao {
 
         if (tipoDoCliente == PESSOA_FISICA) {
             while ((linha = br.readLine()) != null) {
-                Cliente objetoCliente = new Cliente();
                 String vetorString[] = linha.split(";");
                 objetoCliente.setId(Integer.parseInt(vetorString[0]));
                 objetoCliente.setCpf(vetorString[1]);
@@ -236,7 +233,6 @@ public class ClienteDao implements IClienteDao {
             }
         }
         if (tipoDoCliente == PESSOA_JURIDICA) {
-            Cliente objetoCliente = new Cliente();
             String vetorString[] = linha.split(";");
             objetoCliente.setId(Integer.parseInt(vetorString[0]));
             objetoCliente.setRazaoSocial(vetorString[1]);

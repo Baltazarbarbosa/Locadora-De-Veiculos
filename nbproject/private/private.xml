@@ -2,25 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/balta/OneDrive/Área%20de%20Trabalho/Locagyn/Locadora-De-Veiculos/src/com/BeeSoftware/visao/TelaDosAcessorios.java</file>
-            <file>file:/C:/Users/balta/OneDrive/Área%20de%20Trabalho/Locagyn/Locadora-De-Veiculos/src/com/BeeSoftware/controle/AcessoriosControle.java</file>
-            <file>file:/C:/Users/balta/OneDrive/Área%20de%20Trabalho/Locagyn/Locadora-De-Veiculos/src/com/BeeSoftware/modelos/Acessorios.java</file>
-            <file>file:/C:/Users/balta/OneDrive/Área%20de%20Trabalho/Locagyn/Locadora-De-Veiculos/src/com/BeeSoftware/enumeradores/SituacaoDeLocacao.java</file>
-            <file>file:/C:/Users/balta/OneDrive/Área%20de%20Trabalho/Locagyn/Locadora-De-Veiculos/src/com/BeeSoftware/arquivosdedados/Acessorios.txt</file>
-=======
-            <file>file:/C:/Users/educa/OneDrive/Documentos/FATESG/2o%20semestre/Locagyn/Locadora-De-Veiculos/src/com/BeeSoftware/persistencia/MarcaDao.java</file>
-            <file>file:/C:/Users/educa/OneDrive/Documentos/FATESG/2o%20semestre/Locagyn/Locadora-De-Veiculos/src/com/BeeSoftware/modelos/Cliente.java</file>
-            <file>file:/C:/Users/educa/OneDrive/Documentos/FATESG/2o%20semestre/Locagyn/Locadora-De-Veiculos/src/com/BeeSoftware/persistencia/MotoristaDao.java</file>
-            <file>file:/C:/Users/educa/OneDrive/Documentos/FATESG/2o%20semestre/Locagyn/Locadora-De-Veiculos/src/com/BeeSoftware/modelos/Motorista.java</file>
-            <file>file:/C:/Users/educa/OneDrive/Documentos/FATESG/2o%20semestre/Locagyn/Locadora-De-Veiculos/src/com/BeeSoftware/persistencia/ClienteDao.java</file>
-            <file>file:/C:/Users/educa/OneDrive/Documentos/FATESG/2o%20semestre/Locagyn/Locadora-De-Veiculos/src/com/BeeSoftware/controle/MotoristaControle.java</file>
-            <file>file:/C:/Users/educa/OneDrive/Documentos/FATESG/2o%20semestre/Locagyn/Locadora-De-Veiculos/src/com/BeeSoftware/controle/ModeloControle.java</file>
-            <file>file:/C:/Users/educa/OneDrive/Documentos/FATESG/2o%20semestre/Locagyn/Locadora-De-Veiculos/src/com/BeeSoftware/persistencia/IMotoristaDao.java</file>
-            <file>file:/C:/Users/educa/OneDrive/Documentos/FATESG/2o%20semestre/Locagyn/Locadora-De-Veiculos/src/com/BeeSoftware/controle/ClienteControle.java</file>
-            <file>file:/C:/Users/educa/OneDrive/Documentos/FATESG/2o%20semestre/Locagyn/Locadora-De-Veiculos/src/com/BeeSoftware/controle/AcessoriosControle.java</file>
->>>>>>> 63b39ab330f19c3bfbe58efc0d991fe329a27360
-        </group>
+        <group/>
     </open-files>
 </project-private>
