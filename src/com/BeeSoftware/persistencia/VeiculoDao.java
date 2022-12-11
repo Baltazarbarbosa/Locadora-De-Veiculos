@@ -1,36 +1,35 @@
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.BeeSoftware.persistencia;
 
+import com.BeeSoftware.enumeradores.TipoCombustivel;
 import com.BeeSoftware.ferramentas.GeradorIdentificador;
-import com.BeeSoftware.modelos.Marca;
+import com.BeeSoftware.modelos.Veiculo;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author balta
  */
-public class MarcaDao implements IMarcaDao {
+public class VeiculoDao implements IVeiculoDao {
 
     private String nomeDoArquivoNoDisco;
 
-    public MarcaDao() {
-        nomeDoArquivoNoDisco = "./src/com/BeeSoftware/arquivosdedados/Marca.txt";
+    public VeiculoDao() {
+
+        this.nomeDoArquivoNoDisco = "./src/com/BeeSoftware/arquivosdedados/Veiculo.txt";
     }
 
     @Override
-    public void incluir(Marca objeto) throws Exception {
+    public void incluir(Veiculo objeto) throws Exception {
         try {
             //cria o arquivo
             FileWriter fw = new FileWriter(nomeDoArquivoNoDisco, true);
@@ -48,16 +47,16 @@ public class MarcaDao implements IMarcaDao {
     }
 
     @Override
-    public void alterar(Marca objeto) throws Exception {
-
-        try {
-            Iterator<Marca> lista = listagem().iterator();
+    public void alterar(Veiculo objeto) throws Exception {
+    
+         try {
+            Iterator<Veiculo> lista = listagem().iterator();
             FileWriter fw = new FileWriter(nomeDoArquivoNoDisco);
             BufferedWriter bw = new BufferedWriter(fw);
 
             while (lista.hasNext()) {
 
-                Marca aux = lista.next();
+                Veiculo aux = lista.next();
                 if (aux.getId() == objeto.getId()) {
                     bw.write(objeto.toString() + "\n");
                 } else {
@@ -73,55 +72,51 @@ public class MarcaDao implements IMarcaDao {
     }
 
     @Override
-    public ArrayList<Marca> listagem() throws Exception {
+    public ArrayList<Veiculo> listagem() throws Exception {
+    
         try {
-            ArrayList<Marca> listaDeMarcas = new ArrayList<Marca>();
+            ArrayList<Veiculo> listaDeVeiculos = new ArrayList<Veiculo>();
             FileReader fr = new FileReader(nomeDoArquivoNoDisco);
             BufferedReader br = new BufferedReader(fr);
             String linha = "";
             while ((linha = br.readLine()) != null) {
-                Marca objetoMarca = new Marca();
+                Veiculo objetoVeiculo = new Veiculo();
                 String vetorString[] = linha.split(";");
-                objetoMarca.setId(Integer.parseInt(vetorString[0]));
-                objetoMarca.setDescicao(vetorString[1].replaceAll("_", " "));
-                objetoMarca.setUrl(vetorString[2]);
-                listaDeMarcas.add(objetoMarca);
+                objetoVeiculo.setId(Integer.parseInt(vetorString[0]));
+                objetoVeiculo.setPlaca(vetorString[1]);
+                objetoVeiculo.setRenavam(vetorString[2]);
+                objetoVeiculo.setPrecoDeCompra(Float.parseFloat(vetorString[3]));
+                objetoVeiculo.setPrecoDeVenda(Float.parseFloat(vetorString[4]));
+                objetoVeiculo.setAnoFabricacao(Integer.parseInt(vetorString[5]));
+                objetoVeiculo.setAnoModelo(Integer.parseInt(vetorString[6]));
+                
+                
+                
+                
+                listaDeVeiculos.add(objetoVeiculo);
             }
             br.close();
-            return listaDeMarcas;
+            return listaDeVeiculos;
         } catch (Exception erro) {
             throw erro;
         }
+    
     }
-
+    
     @Override
-    public Marca buscar(int id) throws Exception {
-        FileReader fr = new FileReader(nomeDoArquivoNoDisco);
-        BufferedReader br = new BufferedReader(fr);
-        String linha = "";
-        while ((linha = br.readLine()) != null) {
-            Marca objetoMarca = new Marca();
-            String vetorString[] = linha.split(";");
-            objetoMarca.setId(Integer.parseInt(vetorString[0]));
-            objetoMarca.setDescicao(vetorString[1]);
-            objetoMarca.setUrl(vetorString[2]);
-            if (objetoMarca.getId() == id) {
-                br.close();
-                return new Marca((Integer.parseInt(vetorString[0])), vetorString[1], vetorString[2]);
-            }
-        }
-        return null;
+    public Veiculo buscar(int id) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void verTxt() {
-        File arquivo = new File("./src/com/BeeSoftware/arquivosdedados/Marca.txt");
+        
+     File arquivo = new File("./src/com/BeeSoftware/arquivosdedados/Veiculo.txt");
         try {
-            arquivo.createNewFile();
-        } catch (Exception e) {
+        arquivo.createNewFile();
+    } catch (Exception e) {
             System.out.println("");
-        }
-
+    }
     }
 
 }

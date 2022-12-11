@@ -4,3 +4,4 @@
 13;TOYOTA;.\src\com\BeeSoftware\logos\toyota_logo.jfif
 14;AUDI;.\src\com\BeeSoftware\logos\audi_logo.jpg
 20;NISSAN;.\src\com\BeeSoftware\logos\nissan_logo.png
+29;JEEP;.\src\com\BeeSoftware\logos\jeep_logo.jpg
