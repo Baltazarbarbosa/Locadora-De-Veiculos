@@ -4,6 +4,8 @@
  */
 package com.BeeSoftware.persistencia;
 
+import com.BeeSoftware.enumeradores.SituacaoDaLocacao;
+import com.BeeSoftware.enumeradores.SituacaoVeiculo;
 import com.BeeSoftware.ferramentas.GeradorIdentificador;
 import com.BeeSoftware.modelos.Acessorios;
 import com.BeeSoftware.modelos.Marca;
@@ -82,6 +84,7 @@ public class AcessoriosDao implements IAcessoriosDao {
                 objetoAcessorios.setId(Integer.parseInt(vetorString[0]));
                 objetoAcessorios.setDescricao(vetorString[1]);
                 objetoAcessorios.setValorDaLocacao(Float.parseFloat(vetorString[2]));
+                objetoAcessorios.setSituacaoDaLocacao(SituacaoVeiculo.valueOf(vetorString[3]));
                 listaDeAcessorios.add(objetoAcessorios);
             }
             br.close();
@@ -105,7 +108,7 @@ public class AcessoriosDao implements IAcessoriosDao {
             objetoAcessorios.setValorDaLocacao(Float.parseFloat(vetorString[2]));
             if(objetoAcessorios.getId()==id){
                 br.close();
-                return new Acessorios((Integer.parseInt(vetorString[0])),vetorString[1],(Float.parseFloat(vetorString[2])));
+                return new Acessorios((Integer.parseInt(vetorString[0])),vetorString[1],(Float.parseFloat(vetorString[2])),SituacaoVeiculo.valueOf(vetorString[3]));
             }
         }
         return null;

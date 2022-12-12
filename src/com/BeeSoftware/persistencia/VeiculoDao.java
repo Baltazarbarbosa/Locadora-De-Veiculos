@@ -4,7 +4,9 @@
  */
 package com.BeeSoftware.persistencia;
 
+import com.BeeSoftware.enumeradores.SituacaoVeiculo;
 import com.BeeSoftware.enumeradores.TipoCombustivel;
+import com.BeeSoftware.enumeradores.TipoVeiculo;
 import com.BeeSoftware.ferramentas.GeradorIdentificador;
 import com.BeeSoftware.modelos.Veiculo;
 import java.io.BufferedReader;
@@ -48,8 +50,8 @@ public class VeiculoDao implements IVeiculoDao {
 
     @Override
     public void alterar(Veiculo objeto) throws Exception {
-    
-         try {
+
+        try {
             Iterator<Veiculo> lista = listagem().iterator();
             FileWriter fw = new FileWriter(nomeDoArquivoNoDisco);
             BufferedWriter bw = new BufferedWriter(fw);
@@ -73,7 +75,7 @@ public class VeiculoDao implements IVeiculoDao {
 
     @Override
     public ArrayList<Veiculo> listagem() throws Exception {
-    
+
         try {
             ArrayList<Veiculo> listaDeVeiculos = new ArrayList<Veiculo>();
             FileReader fr = new FileReader(nomeDoArquivoNoDisco);
@@ -89,10 +91,11 @@ public class VeiculoDao implements IVeiculoDao {
                 objetoVeiculo.setPrecoDeVenda(Float.parseFloat(vetorString[4]));
                 objetoVeiculo.setAnoFabricacao(Integer.parseInt(vetorString[5]));
                 objetoVeiculo.setAnoModelo(Integer.parseInt(vetorString[6]));
-                
-                
-                
-                
+                objetoVeiculo.setCombustivel(TipoCombustivel.valueOf(vetorString[7]));
+                objetoVeiculo.setQuilometragem(Integer.parseInt(vetorString[8]));
+                objetoVeiculo.setTipoVeiculo(TipoVeiculo.valueOf(vetorString[9]));
+                objetoVeiculo.setSituacao(SituacaoVeiculo.valueOf(vetorString[10]));
+
                 listaDeVeiculos.add(objetoVeiculo);
             }
             br.close();
@@ -100,23 +103,54 @@ public class VeiculoDao implements IVeiculoDao {
         } catch (Exception erro) {
             throw erro;
         }
-    
+
     }
-    
+
     @Override
     public Veiculo buscar(int id) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       
+    
+        try {
+            
+            FileReader fr = new FileReader(nomeDoArquivoNoDisco);
+            BufferedReader br = new BufferedReader(fr);
+            String linha = "";
+            while ((linha = br.readLine()) != null) {
+                Veiculo objetoVeiculo = new Veiculo();
+                String vetorString[] = linha.split(";");
+                objetoVeiculo.setId(Integer.parseInt(vetorString[0]));
+                objetoVeiculo.setPlaca(vetorString[1]);
+                objetoVeiculo.setRenavam(vetorString[2]);
+                objetoVeiculo.setPrecoDeCompra(Float.parseFloat(vetorString[3]));
+                objetoVeiculo.setPrecoDeVenda(Float.parseFloat(vetorString[4]));
+                objetoVeiculo.setAnoFabricacao(Integer.parseInt(vetorString[5]));
+                objetoVeiculo.setAnoModelo(Integer.parseInt(vetorString[6]));
+                objetoVeiculo.setCombustivel(TipoCombustivel.valueOf(vetorString[7]));
+                objetoVeiculo.setQuilometragem(Integer.parseInt(vetorString[8]));
+                objetoVeiculo.setTipoVeiculo(TipoVeiculo.valueOf(vetorString[9]));
+                objetoVeiculo.setSituacao(SituacaoVeiculo.valueOf(vetorString[10]));
+                if(objetoVeiculo.getId()==id){
+                     br.close();
+                     return new Veiculo(Integer.parseInt(vetorString[0]), vetorString[1], vetorString[2], Float.parseFloat(vetorString[3]), Float.parseFloat(vetorString[4]), Integer.parseInt(vetorString[5]), Integer.parseInt(vetorString[6]), TipoCombustivel.valueOf(vetorString[7]), Integer.parseInt(vetorString[8]), TipoVeiculo.valueOf(vetorString[9]), SituacaoVeiculo.valueOf(vetorString[10]));
+                }
+               
+            }
+           
+            return null;
+        } catch (Exception erro) {
+            throw erro;
+        }
     }
 
     @Override
     public void verTxt() {
-        
-     File arquivo = new File("./src/com/BeeSoftware/arquivosdedados/Veiculo.txt");
+
+        File arquivo = new File("./src/com/BeeSoftware/arquivosdedados/Veiculo.txt");
         try {
-        arquivo.createNewFile();
-    } catch (Exception e) {
+            arquivo.createNewFile();
+        } catch (Exception e) {
             System.out.println("");
-    }
+        }
     }
 
 }
