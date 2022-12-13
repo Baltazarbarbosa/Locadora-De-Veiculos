@@ -38,6 +38,10 @@ public class ModeloControle implements IModeloControle {
         }
     }
 
+    public Modelo buscar(int id)throws Exception{
+        return modeloPersistencia.buscar(id);
+    }
+
     public void incluir(Modelo objeto) throws Exception {
         if (buscarModelo(objeto.getDescricao())) {
             throw new Exception("Modelo já foi cadastrada");
@@ -59,7 +63,7 @@ public class ModeloControle implements IModeloControle {
         if (buscarModelo(objeto.getDescricao())) {
             throw new Exception("Modelo já foi cadastrada");
         }
-        
+
         if (objeto.getDescricao().equals("")) {
             throw new Exception("Digite um modelo válido.");
         }

@@ -4,6 +4,7 @@
  */
 package com.BeeSoftware.persistencia;
 
+import com.BeeSoftware.controle.MarcaControle;
 import com.BeeSoftware.ferramentas.GeradorIdentificador;
 import com.BeeSoftware.modelos.Modelo;
 import java.io.BufferedReader;
@@ -81,22 +82,44 @@ public class ModeloDao implements IModeloDao {
                 objetoModelo.setUrl(vetorString[2]);
                 int idMarca = Integer.parseInt(vetorString[3]);
                 objetoModelo.setMarca(objetoMarca.buscar(idMarca));
-                
+
                 listaDeModelos.add(objetoModelo);
             }
             br.close();
             return listaDeModelos;
         } catch (Exception erro) {
             throw erro;
-        }       
+        }
     }
+
     @Override
-     public void verTxt() {
+    public void verTxt() {
         File arquivo = new File("./src/com/BeeSoftware/arquivosdedados/Modelo.txt");
         try {
-        arquivo.createNewFile();
-    } catch (Exception e) {
+            arquivo.createNewFile();
+        } catch (Exception e) {
             System.out.println("");
+        }
     }
-     }
+    @Override
+    public Modelo buscar(int id) throws Exception {
+
+        FileReader fr = new FileReader(nomeDoArquivoNoDisco);
+        BufferedReader br = new BufferedReader(fr);
+        String linha = "";
+        while ((linha = br.readLine()) != null) {
+            MarcaControle marcaControle = new MarcaControle();
+            Modelo objetoModelo = new Modelo();
+            String vetorString[] = linha.split(";");
+            objetoModelo.setId(Integer.parseInt(vetorString[0]));
+            objetoModelo.setDescricao(vetorString[1]);
+            objetoModelo.setUrl(vetorString[2]);
+            int idMarca = Integer.parseInt(vetorString[3]);
+            objetoModelo.setMarca(marcaControle.buscar(idMarca));
+            if (objetoModelo.getId() == id) {
+                return new Modelo(Integer.parseInt(vetorString[0]), vetorString[1], vetorString[2], marcaControle.buscar(idMarca));
+            }
+        }
+        return null;
+    }
 }

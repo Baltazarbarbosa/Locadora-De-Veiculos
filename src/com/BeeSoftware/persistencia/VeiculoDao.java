@@ -4,6 +4,7 @@
  */
 package com.BeeSoftware.persistencia;
 
+import com.BeeSoftware.controle.ModeloControle;
 import com.BeeSoftware.enumeradores.SituacaoVeiculo;
 import com.BeeSoftware.enumeradores.TipoCombustivel;
 import com.BeeSoftware.enumeradores.TipoVeiculo;
@@ -82,6 +83,7 @@ public class VeiculoDao implements IVeiculoDao {
             BufferedReader br = new BufferedReader(fr);
             String linha = "";
             while ((linha = br.readLine()) != null) {
+                ModeloControle modelocontrole = new ModeloControle();
                 Veiculo objetoVeiculo = new Veiculo();
                 String vetorString[] = linha.split(";");
                 objetoVeiculo.setId(Integer.parseInt(vetorString[0]));
@@ -95,6 +97,8 @@ public class VeiculoDao implements IVeiculoDao {
                 objetoVeiculo.setQuilometragem(Integer.parseInt(vetorString[8]));
                 objetoVeiculo.setTipoVeiculo(TipoVeiculo.valueOf(vetorString[9]));
                 objetoVeiculo.setSituacao(SituacaoVeiculo.valueOf(vetorString[10]));
+                int idModelo = Integer.parseInt(vetorString[11]);
+                objetoVeiculo.setModelo(modelocontrole.buscar(idModelo));
 
                 listaDeVeiculos.add(objetoVeiculo);
             }
@@ -108,14 +112,14 @@ public class VeiculoDao implements IVeiculoDao {
 
     @Override
     public Veiculo buscar(int id) throws Exception {
-       
-    
+
         try {
-            
+
             FileReader fr = new FileReader(nomeDoArquivoNoDisco);
             BufferedReader br = new BufferedReader(fr);
             String linha = "";
             while ((linha = br.readLine()) != null) {
+                ModeloControle modelocontrole = new ModeloControle();
                 Veiculo objetoVeiculo = new Veiculo();
                 String vetorString[] = linha.split(";");
                 objetoVeiculo.setId(Integer.parseInt(vetorString[0]));
@@ -129,13 +133,15 @@ public class VeiculoDao implements IVeiculoDao {
                 objetoVeiculo.setQuilometragem(Integer.parseInt(vetorString[8]));
                 objetoVeiculo.setTipoVeiculo(TipoVeiculo.valueOf(vetorString[9]));
                 objetoVeiculo.setSituacao(SituacaoVeiculo.valueOf(vetorString[10]));
-                if(objetoVeiculo.getId()==id){
-                     br.close();
-                     return new Veiculo(Integer.parseInt(vetorString[0]), vetorString[1], vetorString[2], Float.parseFloat(vetorString[3]), Float.parseFloat(vetorString[4]), Integer.parseInt(vetorString[5]), Integer.parseInt(vetorString[6]), TipoCombustivel.valueOf(vetorString[7]), Integer.parseInt(vetorString[8]), TipoVeiculo.valueOf(vetorString[9]), SituacaoVeiculo.valueOf(vetorString[10]));
+                int idModelo = Integer.parseInt(vetorString[11]);
+                objetoVeiculo.setModelo(modelocontrole.buscar(idModelo));
+                if (objetoVeiculo.getId() == id) {
+                    br.close();
+                    return new Veiculo(Integer.parseInt(vetorString[0]), vetorString[1], vetorString[2], Float.parseFloat(vetorString[3]), Float.parseFloat(vetorString[4]), Integer.parseInt(vetorString[5]), Integer.parseInt(vetorString[6]), TipoCombustivel.valueOf(vetorString[7]), Integer.parseInt(vetorString[8]), TipoVeiculo.valueOf(vetorString[9]), SituacaoVeiculo.valueOf(vetorString[10]), modelocontrole.buscar(idModelo));
                 }
-               
+
             }
-           
+
             return null;
         } catch (Exception erro) {
             throw erro;

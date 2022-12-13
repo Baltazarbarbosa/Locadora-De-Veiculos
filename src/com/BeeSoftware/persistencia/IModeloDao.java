@@ -16,5 +16,6 @@ public interface IModeloDao {
     void incluir(Modelo objeto) throws Exception;
     void alterar(Modelo objeto) throws Exception;
     ArrayList<Modelo> listagem() throws Exception;
+    Modelo buscar (int id) throws Exception;
     void verTxt() throws Exception;
 }
