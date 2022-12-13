@@ -17,13 +17,14 @@ public class Motorista {
     private Endereco endereco;
     private String url;
     private String cnh;
-    private Date dataVencimentoCNH;
+    private String dataVencimentoCNH;
     private Cliente cliente;
+    private String tipoCNH;
 
         public Motorista() {
     }
 
-    public Motorista(int id, String nome,String cnh, Telefone telefone, Endereco endereco,String url, Date dataVencimentoCNH) {
+    public Motorista(int id, String nome,String cnh, Telefone telefone, Endereco endereco,String url, String dataVencimentoCNH,String tipoCNH) {
         this.nome = nome;
         this.id = id;
         this.url = url;
@@ -31,11 +32,9 @@ public class Motorista {
         this.telefone = telefone;
         this.endereco=endereco;
         this.dataVencimentoCNH=dataVencimentoCNH;
+        this.tipoCNH=tipoCNH;
     }
 
-    public Motorista(int id, String nome, String url, String cnh,Telefone telefone, Endereco endereco, int idCliente) {
-        
-    }
 
     public int getId() {
         return id;
@@ -81,15 +80,22 @@ public class Motorista {
         this.endereco=endereco;
     }
 
-    public Date getDataVencimentoCNH(){
+    public String getDataVencimentoCNH(){
         return dataVencimentoCNH;
     }
-    public void setDataVencimentoCNH(Date dataVencimentoCNH){
+    public void setDataVencimentoCNH(String dataVencimentoCNH){
         this.dataVencimentoCNH=dataVencimentoCNH;
+    }
+    
+    public String getTipoCNH(){
+        return tipoCNH;
+    }
+    public void setTipoCNH(String tipoCNH){
+        this.tipoCNH=tipoCNH;
     }
     @Override
     public String toString() {
-        return id + ";" + nome + ";" + url + ";"+cnh+";" +telefone+";"+endereco+";"+cliente.getId();
+        return id + ";" + nome + ";" + cnh + ";" +telefone+";"+endereco+";"+url+";"+dataVencimentoCNH+";"+tipoCNH+";"+cliente.getId();
     }
 
     public Cliente getCliente() {

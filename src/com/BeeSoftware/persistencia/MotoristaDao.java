@@ -15,6 +15,8 @@ import com.BeeSoftware.modelos.Telefone;
 import com.BeeSoftware.ferramentas.GeradorIdentificador;
 import com.BeeSoftware.modelos.Motorista;
 import com.BeeSoftware.modelos.Cliente;
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -83,24 +85,25 @@ public class MotoristaDao implements IMotoristaDao{
                 String vetorString[] = linha.split(";");
                 objetoMotorista.setId(Integer.parseInt(vetorString[0]));
                 objetoMotorista.setNome(vetorString[1].replaceAll("_", " "));
-                objetoMotorista.setUrl(vetorString[2]);
-                objetoMotorista.setCnh(vetorString[3]);
+                objetoMotorista.setCnh(vetorString[2]);
                 // PEGAR TELEFONE
-                long ddi = Long.parseLong(vetorString[4]);
-                long ddd = Long.parseLong(vetorString[5]);
-                long numero = Long.parseLong(vetorString[6]);
+                long ddi = Long.parseLong(vetorString[3]);
+                long ddd = Long.parseLong(vetorString[4]);
+                long numero = Long.parseLong(vetorString[5]);
                 Telefone telefone = new Telefone(ddi, ddd, numero);
                 objetoMotorista.setTelefone(telefone);
                 // PEGAR ENDEREÇO
-                String longradouro = vetorString[8];
-                String complemento = vetorString[9];
-                String bairro = vetorString[10];
-                String cidade = vetorString[11];
-                String estado = vetorString[12];
-                long cep = Long.parseLong(vetorString[13]);
+                String longradouro = vetorString[6];
+                String complemento = vetorString[7];
+                String bairro = vetorString[8];
+                String cidade = vetorString[9];
+                String estado = vetorString[10];
+                long cep = Long.parseLong(vetorString[11]);
                 Endereco endereco = new Endereco(longradouro, complemento, cidade, estado, bairro, cep);
                 objetoMotorista.setEndereco(endereco);
-                objetoCliente.setId(Integer.parseInt(vetorString[14]));
+                objetoMotorista.setUrl(vetorString[12]);
+                objetoMotorista.setDataVencimentoCNH(vetorString[13]);    
+                objetoMotorista.setTipoCNH(vetorString[14]);
                 listaDeMotorista.add(objetoMotorista);
             }
             br.close();
@@ -130,27 +133,29 @@ public class MotoristaDao implements IMotoristaDao{
                 String vetorString[] = linha.split(";");
                 objetoMotorista.setId(Integer.parseInt(vetorString[0]));
                 objetoMotorista.setNome(vetorString[1].replaceAll("_", " "));
-                objetoMotorista.setUrl(vetorString[2]);
-                objetoMotorista.setCnh(vetorString[3]);
+                objetoMotorista.setCnh(vetorString[2]);
                 // PEGAR TELEFONE
-                long ddi = Long.parseLong(vetorString[4]);
-                long ddd = Long.parseLong(vetorString[5]);
-                long numero = Long.parseLong(vetorString[6]);
+                long ddi = Long.parseLong(vetorString[3]);
+                long ddd = Long.parseLong(vetorString[4]);
+                long numero = Long.parseLong(vetorString[5]);
                 Telefone telefone = new Telefone(ddi, ddd, numero);
                 objetoMotorista.setTelefone(telefone);
                 // PEGAR ENDEREÇO
-                String longradouro = vetorString[8];
-                String complemento = vetorString[9];
-                String bairro = vetorString[10];
-                String cidade = vetorString[11];
-                String estado = vetorString[12];
-                long cep = Long.parseLong(vetorString[13]);
+                String longradouro = vetorString[6];
+                String complemento = vetorString[7];
+                String bairro = vetorString[8];
+                String cidade = vetorString[9];
+                String estado = vetorString[10];
+                long cep = Long.parseLong(vetorString[11]);
                 Endereco endereco = new Endereco(longradouro, complemento, cidade, estado, bairro, cep);
                 objetoMotorista.setEndereco(endereco);
-                objetoCliente.setId(Integer.parseInt(vetorString[14]));
+                objetoMotorista.setUrl(vetorString[12]);
+                objetoMotorista.setDataVencimentoCNH(vetorString[13]);    
+                objetoMotorista.setTipoCNH(vetorString[14]);
+                
             if(objetoMotorista.getId()==id){
                 br.close();
-                return new Motorista((Integer.parseInt(vetorString[0])),vetorString[1],vetorString[2],vetorString[3],telefone,endereco,(Integer.parseInt(vetorString[14])));
+                return new Motorista((Integer.parseInt(vetorString[0])),vetorString[1],vetorString[2],telefone,endereco,vetorString[12],vetorString[13],vetorString[14]);
             }
         }
         return null;

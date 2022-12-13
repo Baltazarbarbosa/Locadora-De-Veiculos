@@ -33,6 +33,9 @@ public class MotoristaControle implements IMotoristaControle{
         if ("".equals(objeto.getCnh())) {
             throw new Exception("Digite uma CNH válida!");
         }
+        if ("".equals(objeto.getTipoCNH())) {
+            throw new Exception("Digite o tipo da CNH!");
+        }
         if (".\\src\\com\\BeeSoftware\\cnh\\".equals(objeto.getUrl())) {
             throw new Exception("Escolha a foto da cnh!");
         }
@@ -56,6 +59,9 @@ public class MotoristaControle implements IMotoristaControle{
         }
         if ("".equals(objeto.getCnh())) {
             throw new Exception("Digite uma CNH válida!");
+        }
+        if ("".equals(objeto.getTipoCNH())) {
+            throw new Exception("Digite o tipo da CNH!");
         }
         motoristaPersistencia.alterar(objeto);
     }

@@ -12,9 +12,13 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/balta/OneDrive/Área%20de%20Trabalho/Locagyn/Locadora-De-Veiculos/src/com/BeeSoftware/controle/VeiculoControle.java</file>
-            <file>file:/C:/Users/balta/OneDrive/Área%20de%20Trabalho/Locagyn/Locadora-De-Veiculos/src/com/BeeSoftware/visao/TelaDosVeiculos.java</file>
-            <file>file:/C:/Users/balta/OneDrive/Área%20de%20Trabalho/Locagyn/Locadora-De-Veiculos/src/com/BeeSoftware/persistencia/VeiculoDao.java</file>
+            <file>file:/C:/Users/educa/OneDrive/Documentos/FATESG/2o%20semestre/Locagyn/Locadora-De-Veiculos/src/com/BeeSoftware/modelos/Marca.java</file>
+            <file>file:/C:/Users/educa/OneDrive/Documentos/FATESG/2o%20semestre/Locagyn/Locadora-De-Veiculos/src/com/BeeSoftware/modelos/Endereco.java</file>
+            <file>file:/C:/Users/educa/OneDrive/Documentos/FATESG/2o%20semestre/Locagyn/Locadora-De-Veiculos/src/com/BeeSoftware/persistencia/MotoristaDao.java</file>
+            <file>file:/C:/Users/educa/OneDrive/Documentos/FATESG/2o%20semestre/Locagyn/Locadora-De-Veiculos/src/com/BeeSoftware/modelos/Motorista.java</file>
+            <file>file:/C:/Users/educa/OneDrive/Documentos/FATESG/2o%20semestre/Locagyn/Locadora-De-Veiculos/src/com/BeeSoftware/controle/MotoristaControle.java</file>
+            <file>file:/C:/Users/educa/OneDrive/Documentos/FATESG/2o%20semestre/Locagyn/Locadora-De-Veiculos/src/com/BeeSoftware/persistencia/ClienteDao.java</file>
+            <file>file:/C:/Users/educa/OneDrive/Documentos/FATESG/2o%20semestre/Locagyn/Locadora-De-Veiculos/src/com/BeeSoftware/persistencia/ModeloDao.java</file>
         </group>
     </open-files>
 </project-private>
