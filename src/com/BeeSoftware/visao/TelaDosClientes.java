@@ -48,9 +48,9 @@ public class TelaDosClientes extends javax.swing.JFrame {
         jLabelCpf_Cnpj.setVisible(false);
         jLabelidentidade.setVisible(false);
         jLabelNome_RazaoSocial.setVisible(false);
-        jTablecpf.setVisible(false);
-        jTablecnpj.setVisible(false);
-        jTablecpf.getTableHeader().setReorderingAllowed(false);
+        jTableCpf.setVisible(true);
+        jTablecnpj.setVisible(true);
+        jTableCpf.getTableHeader().setReorderingAllowed(false);
         jTablecnpj.getTableHeader().setReorderingAllowed(false);
 
         try {
@@ -112,12 +112,12 @@ public class TelaDosClientes extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         TextFieldComplemento = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
-        TextFieldTelefone1 = new javax.swing.JTextField();
+        TextFieldTelefone = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jButtonIncluir = new javax.swing.JButton();
         jButtonAlterar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTablecpf = new javax.swing.JTable();
+        jTableCpf = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTablecnpj = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -318,7 +318,9 @@ public class TelaDosClientes extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(TextFieldDdd, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel12))
+                                .addComponent(jLabel12)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(TextFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(11, 11, 11)
                                 .addComponent(TextFieldemail, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -330,7 +332,7 @@ public class TelaDosClientes extends javax.swing.JFrame {
                         .addComponent(jLabel21)
                         .addGap(28, 28, 28)
                         .addComponent(TextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -346,7 +348,7 @@ public class TelaDosClientes extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TextFieldLongradouro, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE))
+                        .addComponent(TextFieldLongradouro))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel17)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -357,11 +359,6 @@ public class TelaDosClientes extends javax.swing.JFrame {
                     .addContainerGap(615, Short.MAX_VALUE)
                     .addComponent(jLabel23)
                     .addGap(341, 341, 341)))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(359, 359, 359)
-                    .addComponent(TextFieldTelefone1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(520, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -431,7 +428,8 @@ public class TelaDosClientes extends javax.swing.JFrame {
                                 .addComponent(TextFieldDdi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel16)
                                 .addComponent(TextFieldDdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel12)))))
+                                .addComponent(jLabel12)
+                                .addComponent(TextFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
@@ -442,11 +440,6 @@ public class TelaDosClientes extends javax.swing.JFrame {
                     .addGap(37, 37, 37)
                     .addComponent(jLabel23)
                     .addContainerGap(211, Short.MAX_VALUE)))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                    .addContainerGap(205, Short.MAX_VALUE)
-                    .addComponent(TextFieldTelefone1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(43, 43, 43)))
         );
 
         jPanel3.setBackground(new java.awt.Color(252, 186, 3));
@@ -490,7 +483,7 @@ public class TelaDosClientes extends javax.swing.JFrame {
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        jTablecpf.setModel(new javax.swing.table.DefaultTableModel(
+        jTableCpf.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -509,16 +502,16 @@ public class TelaDosClientes extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTablecpf.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTableCpf.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTablecpfMouseClicked(evt);
+                jTableCpfMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTablecpf);
-        if (jTablecpf.getColumnModel().getColumnCount() > 0) {
-            jTablecpf.getColumnModel().getColumn(0).setMinWidth(25);
-            jTablecpf.getColumnModel().getColumn(0).setPreferredWidth(25);
-            jTablecpf.getColumnModel().getColumn(0).setMaxWidth(25);
+        jScrollPane1.setViewportView(jTableCpf);
+        if (jTableCpf.getColumnModel().getColumnCount() > 0) {
+            jTableCpf.getColumnModel().getColumn(0).setMinWidth(25);
+            jTableCpf.getColumnModel().getColumn(0).setPreferredWidth(25);
+            jTableCpf.getColumnModel().getColumn(0).setMaxWidth(25);
         }
 
         jTablecnpj.setModel(new javax.swing.table.DefaultTableModel(
@@ -638,6 +631,7 @@ public class TelaDosClientes extends javax.swing.JFrame {
 
     private void jComboBoxCpfCnpjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCpfCnpjActionPerformed
         if (jComboBoxCpfCnpj.getSelectedItem().equals("CPF")) {
+            // jTablecpf.setVisible(true);
             jLabelCpf_Cnpj.setVisible(true);
             jLabelCpf_Cnpj.setText("CPF:");
             jLabelidentidade.setVisible(true);
@@ -647,8 +641,8 @@ public class TelaDosClientes extends javax.swing.JFrame {
             TextFieldCpfCnpj.setVisible(true);
             TextFieldNomeRazaoSocial.setVisible(true);
             TextFieldLongradouro.setVisible(true);
-            jTablecpf.setVisible(true);
-            jTablecnpj.setVisible(false);
+
+            // jTablecnpj.setVisible(false);
         }
         if (jComboBoxCpfCnpj.getSelectedItem().equals("CNPJ")) {
             jLabelCpf_Cnpj.setVisible(true);
@@ -660,8 +654,8 @@ public class TelaDosClientes extends javax.swing.JFrame {
             TextFieldCpfCnpj.setVisible(true);
             TextFieldNomeRazaoSocial.setVisible(true);
             TextFieldLongradouro.setVisible(false);
-            jTablecpf.setVisible(false);
-            jTablecnpj.setVisible(true);
+            // jTablecpf.setVisible(false);
+            //jTablecnpj.setVisible(true);
         }
         if (jComboBoxCpfCnpj.getSelectedItem().equals("SELECIONE")) {
             jLabelCpf_Cnpj.setVisible(false);
@@ -670,8 +664,8 @@ public class TelaDosClientes extends javax.swing.JFrame {
             TextFieldCpfCnpj.setVisible(false);
             TextFieldNomeRazaoSocial.setVisible(false);
             TextFieldIdentidade.setVisible(false);
-            jTablecpf.setVisible(false);
-            jTablecnpj.setVisible(false);
+            // jTablecpf.setVisible(false);
+            //jTablecnpj.setVisible(false);
         }
     }//GEN-LAST:event_jComboBoxCpfCnpjActionPerformed
 
@@ -680,7 +674,7 @@ public class TelaDosClientes extends javax.swing.JFrame {
 
             if (tipoDeCliente.equals(TipoDeCliente.PESSOA_FISICA)) {
 
-                DefaultTableModel tabela = (DefaultTableModel) jTablecpf.getModel();
+                DefaultTableModel tabela = (DefaultTableModel) jTableCpf.getModel();
                 tabela.setNumRows(0);
                 Iterator<Cliente> lista = listadecliente.iterator();
 
@@ -776,11 +770,11 @@ public class TelaDosClientes extends javax.swing.JFrame {
 
                 long ddi = Long.parseLong(TextFieldDdi.getText());
                 long ddd = Long.parseLong(TextFieldDdd.getText());
-                long numero = Long.parseLong(TextFieldID.getText());
+                long numero = Long.parseLong(TextFieldTelefone.getText());
                 Telefone telefone = new Telefone(ddi, ddd, numero);
 
                 //captando endereco
-                String longradouro = TextFieldIdentidade.getText();
+                String longradouro = TextFieldLongradouro.getText();
                 String complemento = TextFieldComplemento.getText();
                 String bairro = TextFieldBairro.getText();
                 String cidade = TextFieldCidade.getText();
@@ -788,7 +782,7 @@ public class TelaDosClientes extends javax.swing.JFrame {
                 long cep = Long.parseLong(TextFieldCiEP.getText());
                 Endereco endereco = new Endereco(longradouro, complemento, cidade, estado, bairro, cep);
 
-                Cliente clientepf = new Cliente(0, TextFieldCpfCnpj.getText(), TextFieldNomeRazaoSocial.getText(), TextFieldLongradouro.getText(), TextFieldemail.getText(), telefone, endereco, TipoDeCliente.PESSOA_FISICA);
+                Cliente clientepf = new Cliente(0, TextFieldCpfCnpj.getText(), TextFieldNomeRazaoSocial.getText(), TextFieldIdentidade.getText(), TextFieldemail.getText(), telefone, endereco, TipoDeCliente.PESSOA_FISICA);
                 clienteControle.incluir(clientepf, TipoDeCliente.PESSOA_FISICA);
                 imprimirTabela(clienteControle.listagem(TipoDeCliente.PESSOA_FISICA), TipoDeCliente.PESSOA_FISICA);
                 TextFieldCpfCnpj.setText("");
@@ -802,11 +796,11 @@ public class TelaDosClientes extends javax.swing.JFrame {
                 //captando telefone
                 long ddi = Long.parseLong(TextFieldDdi.getText());
                 long ddd = Long.parseLong(TextFieldDdd.getText());
-                long numero = Long.parseLong(TextFieldID.getText());
+                long numero = Long.parseLong(TextFieldTelefone.getText());
                 Telefone telefone = new Telefone(ddi, ddd, numero);
 
                 //captando endereco
-                String longradouro = TextFieldIdentidade.getText();
+                String longradouro = TextFieldLongradouro.getText();
                 String complemento = TextFieldComplemento.getText();
                 String bairro = TextFieldBairro.getText();
                 String cidade = TextFieldCidade.getText();
@@ -845,24 +839,24 @@ public class TelaDosClientes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TextFieldLongradouroActionPerformed
 
-    private void jTablecpfMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablecpfMouseClicked
+    private void jTableCpfMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableCpfMouseClicked
 
         try {
 
-            this.TextFieldID.setText((String) this.jTablecpf.getValueAt(jTablecpf.getSelectedRow(), 0));
-            this.TextFieldNomeRazaoSocial.setText((String) this.jTablecpf.getValueAt(jTablecpf.getSelectedRow(), 1));
-            this.TextFieldCpfCnpj.setText((String) this.jTablecpf.getValueAt(jTablecpf.getSelectedRow(), 2));
-            this.TextFieldemail.setText((String) this.jTablecpf.getValueAt(jTablecpf.getSelectedRow(), 3));
+            this.TextFieldID.setText((String) this.jTableCpf.getValueAt(jTableCpf.getSelectedRow(), 0));
+            this.TextFieldNomeRazaoSocial.setText((String) this.jTableCpf.getValueAt(jTableCpf.getSelectedRow(), 1));
+            this.TextFieldCpfCnpj.setText((String) this.jTableCpf.getValueAt(jTableCpf.getSelectedRow(), 2));
+            this.TextFieldemail.setText((String) this.jTableCpf.getValueAt(jTableCpf.getSelectedRow(), 3));
 
             //Divisao telefone
-            String telefone = (String) this.jTablecpf.getValueAt(jTablecpf.getSelectedRow(), 4);
+            String telefone = (String) this.jTableCpf.getValueAt(jTableCpf.getSelectedRow(), 4);
             String teldiv[] = telefone.split(";");
             this.TextFieldDdi.setText(teldiv[0]);
             this.TextFieldDdd.setText(teldiv[1]);
-            this.TextFieldTelefone1.setText(teldiv[2]);
+            this.TextFieldTelefone.setText(teldiv[2]);
 
             //Emdereco divivido
-            String edereco = (String) this.jTablecpf.getValueAt(jTablecpf.getSelectedRow(), 5);
+            String edereco = (String) this.jTableCpf.getValueAt(jTableCpf.getSelectedRow(), 5);
             String endDiv[] = edereco.split(";");
             this.TextFieldIdentidade.setText(endDiv[0]);
             this.TextFieldComplemento.setText(endDiv[1]);
@@ -871,12 +865,12 @@ public class TelaDosClientes extends javax.swing.JFrame {
             this.jComboBoxEstado.setSelectedItem(endDiv[4]);
             this.TextFieldCiEP.setText(endDiv[5]);
 
-            this.TextFieldLongradouro.setText((String) this.jTablecpf.getValueAt(jTablecpf.getSelectedRow(), 6));
+            this.TextFieldLongradouro.setText((String) this.jTableCpf.getValueAt(jTableCpf.getSelectedRow(), 6));
 
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, erro.getMessage());
         }
-    }//GEN-LAST:event_jTablecpfMouseClicked
+    }//GEN-LAST:event_jTableCpfMouseClicked
 
     private void jTablecnpjMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablecnpjMouseClicked
 
@@ -890,7 +884,7 @@ public class TelaDosClientes extends javax.swing.JFrame {
         String teldiv[] = telefone.split(";");
         this.TextFieldDdi.setText(teldiv[0]);
         this.TextFieldDdd.setText(teldiv[1]);
-        this.TextFieldTelefone1.setText(teldiv[2]);
+        this.TextFieldTelefone.setText(teldiv[2]);
 
         //Emdereco divivido
         String edereco = (String) this.jTablecnpj.getValueAt(jTablecnpj.getSelectedRow(), 5);
@@ -905,9 +899,9 @@ public class TelaDosClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jTablecnpjMouseClicked
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
-      
+
         //Botao alerar
-         try {
+        try {
 
             //Verificação combobox e inclusao
             if (jComboBoxCpfCnpj.getSelectedItem().equals("SELECIONE")) {
@@ -963,11 +957,11 @@ public class TelaDosClientes extends javax.swing.JFrame {
                 TextFieldemail.setText("");
 
             }
-             } catch (Exception erro) {
+        } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, erro.getMessage());
         }
 
-        
+
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     /**
@@ -1017,7 +1011,7 @@ public class TelaDosClientes extends javax.swing.JFrame {
     private javax.swing.JTextField TextFieldIdentidade;
     private javax.swing.JTextField TextFieldLongradouro;
     private javax.swing.JTextField TextFieldNomeRazaoSocial;
-    private javax.swing.JTextField TextFieldTelefone1;
+    private javax.swing.JTextField TextFieldTelefone;
     private javax.swing.JTextField TextFieldemail;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButtonAlterar;
@@ -1058,8 +1052,8 @@ public class TelaDosClientes extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTableCpf;
     private javax.swing.JTable jTablecnpj;
-    private javax.swing.JTable jTablecpf;
     // End of variables declaration//GEN-END:variables
 
 }
