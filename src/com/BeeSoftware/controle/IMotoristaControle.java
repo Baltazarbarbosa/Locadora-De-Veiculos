@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public interface IMotoristaControle {
     void incluir(Motorista objeto)throws Exception;
     void alterar(Motorista objeto)throws Exception;
-    void buscar(Motorista objeto)throws Exception;
+    Motorista buscar(int id)throws Exception;
     ArrayList<Motorista> listagem()throws Exception;
     void verTxt();
 }

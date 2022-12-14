@@ -13,18 +13,21 @@ import com.BeeSoftware.modelos.Categoria;
 import com.BeeSoftware.modelos.Marca;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class CategoriaDao implements ICategoriaDao{
-     private String nomeDoArquivoNoDisco;
+public class CategoriaDao implements ICategoriaDao {
+
+    private String nomeDoArquivoNoDisco;
 
     public CategoriaDao() {
         nomeDoArquivoNoDisco = "./src/com/BeeSoftware/arquivosdedados/Categorias.txt";
     }
-@Override
+
+    @Override
     public void incluir(Categoria objeto) throws Exception {
         try {
             //cria o arquivo
@@ -41,7 +44,8 @@ public class CategoriaDao implements ICategoriaDao{
             throw erro;
         }
     }
-@Override
+
+    @Override
     public void alterar(Categoria objeto) throws Exception {
         try {
             Iterator<Categoria> lista = listagem().iterator();
@@ -64,6 +68,7 @@ public class CategoriaDao implements ICategoriaDao{
             throw erro;
         }
     }
+
     @Override
     public ArrayList<Categoria> listagem() throws Exception {
         try {
@@ -84,7 +89,7 @@ public class CategoriaDao implements ICategoriaDao{
         } catch (Exception erro) {
             throw erro;
         }
-      
+
     }
 
     @Override
@@ -98,11 +103,22 @@ public class CategoriaDao implements ICategoriaDao{
             objetoAcessorios.setId(Integer.parseInt(vetorString[0]));
             objetoAcessorios.setDescricao(vetorString[1]);
             objetoAcessorios.setValorDaLocacao(Float.parseFloat(vetorString[2]));
-            if(objetoAcessorios.getId()==id){
+            if (objetoAcessorios.getId() == id) {
                 br.close();
-                return new Categoria((Integer.parseInt(vetorString[0])),vetorString[1],(Float.parseFloat(vetorString[2])));
+                return new Categoria((Integer.parseInt(vetorString[0])), vetorString[1], (Float.parseFloat(vetorString[2])));
             }
         }
         return null;
+    }
+
+    @Override
+    public void verTxt() throws Exception {
+        File arquivo = new File("./src/com/BeeSoftware/arquivosdedados/Categorias.txt");
+        try {
+            arquivo.createNewFile();
+        } catch (Exception e) {
+            System.out.println("");
+        }
+
     }
 }

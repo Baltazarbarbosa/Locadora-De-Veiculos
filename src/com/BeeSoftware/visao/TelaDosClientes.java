@@ -208,6 +208,12 @@ public class TelaDosClientes extends javax.swing.JFrame {
         jLabelNome_RazaoSocial.setForeground(new java.awt.Color(255, 255, 255));
         jLabelNome_RazaoSocial.setText("Nome:");
 
+        TextFieldNomeRazaoSocial.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextFieldNomeRazaoSocialKeyTyped(evt);
+            }
+        });
+
         jLabelidentidade.setFont(new java.awt.Font("MS Gothic", 1, 18)); // NOI18N
         jLabelidentidade.setForeground(new java.awt.Color(255, 255, 255));
         jLabelidentidade.setText("Identidade:");
@@ -217,10 +223,21 @@ public class TelaDosClientes extends javax.swing.JFrame {
                 TextFieldLongradouroActionPerformed(evt);
             }
         });
+        TextFieldLongradouro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextFieldLongradouroKeyTyped(evt);
+            }
+        });
 
         jLabel13.setFont(new java.awt.Font("MS Gothic", 1, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Email:");
+
+        TextFieldemail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextFieldemailKeyTyped(evt);
+            }
+        });
 
         jLabel15.setFont(new java.awt.Font("MS Gothic", 1, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
@@ -234,9 +251,21 @@ public class TelaDosClientes extends javax.swing.JFrame {
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("Bairro:");
 
+        TextFieldBairro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextFieldBairroKeyTyped(evt);
+            }
+        });
+
         jLabel19.setFont(new java.awt.Font("MS Gothic", 1, 18)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("Cidade:");
+
+        TextFieldCidade.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextFieldCidadeKeyTyped(evt);
+            }
+        });
 
         jLabel20.setFont(new java.awt.Font("MS Gothic", 1, 18)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
@@ -275,6 +304,11 @@ public class TelaDosClientes extends javax.swing.JFrame {
         TextFieldComplemento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TextFieldComplementoActionPerformed(evt);
+            }
+        });
+        TextFieldComplemento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextFieldComplementoKeyTyped(evt);
             }
         });
 
@@ -350,7 +384,7 @@ public class TelaDosClientes extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TextFieldLongradouro))
+                        .addComponent(TextFieldLongradouro, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel17)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -682,7 +716,7 @@ public class TelaDosClientes extends javax.swing.JFrame {
             TextFieldCpfCnpj.setVisible(false);
             TextFieldNomeRazaoSocial.setVisible(false);
             TextFieldIdentidade.setVisible(false);
-            
+
             // jTablecpf.setVisible(false);
             //jTablecnpj.setVisible(false);
         }
@@ -1000,6 +1034,66 @@ public class TelaDosClientes extends javax.swing.JFrame {
         this.dispose();
         tmot.setVisible(true);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void TextFieldNomeRazaoSocialKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextFieldNomeRazaoSocialKeyTyped
+        char e = evt.getKeyChar();
+        if (!Character.isLetterOrDigit(e) && !Character.isWhitespace(e)) {
+            evt.consume();
+        }
+        if (Character.isLowerCase(e)) {
+            evt.setKeyChar(Character.toUpperCase(e));
+        }
+    }//GEN-LAST:event_TextFieldNomeRazaoSocialKeyTyped
+
+    private void TextFieldemailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextFieldemailKeyTyped
+        char e = evt.getKeyChar();
+        if (!Character.isLetterOrDigit(e) && !Character.isWhitespace(e)) {
+            evt.consume();
+        }
+        if (Character.isLowerCase(e)) {
+            evt.setKeyChar(Character.toUpperCase(e));
+        }
+    }//GEN-LAST:event_TextFieldemailKeyTyped
+
+    private void TextFieldBairroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextFieldBairroKeyTyped
+        char e = evt.getKeyChar();
+        if (!Character.isLetterOrDigit(e) && !Character.isWhitespace(e)) {
+            evt.consume();
+        }
+        if (Character.isLowerCase(e)) {
+            evt.setKeyChar(Character.toUpperCase(e));
+        }
+    }//GEN-LAST:event_TextFieldBairroKeyTyped
+
+    private void TextFieldCidadeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextFieldCidadeKeyTyped
+        char e = evt.getKeyChar();
+        if (!Character.isLetterOrDigit(e) && !Character.isWhitespace(e)) {
+            evt.consume();
+        }
+        if (Character.isLowerCase(e)) {
+            evt.setKeyChar(Character.toUpperCase(e));
+        }
+    }//GEN-LAST:event_TextFieldCidadeKeyTyped
+
+    private void TextFieldLongradouroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextFieldLongradouroKeyTyped
+        char e = evt.getKeyChar();
+        if (!Character.isLetterOrDigit(e) && !Character.isWhitespace(e)) {
+            evt.consume();
+        }
+        if (Character.isLowerCase(e)) {
+            evt.setKeyChar(Character.toUpperCase(e));
+        }
+    }//GEN-LAST:event_TextFieldLongradouroKeyTyped
+
+    private void TextFieldComplementoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextFieldComplementoKeyTyped
+        char e = evt.getKeyChar();
+        if (!Character.isLetterOrDigit(e) && !Character.isWhitespace(e)) {
+            evt.consume();
+        }
+        if (Character.isLowerCase(e)) {
+            evt.setKeyChar(Character.toUpperCase(e));
+        }
+    }//GEN-LAST:event_TextFieldComplementoKeyTyped
 
     /**
      * @param args the command line arguments

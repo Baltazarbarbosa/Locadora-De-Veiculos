@@ -16,5 +16,6 @@ public interface ICategoriaControle {
     void alterar(Categoria objeto) throws Exception;
     ArrayList<Categoria> listagem() throws Exception;
     Categoria buscar(int id) throws Exception;
+    void verTxt() throws Exception;
     
 }

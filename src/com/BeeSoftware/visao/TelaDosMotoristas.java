@@ -134,6 +134,12 @@ public class TelaDosMotoristas extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Nome:");
 
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField2KeyTyped(evt);
+            }
+        });
+
         jLabel6.setFont(new java.awt.Font("MS PGothic", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("DDI:");
@@ -166,6 +172,12 @@ public class TelaDosMotoristas extends javax.swing.JFrame {
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("Cidade:");
 
+        TextFieldBairro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextFieldBairroKeyTyped(evt);
+            }
+        });
+
         jLabel18.setFont(new java.awt.Font("MS Gothic", 1, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("Bairro:");
@@ -173,6 +185,11 @@ public class TelaDosMotoristas extends javax.swing.JFrame {
         TextFieldCidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TextFieldCidadeActionPerformed(evt);
+            }
+        });
+        TextFieldCidade.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextFieldCidadeKeyTyped(evt);
             }
         });
 
@@ -185,6 +202,11 @@ public class TelaDosMotoristas extends javax.swing.JFrame {
                 TextFieldLogradouroActionPerformed(evt);
             }
         });
+        TextFieldLogradouro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextFieldLogradouroKeyTyped(evt);
+            }
+        });
 
         jLabel17.setFont(new java.awt.Font("MS Gothic", 1, 18)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
@@ -195,6 +217,11 @@ public class TelaDosMotoristas extends javax.swing.JFrame {
                 TextFieldIdentidade1ActionPerformed(evt);
             }
         });
+        TextFieldIdentidade1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextFieldIdentidade1KeyTyped(evt);
+            }
+        });
 
         jLabel23.setFont(new java.awt.Font("MS Gothic", 1, 18)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(255, 255, 255));
@@ -203,6 +230,12 @@ public class TelaDosMotoristas extends javax.swing.JFrame {
         jLabel24.setFont(new java.awt.Font("MS Gothic", 1, 18)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(255, 255, 255));
         jLabel24.setText("Tipo da CNH:");
+
+        jTextField7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField7KeyTyped(evt);
+            }
+        });
 
         jLabel25.setFont(new java.awt.Font("MS Gothic", 1, 18)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(255, 255, 255));
@@ -518,7 +551,7 @@ public class TelaDosMotoristas extends javax.swing.JFrame {
             tmod.setVisible(true);
         } catch (Exception erro) {
         }
-      
+
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -534,7 +567,7 @@ public class TelaDosMotoristas extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-       TelaDosAcessorios tacess = new TelaDosAcessorios();
+        TelaDosAcessorios tacess = new TelaDosAcessorios();
         this.dispose();
         tacess.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
@@ -560,6 +593,66 @@ public class TelaDosMotoristas extends javax.swing.JFrame {
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+        char e = evt.getKeyChar();
+        if (!Character.isLetterOrDigit(e) && !Character.isWhitespace(e)) {
+            evt.consume();
+        }
+        if (Character.isLowerCase(e)) {
+            evt.setKeyChar(Character.toUpperCase(e));
+        }
+    }//GEN-LAST:event_jTextField2KeyTyped
+
+    private void jTextField7KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField7KeyTyped
+        char e = evt.getKeyChar();
+        if (!Character.isLetterOrDigit(e) && !Character.isWhitespace(e)) {
+            evt.consume();
+        }
+        if (Character.isLowerCase(e)) {
+            evt.setKeyChar(Character.toUpperCase(e));
+        }
+    }//GEN-LAST:event_jTextField7KeyTyped
+
+    private void TextFieldBairroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextFieldBairroKeyTyped
+        char e = evt.getKeyChar();
+        if (!Character.isLetterOrDigit(e) && !Character.isWhitespace(e)) {
+            evt.consume();
+        }
+        if (Character.isLowerCase(e)) {
+            evt.setKeyChar(Character.toUpperCase(e));
+        }
+    }//GEN-LAST:event_TextFieldBairroKeyTyped
+
+    private void TextFieldCidadeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextFieldCidadeKeyTyped
+        char e = evt.getKeyChar();
+        if (!Character.isLetterOrDigit(e) && !Character.isWhitespace(e)) {
+            evt.consume();
+        }
+        if (Character.isLowerCase(e)) {
+            evt.setKeyChar(Character.toUpperCase(e));
+        }
+    }//GEN-LAST:event_TextFieldCidadeKeyTyped
+
+    private void TextFieldLogradouroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextFieldLogradouroKeyTyped
+        char e = evt.getKeyChar();
+        if (!Character.isLetterOrDigit(e) && !Character.isWhitespace(e)) {
+            evt.consume();
+        }
+        if (Character.isLowerCase(e)) {
+            evt.setKeyChar(Character.toUpperCase(e));
+        }
+    }//GEN-LAST:event_TextFieldLogradouroKeyTyped
+
+    private void TextFieldIdentidade1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextFieldIdentidade1KeyTyped
+        char e = evt.getKeyChar();
+        if (!Character.isLetterOrDigit(e) && !Character.isWhitespace(e)) {
+            evt.consume();
+        }
+        if (Character.isLowerCase(e)) {
+            evt.setKeyChar(Character.toUpperCase(e));
+        }
+    }//GEN-LAST:event_TextFieldIdentidade1KeyTyped
 
     /**
      * @param args the command line arguments

@@ -334,7 +334,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel14" min="-2" pref="122" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="TextFieldLongradouro" max="32767" attributes="0"/>
+                          <Component id="TextFieldLongradouro" pref="188" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
@@ -508,6 +508,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="TextFieldNomeRazaoSocial">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TextFieldNomeRazaoSocialKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelidentidade">
           <Properties>
@@ -523,6 +526,7 @@
         <Component class="javax.swing.JTextField" name="TextFieldLongradouro">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TextFieldLongradouroActionPerformed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TextFieldLongradouroKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel13">
@@ -537,6 +541,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="TextFieldemail">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TextFieldemailKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel15">
           <Properties>
@@ -576,6 +583,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="TextFieldBairro">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TextFieldBairroKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel19">
           <Properties>
@@ -589,6 +599,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="TextFieldCidade">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TextFieldCidadeKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel20">
           <Properties>
@@ -698,6 +711,7 @@
         <Component class="javax.swing.JTextField" name="TextFieldComplemento">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TextFieldComplementoActionPerformed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TextFieldComplementoKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel23">

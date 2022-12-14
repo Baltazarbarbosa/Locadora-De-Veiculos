@@ -3,11 +3,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.BeeSoftware.visao;
+
 import com.BeeSoftware.visao.TelaDasMarcas;
 import com.BeeSoftware.visao.TelaDosModelos;
 import com.BeeSoftware.visao.TelaDosVeiculos;
 import com.BeeSoftware.controle.CategoriaControle;
-
+import com.BeeSoftware.controle.ICategoriaControle;
+import com.BeeSoftware.modelos.Categoria;
+import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,12 +21,23 @@ import com.BeeSoftware.controle.CategoriaControle;
  */
 public class TelaDasCategorias extends javax.swing.JFrame {
 
+    ICategoriaControle categoriaControle = new CategoriaControle();
+
     /**
      * Creates new form TelaDasCategorias
      */
     public TelaDasCategorias() {
         initComponents();
         this.setLocationRelativeTo(null);
+        jTextFieldID.setEnabled(false);
+        jTableCategoria.getTableHeader().setReorderingAllowed(false);
+
+        try {
+            categoriaControle.verTxt();
+            imprimirTabela(categoriaControle.listagem());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
     }
 
     /**
@@ -41,11 +58,13 @@ public class TelaDasCategorias extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jTextFieldValordaLoc = new javax.swing.JTextField();
         jTextFieldDescricao = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jTextFieldID = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButtonIncluir = new javax.swing.JButton();
+        jButtonAlterar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableCategoria = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -117,6 +136,16 @@ public class TelaDasCategorias extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Valor da locação:");
 
+        jTextFieldDescricao.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldDescricaoKeyTyped(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("MS Gothic", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("ID:");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -125,6 +154,10 @@ public class TelaDasCategorias extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -132,16 +165,20 @@ public class TelaDasCategorias extends javax.swing.JFrame {
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldValordaLoc, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(604, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addGap(11, 11, 11)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jTextFieldDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(15, 15, 15)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jTextFieldValordaLoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -150,13 +187,23 @@ public class TelaDasCategorias extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(252, 186, 3));
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/BeeSoftware/imagens/incluir.png"))); // NOI18N
-        jButton1.setText("Incluir");
+        jButtonIncluir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButtonIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/BeeSoftware/imagens/incluir.png"))); // NOI18N
+        jButtonIncluir.setText("Incluir");
+        jButtonIncluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonIncluirActionPerformed(evt);
+            }
+        });
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/BeeSoftware/imagens/refresh.png"))); // NOI18N
-        jButton2.setText("Alterar");
+        jButtonAlterar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButtonAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/BeeSoftware/imagens/refresh.png"))); // NOI18N
+        jButtonAlterar.setText("Alterar");
+        jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAlterarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -164,9 +211,9 @@ public class TelaDasCategorias extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(92, 92, 92)
-                .addComponent(jButton1)
+                .addComponent(jButtonIncluir)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(jButtonAlterar)
                 .addGap(93, 93, 93))
         );
         jPanel3Layout.setVerticalGroup(
@@ -174,23 +221,36 @@ public class TelaDasCategorias extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButtonIncluir)
+                    .addComponent(jButtonAlterar))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableCategoria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Descrição", "Valor da locação"
+                "ID", "Descrição", "Valor da locação"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTableCategoria);
+        if (jTableCategoria.getColumnModel().getColumnCount() > 0) {
+            jTableCategoria.getColumnModel().getColumn(0).setMinWidth(30);
+            jTableCategoria.getColumnModel().getColumn(0).setPreferredWidth(30);
+            jTableCategoria.getColumnModel().getColumn(0).setMaxWidth(30);
+        }
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/BeeSoftware/imagens/arquivo.png"))); // NOI18N
         jMenu1.setText("arquivo");
@@ -282,7 +342,7 @@ public class TelaDasCategorias extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 970, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 985, Short.MAX_VALUE)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -302,13 +362,33 @@ public class TelaDasCategorias extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
-     TelaDasMarcas tm = new TelaDasMarcas();
+        TelaDasMarcas tm = new TelaDasMarcas();
         this.dispose();
         tm.setVisible(true);
     }//GEN-LAST:event_jMenu1ActionPerformed
 
+    public void imprimirTabela(ArrayList<Categoria> listadeCategorias) {
+        try {
+            DefaultTableModel tabela = (DefaultTableModel) jTableCategoria.getModel();
+            tabela.setNumRows(0);
+            Iterator<Categoria> lista = listadeCategorias.iterator();
+            while (lista.hasNext()) {
+                String[] tab = new String[3];
+                Categoria aux = lista.next();
+                tab[0] = aux.getId() + "";
+                tab[1] = aux.getDescricao();
+                tab[2] = aux.getValorDaLocacao() + "";
+
+                tabela.addRow(tab);
+
+            }
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(this, erro.getMessage());
+        }
+    }
+
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-       try {
+        try {
             TelaDosModelos tmod = new TelaDosModelos();
             this.dispose();
             tmod.setVisible(true);
@@ -317,7 +397,7 @@ public class TelaDasCategorias extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-      TelaDosVeiculos tv = new TelaDosVeiculos();
+        TelaDosVeiculos tv = new TelaDosVeiculos();
         this.dispose();
         tv.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
@@ -356,6 +436,43 @@ public class TelaDasCategorias extends javax.swing.JFrame {
         tmot.setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
+    private void jButtonIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirActionPerformed
+
+        try {
+            Categoria obj = new Categoria(0, jTextFieldDescricao.getText(), Float.parseFloat(jTextFieldValordaLoc.getText()));
+            categoriaControle.incluir(obj);
+            imprimirTabela(categoriaControle.listagem());
+            jTextFieldDescricao.setText("");
+            jTextFieldValordaLoc.setText("");
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }//GEN-LAST:event_jButtonIncluirActionPerformed
+
+    private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
+        try {
+            Categoria obj = new Categoria(0, jTextFieldDescricao.getText(), Float.parseFloat(jTextFieldValordaLoc.getText()));
+            categoriaControle.alterar(obj);
+            imprimirTabela(categoriaControle.listagem());
+            jTextFieldDescricao.setText("");
+            jTextFieldValordaLoc.setText("");
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }//GEN-LAST:event_jButtonAlterarActionPerformed
+
+    private void jTextFieldDescricaoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDescricaoKeyTyped
+    char e = evt.getKeyChar();
+        if (!Character.isLetterOrDigit(e)&& !Character.isWhitespace(e)) {
+            evt.consume();
+        }
+        if (Character.isLowerCase(e)) {
+            evt.setKeyChar(Character.toUpperCase(e));
+        }
+    }//GEN-LAST:event_jTextFieldDescricaoKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -392,13 +509,14 @@ public class TelaDasCategorias extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonAlterar;
+    private javax.swing.JButton jButtonIncluir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -415,8 +533,9 @@ public class TelaDasCategorias extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableCategoria;
     private javax.swing.JTextField jTextFieldDescricao;
+    private javax.swing.JTextField jTextFieldID;
     private javax.swing.JTextField jTextFieldValordaLoc;
     // End of variables declaration//GEN-END:variables
 }

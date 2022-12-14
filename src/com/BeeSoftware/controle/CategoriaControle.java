@@ -14,14 +14,14 @@ import com.BeeSoftware.persistencia.ICategoriaDao;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class CategoriaControle implements ICategoriaControle{
-    
+public class CategoriaControle implements ICategoriaControle {
+
     ICategoriaDao categoriaPercistencia = null;
-    
+
     public CategoriaControle() {
         this.categoriaPercistencia = new CategoriaDao();
     }
-    
+
     private boolean buscarCategoria(String descricao) throws Exception {
         try {
             ArrayList<Categoria> listagem = categoriaPercistencia.listagem();
@@ -37,7 +37,8 @@ public class CategoriaControle implements ICategoriaControle{
             throw erro;
         }
     }
-       @Override
+
+    @Override
     public void incluir(Categoria objeto) throws Exception {
         if (buscarCategoria(objeto.getDescricao())) {
             throw new Exception("Categoria já foi cadastrada");
@@ -48,7 +49,8 @@ public class CategoriaControle implements ICategoriaControle{
         }
         categoriaPercistencia.incluir(objeto);
     }
-     @Override
+
+    @Override
     public void alterar(Categoria objeto) throws Exception {
         if (buscarCategoria(objeto.getDescricao())) {
             throw new Exception("Categoria já foi cadastrada");
@@ -59,14 +61,21 @@ public class CategoriaControle implements ICategoriaControle{
         }
         categoriaPercistencia.alterar(objeto);
     }
-    
+
     @Override
     public ArrayList<Categoria> listagem() throws Exception {
         return categoriaPercistencia.listagem();
     }
-        @Override
+
+    @Override
     public Categoria buscar(int id) throws Exception {
         return categoriaPercistencia.buscar(id);
     }
-    
+
+    @Override
+    public void verTxt() throws Exception {
+
+        categoriaPercistencia.verTxt();
+    }
+
 }

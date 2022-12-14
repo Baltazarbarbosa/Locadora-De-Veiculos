@@ -93,8 +93,8 @@ public class MotoristaControle implements IMotoristaControle{
     }
 
     @Override
-    public void buscar(Motorista objeto) throws Exception {
-        motoristaPersistencia.buscar(objeto);
+    public Motorista buscar(int id) throws Exception {
+       return motoristaPersistencia.buscar(id);
     }
     
     
