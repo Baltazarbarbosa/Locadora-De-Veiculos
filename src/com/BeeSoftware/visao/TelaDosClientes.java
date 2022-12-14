@@ -978,7 +978,7 @@ public class TelaDosClientes extends javax.swing.JFrame {
                 long cep = Long.parseLong(TextFieldCiEP.getText());
                 Endereco endereco = new Endereco(longradouro, complemento, cidade, estado, bairro, cep);
 
-                Cliente clientepf = new Cliente(0, TextFieldCpfCnpj.getText(), TextFieldNomeRazaoSocial.getText(), TextFieldLongradouro.getText(), TextFieldemail.getText(), telefone, endereco, TipoDeCliente.PESSOA_FISICA);
+                Cliente clientepf = new Cliente(Integer.parseInt(TextFieldID.getText()), TextFieldCpfCnpj.getText(), TextFieldNomeRazaoSocial.getText(), TextFieldLongradouro.getText(), TextFieldemail.getText(), telefone, endereco, TipoDeCliente.PESSOA_FISICA);
                 clienteControle.alterar(clientepf, TipoDeCliente.PESSOA_FISICA);
                 imprimirTabela(clienteControle.listagem(TipoDeCliente.PESSOA_FISICA), TipoDeCliente.PESSOA_FISICA);
                 TextFieldCpfCnpj.setText("");
@@ -1004,7 +1004,7 @@ public class TelaDosClientes extends javax.swing.JFrame {
                 long cep = Long.parseLong(TextFieldCiEP.getText());
                 Endereco endereco = new Endereco(longradouro, complemento, cidade, estado, bairro, cep);
 
-                Cliente clientepj = new Cliente(0, TextFieldCpfCnpj.getText(), TextFieldNomeRazaoSocial.getText(), TextFieldemail.getText(), telefone, endereco, TipoDeCliente.PESSOA_JURIDICA);
+                Cliente clientepj = new Cliente(Integer.parseInt(TextFieldID.getText()), TextFieldCpfCnpj.getText(), TextFieldNomeRazaoSocial.getText(), TextFieldemail.getText(), telefone, endereco, TipoDeCliente.PESSOA_JURIDICA);
                 clienteControle.alterar(clientepj, TipoDeCliente.PESSOA_JURIDICA);
                 imprimirTabela(clienteControle.listagem(TipoDeCliente.PESSOA_JURIDICA), TipoDeCliente.PESSOA_JURIDICA);
                 TextFieldemail.setText("");

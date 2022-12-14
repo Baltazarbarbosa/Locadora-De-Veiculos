@@ -4,6 +4,7 @@
  */
 package com.BeeSoftware.controle;
 
+import com.BeeSoftware.enumeradores.TipoDeCliente;
 import com.BeeSoftware.modelos.Locacao;
 import com.BeeSoftware.persistencia.ILocacaoDao;
 import com.BeeSoftware.persistencia.LocacaoDao;
@@ -24,19 +25,22 @@ public class LocacaoControle implements ILocacaoControle {
     }
 
     @Override
-    public void alterar(Locacao objeto) throws Exception {
+    public void alterar(Locacao objeto, TipoDeCliente tipoDoCliente) throws Exception {
 
-        locacaoPersistencia.alterar(objeto);
+        locacaoPersistencia.alterar(objeto, tipoDoCliente);
     }
 
     @Override
-    public ArrayList<Locacao> listagem() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public ArrayList<Locacao> listagem(TipoDeCliente tipoDoCliente) throws Exception {
+    
+      return locacaoPersistencia.listagem(tipoDoCliente);
+
     }
 
     @Override
-    public Locacao buscar(int id) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Locacao buscar(int id, TipoDeCliente tipoDoCliente) throws Exception {
+       
+        return locacaoPersistencia.buscar(id, tipoDoCliente);
     }
 
     @Override

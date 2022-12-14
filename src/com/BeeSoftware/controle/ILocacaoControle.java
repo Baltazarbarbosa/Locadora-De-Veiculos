@@ -4,6 +4,7 @@
  */
 package com.BeeSoftware.controle;
 
+import com.BeeSoftware.enumeradores.TipoDeCliente;
 import com.BeeSoftware.modelos.Locacao;
 import java.util.ArrayList;
 
@@ -14,13 +15,19 @@ import java.util.ArrayList;
 public interface ILocacaoControle {
 
     void incluir(Locacao objeto) throws Exception;
-    void alterar(Locacao objeto) throws Exception;
-    ArrayList<Locacao > listagem() throws Exception;
-    Locacao buscar (int id) throws Exception;
-    
-    void locar()throws Exception;
-    void devolver()throws Exception;
-    void cancelar()throws Exception;
-    void verTxt()throws Exception;
+
+    void alterar(Locacao objeto, TipoDeCliente tipoDoCliente) throws Exception;
+
+    ArrayList<Locacao> listagem(TipoDeCliente tipoDoCliente) throws Exception;
+
+    Locacao buscar(int id, TipoDeCliente tipoDoCliente) throws Exception;
+
+    void locar() throws Exception;
+
+    void devolver() throws Exception;
+
+    void cancelar() throws Exception;
+
+    void verTxt() throws Exception;
 
 }
