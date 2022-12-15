@@ -5,6 +5,7 @@
 package com.BeeSoftware.controle;
 
 import com.BeeSoftware.modelos.Motorista;
+import com.BeeSoftware.persistencia.IMotoristaDao;
 import com.BeeSoftware.persistencia.MotoristaDao;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -14,10 +15,10 @@ import java.util.Iterator;
  * @author educa
  */
 public class MotoristaControle implements IMotoristaControle{
-    IMotoristaControle motoristaPersistencia=null;
+    IMotoristaDao motoristaPersistencia=null;
     
     public MotoristaControle(){
-        this.motoristaPersistencia = (IMotoristaControle) new MotoristaDao();
+        this.motoristaPersistencia = new MotoristaDao();
     }
     @Override
     public void incluir(Motorista objeto) throws Exception {
@@ -72,8 +73,11 @@ public class MotoristaControle implements IMotoristaControle{
     }
 
     @Override
-    public void verTxt() {
-        motoristaPersistencia.verTxt();
+    public void verTxt(){
+        try {
+            motoristaPersistencia.verTxt();
+        } catch (Exception e) {
+        }
     }
 
     public boolean buscarMotorista(String nome) throws Exception {

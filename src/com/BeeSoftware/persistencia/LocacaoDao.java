@@ -29,48 +29,20 @@ import java.util.Iterator;
  * @author balta
  */
 public class LocacaoDao implements ILocacaoDao {
-    
+
     MotoristaControle motoristaControle = new MotoristaControle();
     ClienteControle clienteControle = new ClienteControle();
     AcessoriosControle acessoriosControle = new AcessoriosControle();
     VeiculoControle veiculoControle = new VeiculoControle();
-    
+
     private String nomeDoArquivoNoDisco;
-    
+
     public LocacaoDao() {
         nomeDoArquivoNoDisco = "./src/com/BeeSoftware/arquivosdedados/Locacao.txt";
     }
-    
+
     @Override
-    public void locar() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
-    @Override
-    public void devolver() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
-    @Override
-    public void cancelar() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
-    @Override
-    public void verTxt() throws Exception {
-        
-        File arquivo = new File("./src/com/BeeSoftware/arquivosdedados/Locacao.txt");
-        try {
-            arquivo.createNewFile();
-        } catch (Exception e) {
-            System.out.println("");
-        }
-        
-    }
-    
-    @Override
-    public void incluir(Locacao objeto) throws Exception {
-        
+    public void locar(Locacao objeto) throws Exception {
         try {
             //cria o arquivo
             FileWriter fw = new FileWriter(nomeDoArquivoNoDisco, true);
@@ -86,120 +58,128 @@ public class LocacaoDao implements ILocacaoDao {
             throw erro;
         }
     }
-    
+
     @Override
-    public void alterar(Locacao objeto, TipoDeCliente tipoDoCliente) throws Exception {
+    public void devolver(Locacao objeto, TipoDeCliente tipoDoCliente) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void cancelar(Locacao objeto, TipoDeCliente tipoDoCliente) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void verTxt() throws Exception {
+
+        File arquivo = new File("./src/com/BeeSoftware/arquivosdedados/Locacao.txt");
         try {
-            Iterator<Locacao> lista = listagem(tipoDoCliente).iterator();
+            arquivo.createNewFile();
+        } catch (Exception e) {
+            System.out.println("");
+        }
+
+    }
+
+    @Override
+    public void alterar(Locacao objeto) throws Exception {
+        try {
+            Iterator<Locacao> lista = listagem().iterator();
             FileWriter fw = new FileWriter(nomeDoArquivoNoDisco);
             BufferedWriter bw = new BufferedWriter(fw);
-            
+
             while (lista.hasNext()) {
-                
+
                 Locacao aux = lista.next();
                 if (aux.getId() == objeto.getId()) {
                     bw.write(objeto.toString() + "\n");
                 } else {
                     bw.write(aux.toString() + "\n");
                 }
-                
+
             }
-            
+
             bw.close();
         } catch (Exception erro) {
             throw erro;
         }
-        
+
     }
-    
+
     @Override
-    public ArrayList<Locacao> listagem(TipoDeCliente tipoDoCliente) throws Exception {
+    public ArrayList<Locacao> listagem() throws Exception {
         try {
-            ArrayList<Locacao> listaDeLocacoes = new ArrayList<Locacao>();
+            ArrayList<Locacao> listaDeLocacao = new ArrayList<Locacao>();
+            /*File arquivo = new File("./src/com/locagyn/arquivosdedados/Locacao.txt");
+            if (!arquivo.exists()) {
+                arquivo.createNewFile();
+                nomeDoArquivoNoDisco = "./src/com/locagyn/arquivosdedados/Locacao.txt";
+            }*/
             FileReader fr = new FileReader(nomeDoArquivoNoDisco);
             BufferedReader br = new BufferedReader(fr);
-            String linha = "";
+            String linha;
             while ((linha = br.readLine()) != null) {
+                IVeiculoDao objetoVeiculo = new VeiculoDao();
+                IMotoristaDao objetoMotorista = new MotoristaDao();
+                IAcessoriosDao objetoAcessorio = new AcessoriosDao();
                 Locacao objetoLocacao = new Locacao();
                 String vetorString[] = linha.split(";");
                 objetoLocacao.setId(Integer.parseInt(vetorString[0]));
+                int idMotorista = Integer.parseInt(vetorString[2]);
+                objetoLocacao.setMotorista(objetoMotorista.buscar(idMotorista));
+                int idVeiculo = Integer.parseInt(vetorString[3]);
+                objetoLocacao.setVeiculo(objetoVeiculo.buscar(idVeiculo));
+                int idAcessorios = Integer.parseInt(vetorString[4]);
+                objetoLocacao.setAcessorio(objetoAcessorio.buscar(idAcessorios));
+                objetoLocacao.setDataInicio(vetorString[5]);
+                objetoLocacao.setDataFim(vetorString[6]);
+                objetoLocacao.setValorDaLocação(Float.parseFloat(vetorString[7]));
+                objetoLocacao.setSituacao(vetorString[8]);
+                objetoLocacao.setDiasLocados(Long.parseLong(vetorString[9]));
                 
-                SimpleDateFormat formatter = new SimpleDateFormat(vetorString[1]);
-                Date date = formatter.parse(vetorString[1]);
-                objetoLocacao.setDataInicio(date);
                 
-                SimpleDateFormat formatter2 = new SimpleDateFormat(vetorString[2]);
-                Date date2 = formatter2.parse(vetorString[2]);
-                objetoLocacao.setDataFinal(date2);
-                
-                objetoLocacao.setValorDaLocacao(Float.parseFloat(vetorString[3]));
-                objetoLocacao.setSituacaoDaLocacao(SituacaoDaLocacao.valueOf(vetorString[4]));
-                
-                int idMotorista = Integer.parseInt(vetorString[5]);
-                objetoLocacao.setMotorista(motoristaControle.buscar(idMotorista));
-                //Cotinuar
-                int idCliente = Integer.parseInt(vetorString[6]);
-                objetoLocacao.setCliente(clienteControle.buscar(idCliente, tipoDoCliente));
-                //Continuar
-                int idAcessorio = Integer.parseInt(vetorString[7]);
-                objetoLocacao.setAcssorios(acessoriosControle.buscar(idAcessorio));
-                
-                int idVeiculo = Integer.parseInt(vetorString[8]);
-                objetoLocacao.setVeiculo(veiculoControle.buscar(idVeiculo));
-                
-                listaDeLocacoes.add(objetoLocacao);
+                listaDeLocacao.add(objetoLocacao);
+
             }
             br.close();
-            return listaDeLocacoes;
+            return listaDeLocacao;
         } catch (Exception erro) {
             throw erro;
         }
-    }
     
+    }
+
     @Override
-    public Locacao buscar(int id, TipoDeCliente tipoDoCliente) throws Exception {
-        
-        FileReader fr = new FileReader(nomeDoArquivoNoDisco);
+    public Locacao buscar(int id) throws Exception {
+
+                 FileReader fr = new FileReader(nomeDoArquivoNoDisco);
         BufferedReader br = new BufferedReader(fr);
-        String linha = "";
-        
+        String linha;
         while ((linha = br.readLine()) != null) {
-            
+            IVeiculoDao objetoVeiculo = new VeiculoDao();
+            IMotoristaDao objetoMotorista = new MotoristaDao();
+            IAcessoriosDao objetoAcessorio = new AcessoriosDao();
             Locacao objetoLocacao = new Locacao();
             String vetorString[] = linha.split(";");
-            
             objetoLocacao.setId(Integer.parseInt(vetorString[0]));
-            
-            SimpleDateFormat formatter = new SimpleDateFormat(vetorString[1]);
-            Date date = formatter.parse(vetorString[1]);
-            objetoLocacao.setDataInicio(date);
-            
-            SimpleDateFormat formatter2 = new SimpleDateFormat(vetorString[2]);
-            Date date2 = formatter2.parse(vetorString[2]);
-            objetoLocacao.setDataFinal(date2);
-            
-            objetoLocacao.setValorDaLocacao(Float.parseFloat(vetorString[3]));
-            objetoLocacao.setSituacaoDaLocacao(SituacaoDaLocacao.valueOf(vetorString[4]));
-            
-            int idMotorista = Integer.parseInt(vetorString[5]);
-            objetoLocacao.setMotorista(motoristaControle.buscar(idMotorista));
-            //Cotinuar
-            int idCliente = Integer.parseInt(vetorString[6]);
-            objetoLocacao.setCliente(clienteControle.buscar(idCliente, tipoDoCliente));
-            //Continuar
-            int idAcessorio = Integer.parseInt(vetorString[7]);
-            objetoLocacao.setAcssorios(acessoriosControle.buscar(idAcessorio));
-            
-            int idVeiculo = Integer.parseInt(vetorString[8]);
-            objetoLocacao.setVeiculo(veiculoControle.buscar(idVeiculo));
-            
+            int idMotorista = Integer.parseInt(vetorString[2]);
+            objetoLocacao.setMotorista(objetoMotorista.buscar(idMotorista));
+            int idVeiculo = Integer.parseInt(vetorString[3]);
+            objetoLocacao.setVeiculo(objetoVeiculo.buscar(idVeiculo));
+            int idAcessorios = Integer.parseInt(vetorString[4]);
+            objetoLocacao.setAcessorio(objetoAcessorio.buscar(idAcessorios));
+            objetoLocacao.setDataInicio(vetorString[5]);
+            objetoLocacao.setDataFim(vetorString[6]);
+            objetoLocacao.setValorDaLocação(Float.parseFloat(vetorString[7]));
+            objetoLocacao.setSituacao(vetorString[8]);
+            objetoLocacao.setDiasLocados(Long.parseLong(vetorString[9]));
+            objetoLocacao.setValorDia(Float.parseFloat(vetorString[10]));
             if (objetoLocacao.getId() == id) {
-                return new Locacao(Integer.parseInt(vetorString[0]), date, date2, Float.parseFloat(vetorString[3]), SituacaoDaLocacao.valueOf(vetorString[4]), motoristaControle.buscar(idMotorista), clienteControle.buscar(idCliente, tipoDoCliente), acessoriosControle.buscar(idAcessorio), veiculoControle.buscar(idVeiculo));
+                br.close();
+                return new Locacao(Integer.parseInt(vetorString[0]), motoristaControle.buscar(Integer.parseInt(vetorString[1])), veiculoControle.buscar(Integer.parseInt(vetorString[2])), acessoriosControle.buscar(Integer.parseInt(vetorString[3])), vetorString[4],vetorString[5],Float.parseFloat(vetorString[6]),vetorString[7],Long.parseLong(vetorString[8]));
             }
-            
         }
         return null;
-        
     }
-    
+
 }

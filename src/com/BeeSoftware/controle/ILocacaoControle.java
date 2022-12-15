@@ -14,19 +14,17 @@ import java.util.ArrayList;
  */
 public interface ILocacaoControle {
 
-    void incluir(Locacao objeto) throws Exception;
+    void alterar(Locacao objeto) throws Exception;
 
-    void alterar(Locacao objeto, TipoDeCliente tipoDoCliente) throws Exception;
+    ArrayList<Locacao> listagem() throws Exception;
 
-    ArrayList<Locacao> listagem(TipoDeCliente tipoDoCliente) throws Exception;
+    Locacao buscar(int id) throws Exception;
 
-    Locacao buscar(int id, TipoDeCliente tipoDoCliente) throws Exception;
+    void locar(Locacao objeto) throws Exception;
 
-    void locar() throws Exception;
+    void devolver(Locacao objeto, TipoDeCliente tipoDoCliente) throws Exception;
 
-    void devolver() throws Exception;
-
-    void cancelar() throws Exception;
+    void cancelar(Locacao objeto, TipoDeCliente tipoDoCliente) throws Exception;
 
     void verTxt() throws Exception;
 

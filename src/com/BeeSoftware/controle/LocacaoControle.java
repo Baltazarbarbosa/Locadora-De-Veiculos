@@ -18,50 +18,52 @@ public class LocacaoControle implements ILocacaoControle {
 
     ILocacaoDao locacaoPersistencia = new LocacaoDao();
 
-    @Override
-    public void incluir(Locacao objeto) throws Exception {
+ 
 
-        locacaoPersistencia.incluir(objeto);
+    @Override
+    public void alterar(Locacao objeto) throws Exception {
+
+        locacaoPersistencia.alterar(objeto);
     }
 
     @Override
-    public void alterar(Locacao objeto, TipoDeCliente tipoDoCliente) throws Exception {
-
-        locacaoPersistencia.alterar(objeto, tipoDoCliente);
-    }
-
-    @Override
-    public ArrayList<Locacao> listagem(TipoDeCliente tipoDoCliente) throws Exception {
+    public ArrayList<Locacao> listagem() throws Exception {
     
-      return locacaoPersistencia.listagem(tipoDoCliente);
+      return locacaoPersistencia.listagem();
 
     }
 
     @Override
-    public Locacao buscar(int id, TipoDeCliente tipoDoCliente) throws Exception {
+    public Locacao buscar(int id) throws Exception {
        
-        return locacaoPersistencia.buscar(id, tipoDoCliente);
+        return locacaoPersistencia.buscar(id);
     }
 
-    @Override
-    public void locar() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void devolver() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void cancelar() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+   
 
     @Override
     public void verTxt() throws Exception {
 
         locacaoPersistencia.verTxt();
+    }
+
+    @Override
+    public void locar(Locacao objeto) throws Exception {
+        locacaoPersistencia.locar(objeto);
+    
+    }
+
+    @Override
+    public void devolver(Locacao objeto, TipoDeCliente tipoDoCliente) throws Exception {
+        locacaoPersistencia.devolver(objeto, tipoDoCliente);
+    
+    }
+
+    @Override
+    public void cancelar(Locacao objeto, TipoDeCliente tipoDoCliente) throws Exception {
+    
+        locacaoPersistencia.cancelar(objeto, tipoDoCliente);
+    
     }
 
 }

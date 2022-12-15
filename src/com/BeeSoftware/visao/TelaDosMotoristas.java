@@ -22,6 +22,8 @@ import com.BeeSoftware.modelos.Endereco;
 import com.BeeSoftware.modelos.Motorista;
 import com.BeeSoftware.modelos.Telefone;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -34,7 +36,6 @@ public class TelaDosMotoristas extends javax.swing.JFrame {
      * Creates new form TelaDosMotoristas
      */
     IMotoristaControle motoristaControle = new MotoristaControle();
-    SimpleDateFormat dF = new SimpleDateFormat("dd/MM/yyyy");
 
     public TelaDosMotoristas() {
         initComponents();
@@ -93,12 +94,13 @@ public class TelaDosMotoristas extends javax.swing.JFrame {
         jLabel25 = new javax.swing.JLabel();
         jButtonCapturarFoto = new javax.swing.JButton();
         jLabel26 = new javax.swing.JLabel();
-        jButtonincluir = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jDateChooserVencimento = new com.toedter.calendar.JDateChooser();
         jComboBoxCategoria = new javax.swing.JComboBox<>();
+        jFormattedValidade = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
+        jButtonincluir = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -282,15 +284,6 @@ public class TelaDosMotoristas extends javax.swing.JFrame {
         jLabel26.setForeground(new java.awt.Color(255, 255, 255));
         jLabel26.setText("Foto da CNH:");
 
-        jButtonincluir.setText("Incluir");
-        jButtonincluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonincluirActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("Alterar");
-
         jComboBoxCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "AB", "C", "D", "E", " " }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -330,10 +323,8 @@ public class TelaDosMotoristas extends javax.swing.JFrame {
                                         .addComponent(jLabel23)
                                         .addGap(18, 18, 18)
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addGap(6, 6, 6)
-                                                .addComponent(jComboBoxCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addComponent(jTextFieldNumeroCnh, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jComboBoxCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jTextFieldNumeroCnh, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabel18)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -344,34 +335,25 @@ public class TelaDosMotoristas extends javax.swing.JFrame {
                                     .addComponent(TextFieldCep)))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(jLabel25)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jDateChooserVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(jLabel24))
-                                        .addGap(115, 115, 115))
+                                    .addComponent(jLabel24)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel26)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jButtonCapturarFoto)
-                                        .addGap(55, 55, 55)))
+                                        .addComponent(jButtonCapturarFoto))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel25)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jFormattedValidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(103, 103, 103)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(TextFieldLogradouro))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel17)
-                                            .addComponent(jButtonincluir))
+                                        .addComponent(jLabel17)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(jButton2)
-                                                .addGap(0, 0, Short.MAX_VALUE))
-                                            .addComponent(TextFieldComplemento))))))
+                                        .addComponent(TextFieldComplemento)))))
                         .addGap(80, 80, 80))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -427,25 +409,27 @@ public class TelaDosMotoristas extends javax.swing.JFrame {
                         .addComponent(jLabel23)
                         .addComponent(jTextFieldNumeroCnh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(TextFieldBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel14)
                                 .addComponent(jLabel24))
                             .addComponent(TextFieldLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(17, 17, 17))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jComboBoxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel17)
                         .addComponent(TextFieldComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jDateChooserVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel25)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel25))
+                    .addComponent(jFormattedValidade, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
@@ -453,11 +437,8 @@ public class TelaDosMotoristas extends javax.swing.JFrame {
                         .addGap(14, 14, 14))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel26)
-                            .addComponent(jButtonincluir)
-                            .addComponent(jButton2))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jLabel26)
+                        .addContainerGap(20, Short.MAX_VALUE))))
         );
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -477,6 +458,11 @@ public class TelaDosMotoristas extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -500,6 +486,45 @@ public class TelaDosMotoristas extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(7).setPreferredWidth(50);
             jTable1.getColumnModel().getColumn(7).setMaxWidth(50);
         }
+
+        jPanel3.setBackground(new java.awt.Color(252, 186, 3));
+
+        jButtonincluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/BeeSoftware/imagens/incluir.png"))); // NOI18N
+        jButtonincluir.setText("Incluir");
+        jButtonincluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonincluirActionPerformed(evt);
+            }
+        });
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/BeeSoftware/imagens/icons8-u-vire-para-a-esquerda-24.png"))); // NOI18N
+        jButton2.setText("Alterar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(96, 96, 96)
+                .addComponent(jButtonincluir)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(96, 96, 96))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(36, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonincluir)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42))
+        );
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/BeeSoftware/imagens/arquivo.png"))); // NOI18N
         jMenu1.setText("Arquivo");
@@ -592,6 +617,7 @@ public class TelaDosMotoristas extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane1)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -599,8 +625,10 @@ public class TelaDosMotoristas extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
 
@@ -733,7 +761,7 @@ public class TelaDosMotoristas extends javax.swing.JFrame {
         try {
             JFileChooser file = new JFileChooser();
 
-            File foto = new File("/");
+            File foto = new File("./src/com/BeeSoftware/FotoCNH");
             file.setCurrentDirectory(foto);
             file.setFileSelectionMode(JFileChooser.FILES_ONLY);
             file.showOpenDialog(this);
@@ -765,8 +793,8 @@ public class TelaDosMotoristas extends javax.swing.JFrame {
             long cep = Long.parseLong(TextFieldCep.getText());
             Endereco endereco = new Endereco(logradouro, complemento, cidade, estado, bairro, cep);
 
-            //Trabalhando com datas
-            String dataFormatada = dF.format(this.jDateChooserVencimento.getDate());
+            // Trabalhando com datas
+            String dataFormatada = dF.format(this.jFormattedValidade.getDate());
             String categoria = jComboBoxCategoria.getSelectedItem().toString();
 
             Motorista motorista = new Motorista(0, jTextFieldNome.getText(), jTextFieldNumeroCnh.getText(), telefone, endereco, Url, dataFormatada, jComboBoxCategoria.getSelectedItem().toString());
@@ -780,6 +808,87 @@ public class TelaDosMotoristas extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButtonincluirActionPerformed
 
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        try {
+            jTextFieldId.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+            jTextFieldNome.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
+            jTextFieldNumeroCnh.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
+            String telefoneTodo = jTable1.getValueAt(jTable1.getSelectedRow(), 3).toString();
+            String[] telefoneSplit = telefoneTodo.split(";");
+
+            jTextFieldDdi.setText(telefoneSplit[0]);
+            jTextFieldDdd.setText(telefoneSplit[1]);
+            jTextFieldnumero.setText(telefoneSplit[2]);
+
+            String enderecoTodo = jTable1.getValueAt(jTable1.getSelectedRow(), 4).toString();
+            String[] enderecoSplit = enderecoTodo.split(";");
+
+            TextFieldLogradouro.setText(enderecoSplit[0]);
+            TextFieldComplemento.setText(enderecoSplit[1]);
+            TextFieldBairro.setText(enderecoSplit[2]);
+            TextFieldCidade.setText(enderecoSplit[3]);
+
+            for (int i = 0; i < 26; i++) {
+
+                if (enderecoSplit[4].equals(jComboBoxEstado.getItemAt(i))) {
+                    jComboBoxEstado.setSelectedIndex(i);
+                }
+            }
+
+            TextFieldCep.setText(enderecoSplit[5]);
+
+            this.Url = (jTable1.getValueAt(jTable1.getSelectedRow(), 5).toString());
+            SimpleDateFormat dF = new SimpleDateFormat("dd/MM/yyyy");
+            Date data = dF.parse((String) jTable1.getValueAt(jTable1.getSelectedRow(), 6));
+            Calendar cal = dF.getCalendar();
+            cal.setTime(data);
+            jFormattedValidade.setDate(data);
+
+            String categoria = jTable1.getValueAt(jTable1.getSelectedRow(), 7).toString();
+            for (int i = 0; i <= 6; i++) {
+
+                if (categoria.equals(jComboBoxCategoria.getItemAt(i))) {
+                    jComboBoxCategoria.setSelectedIndex(i);
+                }
+            }
+        } catch (Exception e) {
+        }
+
+
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            //captando telefone
+            IMotoristaControle motoristaControle = new MotoristaControle();
+            SimpleDateFormat dF = new SimpleDateFormat("dd/MM/yyyy");
+            long ddi = Long.parseLong(jTextFieldDdi.getText());
+            long ddd = Long.parseLong(jTextFieldDdd.getText());
+            long numero = Long.parseLong(jTextFieldnumero.getText());
+            Telefone telefone = new Telefone(ddi, ddd, numero);
+
+            //captando endereco
+            String logradouro = TextFieldLogradouro.getText();
+            String complemento = TextFieldComplemento.getText();
+            String bairro = TextFieldBairro.getText();
+            String cidade = TextFieldCidade.getText();
+            String estado = jComboBoxEstado.getSelectedItem().toString();
+            long cep = Long.parseLong(TextFieldCep.getText());
+            Endereco endereco = new Endereco(logradouro, complemento, cidade, estado, bairro, cep);
+
+            // Trabalhando com datas
+            String dataFormatada = dF.format(this.jFormattedValidade.getDate());
+            String categoria = jComboBoxCategoria.getSelectedItem().toString();
+
+            Motorista motorista = new Motorista(0, jTextFieldNome.getText(), jTextFieldNumeroCnh.getText(), telefone, endereco, Url, dataFormatada, jComboBoxCategoria.getSelectedItem().toString());
+
+            motoristaControle.alterar(motorista);
+            imprimirDadosNaGrid(motoristaControle.listagem());
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(this, erro.getMessage());
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     private void imprimirDadosNaGrid(ArrayList<Motorista> listaDeMarcas) {
         try {
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -791,12 +900,12 @@ public class TelaDosMotoristas extends javax.swing.JFrame {
                 Motorista aux = lista.next();
                 saida[0] = aux.getId() + "";
                 saida[1] = aux.getNome();
-                saida[2] = aux.getUrl();
-                saida[3] = aux.getCnh() + "";
-                saida[4] = aux.getTipoCNH();
-                saida[5] = aux.getDataVencimentoCNH().toString();
-                saida[6] = aux.getTelefone().toString();
-                saida[7] = aux.getEndereco().toString();
+                saida[2] = aux.getCnh();
+                saida[3] = aux.getTelefone().toString() + "";
+                saida[4] = aux.getEndereco().toString();
+                saida[5] = aux.getUrl();
+                saida[6] = aux.getDataVencimentoCNH();
+                saida[7] = aux.getTipoCNH();
                 // Incluir nova linha na Tabela
                 model.addRow(saida);
             }
@@ -852,7 +961,7 @@ public class TelaDosMotoristas extends javax.swing.JFrame {
     private javax.swing.JButton jButtonincluir;
     private javax.swing.JComboBox<String> jComboBoxCategoria;
     private javax.swing.JComboBox<String> jComboBoxEstado;
-    private com.toedter.calendar.JDateChooser jDateChooserVencimento;
+    private com.toedter.calendar.JDateChooser jFormattedValidade;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel17;
@@ -885,6 +994,7 @@ public class TelaDosMotoristas extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextFieldDdd;

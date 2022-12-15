@@ -85,9 +85,9 @@ public class ClienteDao implements IClienteDao {
 
                     Cliente aux = lista.next();
                     if (aux.getId() == objeto.getId()) {
-                        bw.write(objeto.toString(TipoDeCliente.PESSOA_FISICA)+ "\n");
+                        bw.write(objeto.toString(TipoDeCliente.PESSOA_FISICA) + "\n");
                     } else {
-                        bw.write(aux.toString(TipoDeCliente.PESSOA_FISICA)+ "\n");
+                        bw.write(aux.toString(TipoDeCliente.PESSOA_FISICA) + "\n");
                     }
 
                 }
@@ -103,13 +103,12 @@ public class ClienteDao implements IClienteDao {
 
                     Cliente aux = lista.next();
                     if (aux.getId() == objeto.getId()) {
-                        bw.write(objeto.toString(TipoDeCliente.PESSOA_JURIDICA)+ "\n");
+                        bw.write(objeto.toString(TipoDeCliente.PESSOA_JURIDICA) + "\n");
                     } else {
-                        bw.write(aux.toString(TipoDeCliente.PESSOA_JURIDICA)+ "\n");
+                        bw.write(aux.toString(TipoDeCliente.PESSOA_JURIDICA) + "\n");
                     }
 
                 }
-                
 
                 bw.close();
             }
@@ -216,20 +215,20 @@ public class ClienteDao implements IClienteDao {
                 objetoCliente.setCpf(vetorString[1]);
                 objetoCliente.setNome(vetorString[2].replaceAll("_", " "));
                 objetoCliente.setIdentidade(vetorString[3]);
-                String[] telSeparado = vetorString[4].split(";");
-                long ddi = Long.parseLong(telSeparado[0]);
-                long ddd = Long.parseLong(telSeparado[1]);
-                long numero = Long.parseLong(telSeparado[2]);
+
+                long ddi = Long.parseLong(vetorString[4]);
+                long ddd = Long.parseLong(vetorString[5]);
+                long numero = Long.parseLong(vetorString[6]);
                 Telefone telefone = new Telefone(ddi, ddd, numero);
                 objetoCliente.setTelefone(telefone);
                 objetoCliente.setEmail(vetorString[5]);
-                String[] endSeparado = vetorString[6].split(",");
-                String longradouro = endSeparado[0];
-                String complemento = endSeparado[1];
-                String bairro = endSeparado[2];
-                String cidade = endSeparado[3];
-                String estado = endSeparado[4];
-                long cep = Long.parseLong(endSeparado[5]);
+
+                String longradouro = vetorString[6];
+                String complemento = vetorString[7];
+                String bairro = vetorString[8];
+                String cidade = vetorString[9];
+                String estado = vetorString[10];
+                long cep = Long.parseLong(vetorString[11]);
                 Endereco endereco = new Endereco(longradouro, complemento, cidade, estado, bairro, cep);
                 objetoCliente.setEndereco(endereco);
                 if (objetoCliente.getId() == id) {
@@ -244,20 +243,19 @@ public class ClienteDao implements IClienteDao {
             objetoCliente.setId(Integer.parseInt(vetorString[0]));
             objetoCliente.setRazaoSocial(vetorString[1]);
             objetoCliente.setCnpj(vetorString[2]);
-            String[] telSeparado = vetorString[3].split(";");
-            long ddi = Long.parseLong(telSeparado[0]);
-            long ddd = Long.parseLong(telSeparado[1]);
-            long numero = Long.parseLong(telSeparado[2]);
+            long ddi = Long.parseLong(vetorString[3]);
+            long ddd = Long.parseLong(vetorString[4]);
+            long numero = Long.parseLong(vetorString[5]);
             Telefone telefone = new Telefone(ddi, ddd, numero);
             objetoCliente.setTelefone(telefone);
-            objetoCliente.setEmail(vetorString[4]);
-            String[] endSeparado = vetorString[5].split(",");
-            String longradouro = endSeparado[0];
-            String complemento = endSeparado[1];
-            String bairro = endSeparado[2];
-            String cidade = endSeparado[3];
-            String estado = endSeparado[4];
-            long cep = Long.parseLong(endSeparado[5]);
+            objetoCliente.setEmail(vetorString[6]);
+            
+            String longradouro = vetorString[7];
+            String complemento = vetorString[8];
+            String bairro = vetorString[9];
+            String cidade = vetorString[10];
+            String estado = vetorString[11];
+            long cep = Long.parseLong(vetorString[12]);
             Endereco endereco = new Endereco(longradouro, complemento, cidade, estado, bairro, cep);
             objetoCliente.setEndereco(endereco);
             if (objetoCliente.getId() == id) {

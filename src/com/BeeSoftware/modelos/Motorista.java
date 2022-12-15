@@ -95,7 +95,7 @@ public class Motorista {
     }
     @Override
     public String toString() {
-        return id + ";" + nome + ";" + cnh + ";" +telefone+";"+endereco+";"+url+";"+dataVencimentoCNH+";"+tipoCNH+";"+cliente.getId();
+        return id + ";" + nome + ";" + cnh + ";" +telefone+";"+endereco+";"+url+";"+dataVencimentoCNH+";"+tipoCNH;
     }
 
     public Cliente getCliente() {
